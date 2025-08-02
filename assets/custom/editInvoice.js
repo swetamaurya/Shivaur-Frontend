@@ -1,9 +1,21 @@
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
-import { user_API, project_API, invoice_API } from './apis.js';
+import { user_API, project_API, invoice_API,product_API } from './apis.js';
 // =================================================================================
 const token = localStorage.getItem('token');
 // =================================================================================
@@ -11,7 +23,7 @@ const token = localStorage.getItem('token');
 
 let cachedClients = [];
 try {
-    const response = await fetch(`${user_API}/data/get`, {
+    const response = await fetch(`${user_API}/data/get`, { 
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -33,6 +45,33 @@ catch(error){
     console.error('Error fetching data:', error);
 }
 // ----------------------------------------------------------------------------------
+let cachedProduct = [];
+async function showProductDropdown(){
+    try {
+        const response = await fetch(`${product_API}/get`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const res = await response.json();
+        cachedProduct = res?.data
+      
+        const product_select_option = document.getElementById("product_select_option");
+        res.data.forEach((product) => {
+            const option = document.createElement("option");
+            option.value = product._id;
+            option.text = `${product?.material} (${product?.productId})`;
+            product_select_option.appendChild(option);
+        });
+    }
+    catch(error){
+        console.error('Error fetching data:', error);
+    }
+
+}
+
 let cachedProject = [];
 async function showProjectDropdown(){
     const r1 = await fetch(`${project_API}/get`, {
@@ -43,21 +82,65 @@ async function showProjectDropdown(){
         },
       });
     const r2 = await r1.json();
-    cachedProject = r2?.projects;
+    cachedProject = r2?.data;
 
     console.log("bro :- ",cachedProject)
     
     const project_select_option = document.getElementById("project_select_option");
+    // project_select_option.innerHTML = '<option id="assignProject" >Select Assign Project</option>'
     console.log(r2?.projects);
-    r2?.projects.map((e) => {
+    cachedProject.map((e) => {
         let a1 = document.createElement("option");
         a1.value = e?._id || '-';
         a1.text = `${e?.projectName} (${e?.projectId})` || '-' ;
         project_select_option.appendChild(a1);
     });
 }
-showProjectDropdown();
+// showProjectDropdown();
 // ----------------------------------------------------------------------------------
+
+// ------------------ This will disable the fields --------------------------------//
+window.disableFields = function disableFields(){
+    let project = document.getElementById('project_select_option')
+    let product  = document.getElementById('product_select_option')
+    let client = document.getElementById('client_select_option')
+    if (project.value != '') {
+        product.setAttribute('disabled',true)  
+    }
+    else {
+        product.removeAttribute('disabled');  
+    }
+    
+    if (product.value != '') {
+        project.setAttribute('disabled',true)
+        client.removeAttribute('disabled')
+    }
+    else {
+        project.removeAttribute('disabled');  
+    }
+}
+document.getElementById('project_select_option').addEventListener('change', disableFields);
+document.getElementById('product_select_option').addEventListener('change', disableFields);
+
+//----------------------------------------------------------------------------------------
+// When we are clicking on the product and select the client we will generate the clients data to fields
+function showAssignProductData(){
+    let client = document.getElementById('client_select_option')
+    let data = cachedClients.find(d=> d._id == client.value);
+    document.getElementById("email").value = data?.email || '';
+    document.getElementById("clientAddress").value = data?.address || '';
+    document.getElementById("billingAddress").value = data?.address || '';
+}
+let cl = document.getElementById('client_select_option')
+let pr = document.getElementById('product_select_option')
+cl.addEventListener('change', showAssignProductData);
+pr.addEventListener('change', showAssignProductData);
+if(cl.value!='' && pr.value != ''){
+    showAssignProductData()
+}
+//-------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
 
 function rtnProj(e){
     let data = cachedProject.find(d=> d._id == e);
@@ -79,6 +162,33 @@ document.getElementById("project_select_option").addEventListener("change", func
 
 })
 // ----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+// showing the Message 
+document.getElementById('product_select_option').addEventListener('mouseenter',()=>{
+    let productSpan = document.getElementById('product-span')
+    let productSelection = document.getElementById('product_select_option')
+    if(productSelection.disabled == true){
+        productSpan.style.display = 'inline-block';
+    }
+})
+document.getElementById('project_select_option').addEventListener('mouseenter',()=>{
+    let projectSelection = document.getElementById('project_select_option')
+    let projectSpan = document.getElementById('project-span')
+    if(projectSelection.disabled == true){
+        projectSpan.style.display = 'inline-block'
+    }
+})
+
+document.getElementById('product_select_option').addEventListener('mouseleave',()=>{
+    let productSpan = document.getElementById('product-span')
+    productSpan.style.display = 'none';
+})
+document.getElementById('project_select_option').addEventListener('mouseleave',()=>{
+    let projectSpan = document.getElementById('project-span')
+    projectSpan.style.display = 'none';
+})
+
+//-------------------------------------------------------------------------------------
 
 // =================================================================================
 // =================================================================================
@@ -106,14 +216,35 @@ async function load_edit_data(){
             throw new Error();
         }
         const res = await responseData.json()
+
+        let project = document.getElementById('project_select_option')
+        let product = document.getElementById('product_select_option')
+        if(res?.project?._id === undefined){
+            project.setAttribute('disabled',true)
+        }
+        else{
+            project.value = res?.project?._id;
+        }
+        if(res?.product?._id === undefined){
+            product.setAttribute('disabled',true)
+        }
+        else{
+            product.value = res?.product?._id;
+        }
+        if(res?.project?._id === undefined && res?.product?._id === undefined){
+            project.removeAttribute('disabled')
+            product.removeAttribute('disabled')
+        }
+        
     
-        document.getElementById("project_select_option").value = res?.project;
-        document.getElementById("client_select_option").value = res?.client;
-        document.getElementById("email").value = res?.email;
+        // document.getElementById("product_select_option").value = res?.product?._id;
+
+        document.getElementById("client_select_option").value = res?.client?._id;
+        document.getElementById("email").value = res?.client?.email;
         document.getElementById("estimateDate").value = res?.invoiceDate;
         document.getElementById("expiryDate").value = res?.dueDate;
         document.getElementById("taxType").value = res?.taxType;
-        document.getElementById("clientAddress").value = res?.clientAddress;
+        document.getElementById("clientAddress").value = res?.client?.address;
         document.getElementById("billingAddress").value = res?.billingAddress;
         document.getElementById("otherInfo").value = res?.otherInfo;
     
@@ -158,7 +289,8 @@ async function load_edit_data(){
             console.error("Error populating invoice table:", error);
         }    
     } catch(error){
-        window.location.href = 'invoices.html';
+        // window.location.href = 'invoices.html';
+        console.log('the error is ',error)
     }
     
 
@@ -167,7 +299,13 @@ async function load_edit_data(){
         remove_loading_shimmer();
     } catch(error){console.log(error)}
 };
-load_edit_data();
+// load_edit_data();
+async function initializePage() {
+    await showProjectDropdown();  
+    await showProductDropdown();
+    await load_edit_data();  
+}
+initializePage()
 
 // =================================================================================
 // =================================================================================
@@ -197,6 +335,8 @@ createEstimateForm.addEventListener('submit', async (event) => {
         const tax = document.getElementById('tax').value;
         const client = document.getElementById('client_select_option').value;
         const project = document.getElementById('project_select_option').value
+        const product = document.getElementById('product_select_option').value
+
         const taxType = document.getElementById('taxType').value
         var total = document.getElementById('totalAmount').value;
         var discount = document.getElementById('discount').value;
@@ -228,13 +368,28 @@ createEstimateForm.addEventListener('submit', async (event) => {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                _id, email, clientAddress, billingAddress, invoiceDate, dueDate, details, tax, total, GrandTotal, client, project, taxType, discount, otherInfo
+                _id, 
+                email, 
+                clientAddress, 
+                billingAddress, 
+                invoiceDate, 
+                dueDate, 
+                details, 
+                tax, 
+                total, 
+                GrandTotal, 
+                client, 
+                project:product ? null : project, 
+                product:project ? null : product,
+                taxType, 
+                discount, 
+                otherInfo
             })
         })
         
         const c1 = (response.ok);
         try{
-            status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+            status_popup( ((c1) ? "Invoice Updated <br> Successfully!" : "Please try <br> again later"), (c1) );
             setTimeout(function(){
                 window.location.href = 'invoices.html';
             },(Number(document.getElementById("b1b1").innerText)*1000));
@@ -377,10 +532,10 @@ function validateForm() {
     const billingAddress = document.getElementById("billingAddress");
   
     // Assign Project Validation
-    if (!projectSelect.value.trim()) {
-      showError(projectSelect, "Please select an assigned project");
-      isValid = false;
-    }
+    // if (!projectSelect.value.trim()) {
+    //   showError(projectSelect, "Please select an assigned project");
+    //   isValid = false;
+    // }
   
     // Client Name Validation
     if (!clientSelect.value.trim()) {

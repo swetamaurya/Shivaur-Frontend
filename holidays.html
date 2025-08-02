@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
 
-<!-- Mirrored from  /html/template/holidays.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 06:20:56 GMT -->
-<head>
+ <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -72,104 +71,76 @@
   
     <!-- Filter and Show Entries Section -->
     <div class="row filter-row">
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-6">
         <div class="input-block mb-3 form-focus">
-          <input type="text" class="form-control floating" id="searchHoliday" placeholder="Search Holiday">
+          <input type="text" class="form-control floating" id="holidayName" placeholder="Search Holiday">
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
-        <a href="javascript:void(0)" class="btn btn-success w-100" onclick="searchHolidays()">
-          <i class="fa fa-search" aria-hidden="true"></i> Search
-        </a>
+      <div class="col-sm-6 col-md-6">
+        <button id="searchButton" class="btn btn-success w-100">Search</button>
       </div>
     </div>
   
     <!-- Pagination and Controls -->
-    <div class="row mt-4">
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="DataTables_Table_1_length">
-                  <label>Show entries
-                    <select name="DataTables_Table_1_length" aria-controls="DataTables_Table_1" class="ms-2 custom-select custom-select-sm form-select form-control-sm">
-                      <option value="10">10</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div class="mohit-d-flex-justify-around-2">
-                  <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" data-bs-toggle="modal" data-bs-target="#export_data">
-                    <i class="fa-solid fa-arrow-down"></i> Download Holiday List
-                  </button>
-                  <button class="btn rounded add-btn disabled" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_holiday">
-                    <i class="fa-solid fa-times"></i> Remove Holiday
-                  </button>
-                  <a class="btn rounded add-btn" href="#" data-bs-toggle="modal" data-bs-target="#add_holiday">
-                    <i class="fa-solid fa-plus"></i> Add Holiday
-                  </a>
-                </div>
-              </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+
+              <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
             </div>
-  
-            <!-- Holidays Table -->
-            <div class="row mt-4">
-              <div class="col-sm-12" style="overflow-y: auto;">
-                <div class="table-responsive">
-                  <table class="table table-striped custom-table mb-0 datatable">
-                    <thead>
-                      <tr>
-                        <th><input type="checkbox" class="checkbox_all" name=""></th>
-                        <th>Title</th>
-                        <th>Holiday Date</th>
-                        <th>Day</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody id="holidayData">
-                      <!-- Holiday data will be dynamically populated here -->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Pagination Info and Controls -->
-            <div class="row mt-4">
-              <div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">
-                  Showing 1 to 7 of 7 entries
-                                </div>
-              </div>
-              <div class="col-sm-12 col-md-7">
-                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous">
-                      <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link">
-                        <i class="fa fa-angle-double-left"></i>
-                      </a>
-                    </li>
-                    <li class="paginate_button page-item active">
-                      <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                    </li>
-                    <li class="paginate_button page-item next disabled" id="DataTables_Table_1_next">
-                      <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link">
-                        <i class="fa fa-angle-double-right"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="mohit-d-flex-justify-around-2">
+                <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" data-bs-toggle="modal" data-bs-target="#export_data">
+                  <i class="fa-solid fa-arrow-down"></i> Download Holiday List
+                </button>
+                <button class="btn rounded add-btn disabled manager_restriction employee_restriction" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_holiday">
+                  <i class="fa-solid fa-times"></i> Remove Holiday
+                </button>
+                <a class="btn rounded add-btn manager_restriction employee_restriction" id="add-holiday-btn" href="#" data-bs-toggle="modal" data-bs-target="#add_holiday">
+                  <i class="fa-solid fa-plus"></i> Add Holiday
+                </a>
               </div>
             </div>
           </div>
+
+          <!-- Holidays Table -->
+          <div class="row mt-4">
+            <div class="col-sm-12" style="overflow-y: auto;">
+              <div class="table-responsive">
+                <table class="table table-striped custom-table mb-0 datatable">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" class="checkbox_all" name=""></th>
+                      <th>Title</th>
+                      <th>Holiday Date</th>
+                      <th>Day</th>
+                      <th class=" manager_restriction employee_restriction" id="holiday-action">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="holidayData">
+                    <!-- Holiday data will be dynamically populated here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination Info and Controls -->
+
+
+                
+          <div class="row mt-4" id="pagination_footer">
+          </div>
+
+
         </div>
       </div>
     </div>
+  </div>
   </div>
   
 </div>
@@ -187,7 +158,7 @@
   <form id="add_holiday">
     <div class="input-block mb-3">
         <label class="col-form-label">Holiday Name <span class="text-danger">*</span></label>
-        <input class="form-control" type="text" id="holidayName" required>
+        <input class="form-control" type="text" id="holiday_Name" required>
     </div>
     <div class="input-block mb-3">
         <label class="col-form-label">Holiday Date <span class="text-danger">*</span></label>
@@ -666,7 +637,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<script>
+<!-- <script>
   $(document).ready(function () {
       // Load header
       $('#header-placeholder').load('header.html', function() {
@@ -684,7 +655,7 @@
 
        $('#sidebar-placeholder').load('sidebar.html');
   });
-</script>
+</script> -->
 
 
 <script
@@ -732,6 +703,7 @@
   data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
   defer
 ></script>
+<script src="./assets/custom/sidebar.js"></script>
 
 </body> 
 

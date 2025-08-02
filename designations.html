@@ -68,25 +68,19 @@
 
           <!-- Filter and Show Entries Section -->
           <div class="row filter-row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-6">
               <div class="input-block mb-3 form-focus">
                 <input
                   type="text"
                   class="form-control floating"
-                  id="designationSearch"
+                  id="designations"
                   placeholder="Search Designation"
                 />
               </div>
             </div>
-            <div class="col-sm-6 col-md-4">
-              <a
-                href="javascript:void(0)"
-                class="btn btn-success w-100"
-                onclick="searchDesignations()"
-              >
-                <i class="fa fa-search" aria-hidden="true"></i> Search
-              </a>
-            </div>
+            <div class="col-sm-6 col-md-6">
+              <button id="searchButton" class="btn btn-success w-100">Search</button>
+             </div>
           </div>
 
           <!-- Pagination and Controls -->
@@ -100,22 +94,10 @@
                   <!-- Show Entries and Action Buttons -->
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
-                      <div
-                        class="dataTables_length"
-                        id="DataTables_Table_1_length"
-                      >
-                        <label>Show entries</label>
-                        <select
-                          name="DataTables_Table_1_length"
-                          aria-controls="DataTables_Table_1"
-                          class="ms-2 custom-select custom-select-sm form-select form-control-sm"
-                        >
-                          <option value="10">10</option>
-                          <option value="25">25</option>
-                          <option value="50">50</option>
-                          <option value="100">100</option>
-                        </select>
-                      </div>
+
+
+                      <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="mohit-d-flex-justify-around-2">
@@ -176,65 +158,13 @@
                   </div>
 
                   <!-- Pagination Info and Controls -->
-                  <div class="row mt-4">
-                    <div class="col-sm-12 col-md-5">
-                      <div
-                        class="dataTables_info"
-                        id="DataTables_Table_1_info"
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Showing 1 to 7 of 7 entries
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-md-7">
-                      <div
-                        class="dataTables_paginate paging_simple_numbers"
-                        id="DataTables_Table_1_paginate"
-                      >
-                        <ul class="pagination">
-                          <li
-                            class="paginate_button page-item previous disabled"
-                            id="DataTables_Table_1_previous"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_1"
-                              data-dt-idx="0"
-                              tabindex="0"
-                              class="page-link"
-                            >
-                              <i class="fa fa-angle-double-left"></i>
-                            </a>
-                          </li>
-                          <li class="paginate_button page-item active">
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_1"
-                              data-dt-idx="1"
-                              tabindex="0"
-                              class="page-link"
-                              >1</a
-                            >
-                          </li>
-                          <li
-                            class="paginate_button page-item next disabled"
-                            id="DataTables_Table_1_next"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_1"
-                              data-dt-idx="2"
-                              tabindex="0"
-                              class="page-link"
-                            >
-                              <i class="fa fa-angle-double-right"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+
+
+                  
+                  <div class="row mt-4" id="pagination_footer">
                   </div>
+
+
                 </div>
                 <!-- End of DataTables Wrapper -->
               </div>
@@ -312,7 +242,7 @@
                     <input
                       class="form-control"
                       type="text"
-                      id="designations"
+                      id="designations_name"
                       required
                     />
                   </div>
@@ -492,24 +422,7 @@
       defer
     ></script>
   </body>
-  <script>
-    $(document).ready(function () {
-      // Load header
-      $("#header-placeholder").load("header.html", function () {
-        // Fetch role from localStorage
-        var userRole = localStorage.getItem("User_role");
+  <script src="./assets/custom/sidebar.js"></script>
 
-        // Inject role into the header-role span
-        if (userRole) {
-          $("#role").text(userRole);
-        } else {
-          $("#role").text("Guest");
-        }
-      });
 
-      $("#sidebar-placeholder").load("sidebar.html");
-    });
-  </script>
-
-  <!-- Mirrored from  /html/template/designations.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 06:20:58 GMT -->
-</html>
+ </html>

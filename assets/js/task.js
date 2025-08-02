@@ -10,7 +10,7 @@
       if (notificationTimeout) clearTimeout(notificationTimeout);
       notificationTimeout = setTimeout(function () {
         notificationPopup.addClass("hide");
-      },3000);
+      },6000);
     };
     var addTask = function () {
       var newTask = $("#new-task").val();

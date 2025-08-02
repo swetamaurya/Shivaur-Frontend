@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+  data-sidebar-image="none"> 
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="keywords"
+    content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects" />
+  <meta name="author" content="" />
+  <title>Add Leads</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" /> 
+
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/material.css" />
+
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+  <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+  <link rel="stylesheet" href="assets/css/ckeditor.css" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <div id="header-placeholder"></div>
+
+    <div id="sidebar-placeholder"></div>
+
+    <div class="page-wrapper">
+      <div class="project-form mx-4 my-3">
+        <div class="page-header py-3">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Create Sale Order</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="lead-list.html">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Sale Order</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <form id="add_saleOrder_form">
+          <div class="row">
+
+            <div class="col-12">
+              <div class="row">
+
+                <div class="col-sm-6 mb-4">
+                  <!-- <div class="input-block mb-4"> -->
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Order's Category <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="orderCategorySelectOption">
+                      <option value="" disabled="" selected="">Select Option</option>
+                      <option value="Client" divider="clientDivCol-projectDivCol">Client</option>
+                      <option value="Project" divider="projectDivCol-clientDivCol">Project</option>
+                    </select>
+                  <!-- </div> -->
+                </div>
+
+                <div class="col-sm-3 d-none" id="projectDivCol">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Project <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="projSelectOption">
+                      <option value="" disabled="" selected="">Select Project</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3  d-none" id="clientDivCol">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Client <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="clintSelectOption">
+                      <option value="" disabled="" selected="">Select Client</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Status <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="status">
+                      <option value="" disabled="" selected="">Select Status</option>
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Sale To <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="saleClintSelectOption">
+                      <option value="" disabled="" selected="">Select Client</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Customer Order Ref <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="customerOrderRef" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="row">
+                
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Order Date <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="date" id="orderDate" />
+                  </div>
+                </div>
+                
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Complication Date <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="date" id="complicationDate" />
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-block mb-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label"> Order Ref <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="orderRef" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Material (Product) <span class="text-danger">*</span></label>
+                    </div>
+                    <select class="form-control" id="prodMaterialSelectOption">
+                      <option value="" disabled="" selected="">Select Material</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Quantity (max:<span id="qtySpan"></span>) <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="qty" />
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Unit <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="unitCost" disabled />
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Delievery Date To 'Customer / Consumer' <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="date" id="delieveryDateToConsumer" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<hr>
+
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Price <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="price" />
+                  </div>
+                </div>
+    
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="
+                      col-form-label">Dues <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="dues" disabled />
+                  </div>
+                </div>
+    
+                <div class="col-sm-4">
+                  <div class="input-block mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <label class="col-form-label">Net Payable Amount <span class="text-danger">*</span></label>
+                    </div>
+                    <input class="form-control" type="text" id="netPayable" disabled />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Payment Section -->
+            <div class="row pe-0">
+              <div class="col-md-12 pe-0">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label class="col-form-label">Payment Section <span class="text-danger">*</span></label>
+                </div>
+                
+                <!-- <div class="table-responsive"> -->
+                <div class="">
+                  <table class="table table-hover table-white" id="addTable">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th id="thNormalDate" class="col-sm-1">Date</th>
+                        <th class="col-md-2">Terms </th>
+                        <th class="col-md-2">Details of Amount</th>
+                        <th class="col-md-2">Status</th>
+                        <th class="col-md-2">Transaction Type</th>
+                        <th class="col-md-2">Amount </th>
+                        <th class="col-md-1"> Payment Date</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody class="tbodyonepayment">
+                      <tr class="paymentData">
+                        <td>1</td>
+                        <td>
+                           <input class="form-control date" type="date" id="paymentSecDate" >
+                        </td>
+                        <td>
+                          <select class="form-control terms" id="terms">
+                            <option value="" selected disabled>Select Terms</option>
+                            <option value="Payment">Payment</option>
+                            <option value="Advance Payment">Advance Payment</option>
+                          </select>
+                        </td>
+                        <td>
+                          <input class="form-control detailOfAmount" type="text" id="detailOfAmount" placeholder="Details of Amount">
+                        </td>
+                        <td>
+                          <select class="form-control paymentStatus" id="paymentStatus">
+                            <option value="" selected="" disabled>Select Status</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select class="form-control transactionTypeClass" id="transactiontype" disabled>
+                            <option value="" selected=""  disabled >Select Status</option>
+                            <option value="Received">Received</option>
+                            <option value="Deduction">Deduction</option>
+                          </select>
+                        </td>                        
+                        <td>
+                          <input class="form-control paymentAmount" type="number" id="paymentAmount" placeholder="Amount">
+                        </td>
+                        <td>
+                          <input class="form-control completionPaymentDate" type="date" id="completionPaymentDate" disabled >
+                        </td>
+                        <td class="text-center">
+                          <a onclick="addSaleOrderPaymentTableRow()" href="javascript:void(0)" class="text-success font-18 addProduct" title="Add">
+                            <i class="fa-solid fa-plus"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Total Received Amount </label>
+                  <input class="form-control " id="ttlRcvdAmt" disabled="" type="number">
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-form-label">Total Deduction Amount </label>
+                  <input class="form-control " id="ttlDdcnAmt" disabled="" type="number">
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-12 mt-3 ">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label class="col-form-label">Description <span class="text-danger">*</span></label>
+                </div>
+                <textarea rows="4" id="description" class="form-control" placeholder="Enter your message here"></textarea>
+              </div>
+
+            
+            <div class="submit-section " style="float: none;">
+              <button type="submit" class="btn btn-primary submit-btn" id="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Js Scripts  -->
+  <script src="assets/js/jquery-3.7.1.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="assets/js/bootstrap.bundle.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/jquery.slimscroll.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/plugins/morris/morris.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/plugins/raphael/raphael.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/js/chart.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/js/greedynav.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/layout.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/js/theme-settings.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/app.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
+  <script type="module" src="./assets/custom/add-sale-order.js"></script>
+</body>
+<script src="./assets/custom/sidebar.js"></script>
+
+</html>

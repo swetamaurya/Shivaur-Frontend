@@ -1,6 +1,18 @@
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { user_API, project_API, estimate_API } from './apis.js';
@@ -42,13 +54,13 @@ async function showProjectDropdown(){
         },
       });
     const r2 = await r1.json();
-    cachedProject = r2?.projects;
+    cachedProject = r2?.data;
 
     console.log("bro :- ",cachedProject)
     
     const project_select_option = document.getElementById("project_select_option");
     console.log(r2?.projects);
-    r2?.projects.map((e) => {
+    cachedProject.map((e) => {
         let a1 = document.createElement("option");
         a1.value = e?._id || '-';
         a1.text = `${e?.projectName} (${e?.projectId})` || '-' ;
@@ -57,6 +69,8 @@ async function showProjectDropdown(){
 }
 showProjectDropdown();
 // ----------------------------------------------------------------------------------
+
+
 
 function rtnProj(e){
     let data = cachedProject.find(d=> d._id == e);
@@ -138,7 +152,7 @@ createEstimateForm.addEventListener('submit', async (event) => {
         
         const c1 = (response.ok);
         try{
-            status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+            status_popup( ((c1) ? "Estimate Created <br> Successfully" : "Please try <br> again later"), (c1) );
             setTimeout(function(){
                 window.location.href = 'estimates.html';
             },(Number(document.getElementById("b1b1").innerText)*1000));

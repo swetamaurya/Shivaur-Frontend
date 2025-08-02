@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+ 
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta
+      name="author"
+      content=""
+    />
+    <title>Add Leads</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="assets/css/ckeditor.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper">
+        <div class="project-form mx-4 my-3">
+          <div class="page-header py-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Edit Enquiry</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="enquiry-list.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Enquiry</li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+          
+          <form id="edit_enquiry_form">
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label">Status <span class="text-danger">*</span></label>
+                  </div>
+                  <select class="form-control" id="status">
+                    <option value="In-Progress">In-Progress</option>                                    <option value="Active">Active</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Interested">Interested</option>
+                    
+                    <option value=" Not Interested"> Not Interested</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Pending">Pending</option>
+  
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Enquiry Date <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="date" id="enquiryDate" />
+                </div>
+              </div>
+              <hr>
+
+                <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >PIC <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="PIC" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Phone <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="phone" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="email" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Company <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <select class="form-control" id="customerCompany">
+                      </select>
+                    </div>
+                  </div> 
+
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Department <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="department" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Designation <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="designation" />
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="col-sm-12">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Enquiry Title <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="enquiryTitle" />
+                    </div>
+                  </div>
+
+            
+
+          
+
+             
+
+              <!-- <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Offer Date <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="date" id="offerDate" />
+                </div>
+              </div> -->
+
+              <!-- <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Enquiry Date <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="date" id="enquiryDate" />
+                </div>
+              </div> -->
+
+              <div class="input-block mb-6">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label class="col-form-label"
+                    >Detail of Enquiry <span class="text-danger">*</span></label
+                  >
+                </div>
+                <textarea
+                  rows="4"
+                  id="detailOfEnquiry"
+                  class="form-control"
+                  placeholder="Enter your message here"
+                ></textarea>
+              </div>
+              </div>
+              <div class="submit-section" style="float: none">
+                <button
+                  type="submit"
+                  class="btn btn-primary submit-btn"
+                  id="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            
+          </form>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Js Scripts  -->
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+    <script type="module" src="./assets/custom/edit-enquiry.js"></script>
+  </body>
+  <script src="./assets/custom/sidebar.js"></script>
+
+</html>

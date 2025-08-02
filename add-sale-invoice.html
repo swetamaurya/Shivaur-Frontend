@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none" 
+>
+ 
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta
+      name="author"
+      content=""
+    />
+    <title>Add Leads</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="assets/css/ckeditor.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper">
+        <div class="project-form mx-4 my-3">
+          <div class="page-header py-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Create Sale Invoice</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="lead-list.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Sale Invoice</li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+          
+                        <form id="add_saleInvoice_form">
+                          <div class="row">
+                              
+           
+                            
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Sale To <span class="text-danger">*</span></label>
+                                </div>
+                                <select class="form-control" id="client">
+                                  <option value="" disabled="" selected="">Select Sale To</option>
+                                </select>
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Brief Item Details <span class="text-danger">*</span></label>
+                                </div>
+
+                                  <input class="form-control" type="text" id="material" />
+                                  <input id="hide" hidden type="text">
+                                
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Unit Cost <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="unitCost" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Quantity <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="qty" />
+                              </div>
+                            </div>
+                
+                
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Customer Order Ref <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="customerOrderRef" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Advance Payment Record <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="advancePaymentRecord" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Advance Payment Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="advancePaymentDate" />
+                              </div>
+                            </div>
+                
+                            <!-- <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Invoice No <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="invoiceNo" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Invoice Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="invoiceDate" />
+                              </div>
+                            </div> -->
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Start Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="startDate" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Completion Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="completionDate" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Total Invoice Amount <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="totalInvoiceAmount" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6"> 
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Amount Recieved <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="amountRecieved" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Amount Recieved Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="amountRecievedtDate" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Dues <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="dues" />
+                              </div>
+                            </div>
+                
+                
+                
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Order Date <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="orderDate" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Order Ref <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="text" id="orderRef" />
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="input-block mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Delievery Date To Consumer <span class="text-danger">*</span></label>
+                                </div>
+                                <input class="form-control" type="date" id="delieveryDateToConsumer" />
+                              </div>
+                            </div>
+                
+                            <div class="col-sm-12">
+                              <div class="input-block mb-3 ">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  <label class="col-form-label">Sale Invoice <span class="text-danger">*</span></label>
+                                </div>
+                                <textarea rows="4" id="salesInvoice" class="form-control"
+                                  placeholder="Enter your message here"></textarea>
+                              </div>
+                            </div>
+
+                          <!-- <div class="input-block mb-3 ">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label"  >Description <span class="text-danger">*</span></label>
+                            </div>
+                            <textarea rows="4" id="description" class="form-control" placeholder="Enter your message here"></textarea>
+                          </div> -->
+                          
+                           
+                                                      
+                         
+                          
+                          <div class="submit-section " style="float: none;">
+                            <button type="submit" class="btn btn-primary submit-btn" id="submit">
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Js Scripts  -->
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+    <script type="module" src="./assets/custom/add-sale-invoice.js"></script>
+  </body>
+  <script src="./assets/custom/sidebar.js"></script>
+
+</html>

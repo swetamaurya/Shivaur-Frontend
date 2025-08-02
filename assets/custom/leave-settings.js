@@ -1,6 +1,18 @@
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 
 // =================================================================================
 // Import required modules and functions
@@ -8,10 +20,12 @@ import { checkbox_function } from './multi_checkbox.js';
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { formatDate, capitalizeFirstLetter } from './globalFunctions2.js';
 import { leaveType_API } from './apis.js';
+// -------------------------------------------------------------------------
 import { individual_delete, objects_data_handler_function } from './globalFunctionsDelete.js';
-
 window.individual_delete = individual_delete;
-
+// -------------------------------------------------------------------------
+import {rtnPaginationParameters, setTotalDataCount} from './globalFunctionPagination.js';
+// =================================================================================
 const token = localStorage.getItem('token');
 
 // =================================================================================
@@ -29,7 +43,7 @@ async function all_data_load_dashboard() {
     let rows;
 
     try {
-        const response = await fetch(`${leaveType_API}/get`, {
+        const response = await fetch(`${leaveType_API}/get${rtnPaginationParameters()}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +51,11 @@ async function all_data_load_dashboard() {
             },
         });
 
-        const res = await response.json();
+        let r2 = await response.json();
+        let res = r2?.data;
+        setTotalDataCount(r2?.totalLeaveTypes);
+
+        // console.log("brrooro :--- ",res);
 
         if (res && res.length > 0) {
             rows = res.map((leave, index) => {
@@ -125,9 +143,10 @@ document.getElementById('add_leave_setting').addEventListener('submit', async fu
         });
 
         const success = response.ok;
-        status_popup(success ? "Data Added Successfully" : "Please try again later", success);
+        status_popup(success ? "Leave Created <br> Successfully!" : "Please try again later", success);
         if (success) {
             all_data_load_dashboard();
+            add_leave_setting.reset()
         }
     } catch (error) {
         console.error('Error adding leave type:', error);
@@ -214,7 +233,7 @@ document.getElementById('edit_leave_setting').addEventListener('submit', async f
         });
 
         const success = response.ok;
-        status_popup(success ? "Data Updated <br> Successfully" : "Please try <br> again later", success);
+        status_popup(success ? "Leave Updated <br> Successfully!" : "Please try <br> again later", success);
         if (success) {
             all_data_load_dashboard();
         }

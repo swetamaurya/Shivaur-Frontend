@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+
+ <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+<meta name="author" content="">
+<title>Add User Froms  </title>
+
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/line-awesome.min.css">
+<link rel="stylesheet" href="assets/css/material.css">
+
+<link rel="stylesheet" href="assets/css/select2.min.css">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <div id="header-placeholder"></div>
+
+  <div id="sidebar-placeholder"></div>
+
+ 
+
+  <div class="page-wrapper">
+    <div class="content container-fluid">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="page-title">Add User</h3>
+              </div>
+            </div>
+          </div>
+  
+          <form id="add_user">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Name</label>
+                  <input class="form-control" type="text" id="name" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Contact Person</label>
+                  <input class="form-control" id="contactName" type="text">
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Address</label>
+                  <input class="form-control" id="address" type="text">
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Role</label>
+                  <select class="form-control select" id="roles" required>
+                    <option value="">Select Role</option>
+                    <!-- <option value="Admin">Admin</option> -->
+                    <option value="Manager">Manager</option>
+                    <option value="HR">HR</option>  
+                    <!-- <option value="Supervisor">Supervisor</option>     -->
+
+                    <option value="Employee">Employee</option>
+                   
+                    <option value="Client">Client</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Status</label>
+                  <select class="form-control select" id="status" required>
+                    <option value="">Select Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Joining Date</label>
+                  <input class="form-control" id="joiningDate" type="date" required>
+                </div>
+              </div>
+  
+              <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">DOB</label>
+                  <input class="form-control" id="DOB" type="date" required>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Email</label>
+                  <input class="form-control" id="email" type="email" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Mobile Number</label>
+                  <input class="form-control" id="mobile" type="text" required>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Password</label>
+                  <input class="form-control" id="password" type="password" required>
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Department</label>
+                  <select class="form-control" id="department" required>
+                    <option value="" disabled selected>Select Department</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Designation</label>
+                  <select class="form-control" id="designation" required>
+                    <option value="" disabled selected>Select Designation</option>
+                  </select>
+                </div>
+              </div>
+  
+              <!-- <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Project</label>
+                  <input class="form-control" id="project" type="text" list="project-list" required>
+                </div>
+              </div> -->
+            </div>
+  
+            <div class="submit-section">
+              <button class="btn btn-primary submit-btn" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
+
+<script type="module" src="./assets/custom/addUser.js"></script>
+
+ 
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+     
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+     
+    <script
+    src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+    defer
+  ></script>
+  
+  </body> 
+            <script src="./assets/custom/sidebar.js"></script>
+
+</html>

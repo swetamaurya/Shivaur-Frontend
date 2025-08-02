@@ -1,10 +1,22 @@
-if (!localStorage.getItem("token")) {
-  window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
-import {product_API} from './apis.js';
+import {product_API, vendor_API} from './apis.js';
 
 const token = localStorage.getItem('token');
 
@@ -31,8 +43,10 @@ try {
 
   const categories = await response.json();
 
+  // console.log(categories)
+
   // Populate the dropdown with categories
-  categories.forEach(category => {
+  categories?.categories?.forEach(category => {
     const option = document.createElement("option");
     option.value = category._id; // Set category ID as the value
     option.textContent = category.category; // Display category name
@@ -40,8 +54,41 @@ try {
   });
 } catch (error) {
   console.error("Error loading categories:", error);
-  alert("Could not load categories. Please try again.");
+  // alert("Could not load categories. Please try again.");
 }
+
+try{
+const vendorSelect = document.getElementById("vendor_select");  
+vendorSelect.innerHTML = '<option value="" disabled selected>Select Vendor</option>';
+
+const response = await fetch(`${vendor_API}/getAll`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+if (!response.ok) {
+  throw new Error("Failed to fetch vendor");
+}
+
+const vendor = await response.json();
+
+console.log(vendor.data)
+
+// Populate the dropdown with categories
+vendor.data?.forEach(vendor => {
+  const option = document.createElement("option");
+  option.value = vendor._id; // Set category ID as the value
+  option.textContent = vendor.vendorName; // Display category name
+  vendorSelect.appendChild(option);
+});
+} catch (error) {
+console.error("Error loading vendor:", error);
+// alert("Could not load vendor. Please try again.");
+}
+
 
 // Handle Add Product form submission - Ensure this event listener is added only once
 const submitButton = document.getElementById("submitProduct");
@@ -57,12 +104,15 @@ async function add_pro_fun (event){
   } catch(error){console.log(error)}
 
   const formData = new FormData();
-  formData.append("productName", document.getElementById("productName")?.value);
+  formData.append("material", document.getElementById("material")?.value);
   formData.append("category", document.getElementById("category_select")?.value);
   formData.append("price", document.getElementById("price")?.value);
+  formData.append("totalPrice", document.getElementById("totalPrice")?.value);
   formData.append("status", document.getElementById("status")?.value);
   formData.append("quantity", document.getElementById("quantity")?.value);
-  formData.append("supplier", document.getElementById("supplier")?.value);
+  formData.append("unit", document.getElementById("unit")?.value);
+
+  formData.append("vendor", document.getElementById("vendor_select")?.value);
   formData.append("description", document.getElementById("description")?.value);
   formData.append("purchaseDate", document.getElementById("purchaseDate")?.value);
 
@@ -83,7 +133,7 @@ async function add_pro_fun (event){
     
     const c1 = (response.ok);
     try{
-        status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+        status_popup( ((c1) ? "Material Created <br> Successfully!" : "Please try <br> again later"), (c1) );
         setTimeout(function(){
             window.location.href = 'product-list.html';
         },(Number(document.getElementById("b1b1").innerText)*1000));
@@ -101,6 +151,18 @@ async function add_pro_fun (event){
 
 // =====================================================================================
 // =====================================================================================
+let dd1 = document.getElementById("price");
+let dd2 = document.getElementById("quantity");
+
+dd1.addEventListener("input", priceQuantityTotalPrice);
+dd2.addEventListener("input", priceQuantityTotalPrice);
+
+function priceQuantityTotalPrice(){
+  let aaa1 = Number(dd1.value);
+  let aaa2 = Number(dd2.value);
+
+  document.getElementById("totalPrice").value = `${aaa1*aaa2}`;
+}
 // =====================================================================================
 // =====================================================================================
 
@@ -111,18 +173,20 @@ function validateProductForm() {
   let isValid = true;
 
   // Get field elements
-  const productName = document.getElementById("productName");
+  const material = document.getElementById("material");
   const category = document.getElementById("category_select");
   const price = document.getElementById("price");
   const status = document.getElementById("status");
   const quantity = document.getElementById("quantity");
-  const supplier = document.getElementById("supplier");
+
+  const unit = document.getElementById("unit");
+  const vendor = document.getElementById("vendor_select");
   const purchaseDate = document.getElementById("purchaseDate");
   const description = document.getElementById("description");
 
   // Validate required fields
-  if (!productName.value.trim()) {
-    showError(productName, "Please enter a valid product name");
+  if (!material.value.trim()) {
+    showError(material, "Please enter a valid product name");
     isValid = false;
   }
 
@@ -131,6 +195,8 @@ function validateProductForm() {
     isValid = false;
   }
 
+
+ 
   if (price.value.trim() === "" || parseFloat(price.value) < 0) {
     showError(price, "Please enter a valid price");
     isValid = false;
@@ -145,9 +211,14 @@ function validateProductForm() {
     showError(quantity, "Please enter a valid stock quantity");
     isValid = false;
   }
+  if (!unit.value.trim()) {
+    showError(unit, "Please enter valid a unit");
+    isValid = false;
+  }
+ 
 
-  if (!supplier.value.trim()) {
-    showError(supplier, "Please enter a supplier name");
+  if (!vendor.value.trim()) {
+    showError(vendor, "Please select a vendor name");
     isValid = false;
   }
 
@@ -156,10 +227,10 @@ function validateProductForm() {
     isValid = false;
   }
 
-  if (!description.value.trim()) {
-    showError(description, "Please provide a product description");
-    isValid = false;
-  }
+  // if (!description.value.trim()) {
+  //   showError(description, "Please provide a product description");
+  //   isValid = false;
+  // }
 
   return isValid;
 }

@@ -8,7 +8,7 @@
     <meta name="description" content="Product Management Page" />
     <meta name="keywords" content="admin, products, bootstrap, inventory, business, corporate" />
     <meta name="author" content="YourCompany" />
-    <title>Products - Admin Template</title>
+    <title>Policy  </title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicon.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -106,24 +106,7 @@
         data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
 
         <script type="module" src="./assets/custom/addPolicy.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Load header
-            $("#header-placeholder").load("header.html", function () {
-                // Fetch role from localStorage
-                var userRole = localStorage.getItem("User_role");
+    <script src="./assets/custom/sidebar.js"></script>
 
-                // Inject role into the header-role span
-                if (userRole) {
-                    $("#role").text(userRole);
-                } else {
-                    $("#role").text("Guest");
-                }
-            });
-
-            $("#sidebar-placeholder").load("sidebar.html");
-        });
-    </script>
 </body>
-
 </html>

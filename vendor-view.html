@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+  data-sidebar-image="none">
+
+<head>
+  <style>
+    #view-gender::first-letter { 
+      text-transform: uppercase;
+    }
+
+    #view-status::first-letter {
+      text-transform: uppercase;
+    }
+  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="keywords"
+    content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects" />
+  <meta name="author" content="" />
+  <title>Vendor Profile</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/material.css" />
+
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+  <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+  <link rel="stylesheet" href="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <div id="header-placeholder"></div>
+
+    <div id="sidebar-placeholder"></div>
+
+
+    <div class="page-wrapper">
+
+      <div class="content container-fluid pb-0">
+
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="page-title">Profile</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="vendor-view.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Profile</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card mb-0">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="profile-view">
+                  <!-- <div class="profile-img-wrap">
+                              <div class="profile-img">
+                              <a href="#"
+                                ><img
+                                  id="file-display"
+                                  src="assets/img/profiles/avatar-02.jpg"
+                                  alt="User Image"
+                              /></a>
+                            </div> -->
+                  <!-- </div> -->
+                  <div class="profile-basics">
+                    <div class="row">
+                      <div class="col-lg-6">
+                      
+                        <ul class="personal-info">
+                          <li>
+                            <div class="title">Name:</div>
+                            <div class="text" id="name">
+                              -
+                            </div>
+                          </li>
+                          <li>
+                            <div class="title">Phone:</div>
+                            <div class="text" id="mobile">
+                              -
+                            </div>
+                          </li>
+                          <li>
+                            <div class="title">Email:</div>
+                            <div class="text" id="email">
+                              -
+                            </div>
+                          </li>
+                          <!-- <li>
+                                                <div class="title">DOB:</div>
+                                                <div class="text"><a id="DOB" href="#">05-Apr-1996</a></div>
+                                              </li> -->
+                          <li>
+                            <div class="title">Address:</div>
+                            <div class="text" id="address">
+                              - </div>
+                          </li>
+                          <li>
+                            <div class="title">Gender:</div>
+                            <div class="text" id="gender">
+                              -
+                            </div>
+                          </li>
+                        
+                      
+                      
+                          
+
+                        </ul>
+                      </div>
+                      <div class="col-lg-6">
+                        <ul class="personal-info">
+                        <li class="flex-column">
+                          <div class="title remark">Remark:</div>
+                          <div class="text" id="remark">
+                            <p></p>
+                          </div>
+                        </li>
+                        <li class="flex-column">
+                          <div class="title remark">Expertise:</div>
+                          <div class="text" id="expertise">
+                            <p></p>
+                          </div>
+                        </li>
+                      </ul>
+                      </div>
+                      
+                    </div>
+
+                  </div>
+
+                  <!-- <div class="pro-edit">
+                            <a
+                              onclick="showVendorProfile()"
+                              data-bs-target="#profile_info"
+                              data-bs-toggle="modal"
+                              class="edit-icon"
+                              href="#"
+                            >
+                              <i class="fa-solid fa-pencil"></i>
+                            </a>
+                          </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card tab-box mt-4 mb-0">
+            <div class="row user-tabs">
+              <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="emp-tab" data-bs-toggle="tab" data-bs-target="#emp-tab-pane"
+                      type="button" role="tab" aria-controls="emp-tab-pane" aria-selected="true">
+                      Products
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bank-tab" data-bs-toggle="tab" data-bs-target="#bank-tab-pane"
+                      type="button" role="tab" aria-controls="bank-tab-pane" aria-selected="false">
+                      Document & Details
+                                        </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="emp-tab-pane" role="tabpanel" aria-labelledby="emp-tab"
+            tabindex="0">
+            <div class="row" id="project-details"></div>
+          </div>
+          <!-- Bank Information Section -->
+          <div class="tab-pane fade" id="bank-tab-pane" role="tabpanel" aria-labelledby="bank-tab" tabindex="0">
+            <div>
+              <div class="row" id="bank-info">
+                <div class="col-md-6 d-flex">
+                  <div class="card profile-box flex-fill">
+                    <div class="card-body">
+                      <span class="pro-edit">
+                        <a onclick="editBankInfo()" data-bs-target="#editBankInfoModal" data-bs-toggle="modal"
+                          class="edit-icon" href="#">
+                          <i class="fa-solid fa-pencil"></i>
+                        </a>
+                      </span>
+                      <h3 class="card-title">Bank Information</h3>
+                     
+                      <ul class="personal-info">
+                        <li>
+                          <div class="title">Account Holder's Name: </div>
+                          <div class="text" id="view-holderName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank Name: </div>
+                          <div class="text" id="view-bankName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Branch Name: </div>
+                          <div class="text" id="view-branchName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Account Type: </div>
+                          <div class="text" id="view-accountType"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank Account No.: </div>
+                          <div class="text" id="view-accountNumber"></div>
+                        </li>
+                        <li>
+                          <div class="title">IFSC Code: </div>
+                          <div class="text" id="view-IFSCCode"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card col-lg-6" id="contracter-File">
+                  <div class="card-body">
+                    <h5 class="card-title m-b-20">Uploaded files</h5>
+  
+                    
+                  
+                  <div class="row" id="uploaded_filesss">
+                    <div class="col-md-12">
+                      <!-- <label class="col-form-label">Uploaded Files</label> -->
+                      
+                      <div class="table-responsive">
+                        <table class="table table-hover table-white">
+                          <thead>
+                            <tr>
+                              <th class="col-sm-1">#</th>
+                              <th class="col-sm-10">Files</th>
+                              <th class="col-sm-1 text-center"> Action</th>
+                            </tr>
+                          </thead>
+                          <tbody id="upload-contracter-files"></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal for Editing Bank Information -->
+              <div class="modal fade" id="editBankInfoModal" tabindex="-1" aria-labelledby="editBankInfoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editBankInfoModalLabel">
+                        Edit Bank Information
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="editBankDetailsForm">
+                        <div class="mb-3">
+                          <label for="holderName" class="form-label">Account Holder's Name</label>
+                          <input type="text" class="form-control" id="holderName" />
+                        </div>
+                        <div class="mb-3">
+                          <label for="bankName" class="form-label">Bank Name</label>
+                          <input type="text" class="form-control" id="bankName" />
+                        </div>
+                        <div class="mb-3">
+                          <label for="branchName" class="form-label">Branch Name</label>
+                          <input type="text" class="form-control" id="branchName" />
+                        </div>
+                        <div class="mb-3">
+                          <label for="accountType" class="form-label">Account Type</label>
+                          <input type="text" class="form-control" id="accountType" />
+                        </div>
+                        <div class="mb-3">
+                          <label for="accountNumber" class="form-label">Bank Account No.</label>
+                          <input type="text" class="form-control" id="accountNumber" />
+                        </div>
+                        <div class="mb-3">
+                          <label for="IFSCCode" class="form-label">IFSC Code</label>
+                          <input type="text" class="form-control" id="IFSCCode" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="profile_info" class="modal custom-modal fade" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Vendor Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="edit-vendor-profile-form">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="profile-img-wrap edit-img">
+                        <img class="inline-block" src="assets/img/profiles/avatar-02.jpg" alt="" />
+                        <div class="fileupload btn">
+                          <span class="btn-text">edit</span>
+                          <input class="upload" type="file" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <label class="col-form-label">Name</label>
+                            <input type="text" class="form-control" id="vendor-name" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <label class="col-form-label">Mobile</label>
+                            <input type="text" class="form-control" id="vendor-mobile" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <label class="col-form-label">Email</label>
+                            <input type="text" class="form-control" id="vendor-email" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <label class="col-form-label">Gender</label>
+                            <select id="vendor-gender" class="select form-control">
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-block mb-3">
+                        <label class="col-form-label">Address</label>
+                        <input type="text" class="form-control" id="vendor-address" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="submit-section">
+                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary submit-btn">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal custom-modal fade" id="Add_block" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add District and Block</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <div class="modal-btn delete-action">
+                  <form id="add-block-district-form">
+                    <input type="text" hidden id="add-block-district-id" />
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-block mb-3">
+                          <label class="col-form-label">Block</label>
+                          <input type="text" class="form-control" id="addBlock" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-block mb-3">
+                          <label class="col-form-label">District</label>
+                          <input type="text" class="form-control" id="addDistrict" />
+                        </div>
+                      </div>
+                      <div class="submit-section mt-2">
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary submit-btn">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal custom-modal fade" id="Edit_block" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit District and Block</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="modal-btn delete-action">
+                  <form id="edit-block-district-form">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-block mb-3">
+                          <label class="col-form-label">Block</label>
+                          <input type="text" class="form-control" id="editBlock" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-block mb-3">
+                          <label class="col-form-label">District</label>
+                          <input type="text" class="form-control" id="editDistrict" />
+                        </div>
+                      </div>
+                      <div class="submit-section mt-2">
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary submit-btn">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal custom-modal fade" id="delete_block" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="form-header">
+                  <h3>Delete Project</h3>
+                  <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                  <div class="row">
+                    <div class="col-6">
+                      <a onclick="deleteProjectData()" href="javascript:void(0);" class="btn btn-primary continue-btn"
+                        id="deleteButton" data-bs-dismiss="modal">Delete</a>
+                    </div>
+                    <div class="col-6">
+                      <a id="cancelButton" href="javascript:void(0);" data-bs-dismiss="modal"
+                        class="btn btn-primary cancel-btn">Cancel</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="module" src="./assets/custom/vendorView.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./assets/custom/sidebar.js"></script>
+
+
+  <script src="assets/js/bootstrap.bundle.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/jquery.slimscroll.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/plugins/morris/morris.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/chart.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/js/greedynav.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/layout.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="assets/js/theme-settings.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+  <script src="assets/js/app.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
+
+</body>
+
+</html>

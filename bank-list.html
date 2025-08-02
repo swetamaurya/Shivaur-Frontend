@@ -54,10 +54,10 @@
         </div>
 
         <div class="row filter-row">
-          <div class="col-sm-6 col-md-4">
+          <div class="col-sm-6 col-md-6">
             <div class="input-block mb-3 form-focus">
               <input
-              id="employeeId"
+              id="name"
                 type="text"
                 class="form-control floating"
                 placeholder="Employee Name"
@@ -65,10 +65,11 @@
               />
             </div>
           </div>
-          <div class="col-sm-6 col-md-4">
-            <a href="javascript:void(0)" class="btn btn-success w-100"><i class="fa fa-search" aria-hidden="true"></i> Search </a>
+          <div class="col-sm-6 col-md-6">
+            <button id="searchButton" class="btn btn-success w-100">Search</button>
           </div>
           </div>
+          
           <div class="row mt-4">
             <div class="col-md-12">
               <div class="table-responsive">
@@ -78,24 +79,10 @@
                 >
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
-                      <div
-                        class="dataTables_length"
-                        id="DataTables_Table_0_length"
-                      >
-                        <label
-                          >Show entries</label>
-                          <select
-                            name="DataTables_Table_0_length"
-                            aria-controls="DataTables_Table_0"
-                            class="ms-2 custom-select custom-select-sm form-select form-control-sm"
-                            fdprocessedid="2bf78h"
-                          >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select>
-                      </div>
+
+
+                      <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="mohit-d-flex-justify-around-2">
@@ -131,64 +118,13 @@
             </div>
           </div>
         </div>
-        <div class="row mt-4">
-          <div class="col-sm-12 col-md-5">
-            <div
-              class="dataTables_info"
-              id="DataTables_Table_0_info"
-              role="status"
-              aria-live="polite"
-            >
-              Showing 1 to 7 of 7 entries
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-7">
-            <div
-              class="dataTables_paginate paging_simple_numbers"
-              id="DataTables_Table_0_paginate"
-            >
-              <ul class="pagination">
-                <li
-                  class="paginate_button page-item previous disabled"
-                  id="DataTables_Table_0_previous"
-                >
-                  <a
-                    href="#"
-                    aria-controls="DataTables_Table_0"
-                    data-dt-idx="0"
-                    tabindex="0"
-                    class="page-link"
-                    ><i class="fa fa-angle-double-left"></i>
-                  </a>
-                </li>
-                <li class="paginate_button page-item active">
-                  <a
-                    href="#"
-                    aria-controls="DataTables_Table_0"
-                    data-dt-idx="1"
-                    tabindex="0"
-                    class="page-link"
-                    >1</a
-                  >
-                </li>
-                <li
-                  class="paginate_button page-item next disabled"
-                  id="DataTables_Table_0_next"
-                >
-                  <a
-                    href="#"
-                    aria-controls="DataTables_Table_0"
-                    data-dt-idx="2"
-                    tabindex="0"
-                    class="page-link"
-                  >
-                    <i class="fa fa-angle-double-right"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-          </div>
+
+
+                  
+        <div class="row mt-4" id="pagination_footer">
         </div>
+
+
         </div>
         </div>
         </div>
@@ -368,29 +304,8 @@
   defer
 ></script>
 </body>
-<script>
-  $(document).ready(function () {
-    // Load header
-    $('#header-placeholder').load('header.html', function () {
-      // Fetch role from localStorage
-      var userRole = localStorage.getItem('User_role');
+<script src="./assets/custom/sidebar.js"></script>
 
-      // Inject role into the header-role span
-      if (userRole) {
-        $('#role').text(userRole);
-      } else {
-        $('#role').text('Guest');
-      }
-    });
-
-
-    $('#sidebar-placeholder').load('sidebar.html');
-  });
-</script>
-<script>
-  function viewProjectDetails(id) {
-    window.location.href = `project-view.html?id=${id}`;
-  }
-</script>
+ 
 
 </html>

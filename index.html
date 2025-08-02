@@ -56,7 +56,7 @@
                   <label class="col-form-label">Email Address</label>
                    
                   <input class="form-control" type="email" id="email" 
-       autocomplete="name" value="">
+                   autocomplete="name" value="">
                 </div>
                 <div class="input-block mb-4">
                   <div class="row align-items-center">
@@ -64,31 +64,26 @@
                       <label class="col-form-label">Password</label>
                       
                     </div>
-                    <div class="col-auto">
-                      <a class="text-muted" href="forgot-password.html">
-                        Forgot password?
-                      </a>
-                    </div>
+                     
                   </div>
-                  <div class="position-relative">
+                  <div class="position-relative"> 
                     <input class="form-control" type="password" id="password" autocomplete="current-password">
 
-                    <span onclick="togglePasswordOnClick()"
-                      class="fa-solid fa-eye-slash"
-                      id="toggle-password"
+                    <span onclick="togglePasswordOnClick('password','ts')"
+                      class="fa-solid fa-eye-slash toggle-password"
+                      id="ts"
                     ></span>
                   </div>
+                  <div class="col-auto d-flex mt-2 justify-content-end">
+                    <a class="text-muted" href="forgot-password.html">
+                      Forgot password? 
+                    </a>
+                  </div>
                 </div>
-                <div class="input-block mb-4 text-center">
+                <div class="input-block mt-4 mb-0 text-center">
                   <button class="btn btn-primary account-btn" type="submit" data-bs-dismiss="modal">
                     Login
                   </button>
-                </div>
-                <div class="account-footer">
-                  <p>
-                    Don't have an account yet?
-                    <a href="register.html">Register</a>
-                  </p>
                 </div>
               </form>
               <div id="response" style="color: red;"></div>  
@@ -99,6 +94,7 @@
     </div>
     <!-- <script  src="./assets/custom/admin.js"></script> -->
     <script type="module"  src="./assets/custom/index.js"></script>
+    <script src="./assets/custom/globalPassword.js"></script>
 
     <!-- <script
       src="assets/js/jquery-3.7.1.min.js"
@@ -120,25 +116,8 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+  <!-- <script src="./assets/custom/sidebar.js"></script> -->
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
  
    
 </html>

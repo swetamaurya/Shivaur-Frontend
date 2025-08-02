@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  data-layout="vertical"
+  data-layout="vertical" 
   data-topbar="light"
   data-sidebar="dark"
   data-sidebar-size="lg"
@@ -82,18 +82,7 @@
             <div class="col-sm-6 col-md-4">
               <div class="input-block mb-3 form-focus">
                 <input
-                id="employeeId"
-                  type="text"
-                  class="form-control floating"
-                  placeholder="Enter Employee ID"
-                  fdprocessedid="64h436"
-                />
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-              <div class="input-block mb-3 form-focus">
-                <input
-                id="employeeName"
+                id="name"
                   type="text"
                   class="form-control floating"
                   placeholder="Enter Employee Name"
@@ -102,7 +91,19 @@
               </div>
             </div>
             <div class="col-sm-6 col-md-4">
-              <a href="javascript:void(0)" class="btn btn-success w-100"><i class="fa fa-search" aria-hidden="true"></i> Search </a>
+              <div class="input-block mb-3 form-focus">
+                <input
+                id="userId"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Employee ID"
+                  fdprocessedid="64h436"
+                />
+              </div>
+            </div>
+           
+            <div class="col-sm-6 col-md-4">
+              <button id="searchButton" class="btn btn-success w-100">Search</button>
             </div>
           </div>
 
@@ -115,30 +116,16 @@
                 >
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
-                      <div
-                        class="dataTables_length"
-                        id="DataTables_Table_0_length"
-                      >
-                        <label
-                          >Show entries</label>
-                          <select
-                            name="DataTables_Table_0_length"
-                            aria-controls="DataTables_Table_0"
-                            class="ms-2 custom-select custom-select-sm form-select form-control-sm"
-                            fdprocessedid="2bf78h"
-                          >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select>
-                      </div>
+
+
+                      <div class="dataTables_length" id="DataTables_Table_0_length"> </div> 
+
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="mohit-d-flex-justify-around-2">
                         <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" data-bs-toggle="modal" data-bs-target="#export_data" ><i class="fa-solid fa-arrow-down"></i> Download Employee's List</button >
                         <button class="btn rounded add-btn disabled" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-solid fa-times"></i> Remove Employee</button >
-                        <a href="#" class="btn rounded add-btn" data-bs-toggle="modal" data-bs-target="#add_data"><i class="fa-solid fa-plus"></i> Add Employee</a>
+                        <a href="#" class="btn rounded add-btn" id="add-employee-btn" data-bs-toggle="modal" data-bs-target="#add_data"><i class="fa-solid fa-plus"></i> Add Employee</a>
                       </div>
                     </div>
                     
@@ -155,104 +142,32 @@
                         
                           <thead>
                             <tr role="row">
-                              <th
-                                class="sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Employee ID: activate to sort column ascending"
-                                style="width: 0px; padding-left: 1.35rem;"
-                              >
+                              <th  class="sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Employee ID: activate to sort column ascending"  style="width: 0px; padding-left: 1.35rem;">
                                 <input type="checkbox" class="checkbox_all" name="" id="">
                               </th>
-                              <th
-                                class="sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Employee ID: activate to sort column ascending"
-                                style="width: 200.6125px"
-                              >
+                              <th  class="sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Employee ID: activate to sort column ascending"  style="width: 200.6125px">
                                 Name
                               </th>
-                              <th
-                                class="sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Email: activate to sort column ascending"
-                                style="width:100.938px"
-                              >
+                              <th  class="sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Email: activate to sort column ascending"  style="width:100.938px">
                                 Employee ID
                               </th>
-                              <th
-                                class="text-nowrap sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Join Date: activate to sort column ascending"
-                                style="width: 83.175px"
-                              >
+                              <th  class="text-nowrap sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Join Date: activate to sort column ascending"  style="width: 83.175px">
                                 Mobile
                               </th>
-                              <th
-                                class="sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Role: activate to sort column ascending"
-                                style="width: 139.475px"
-                              >
+                              <th  class="sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Role: activate to sort column ascending"  style="width: 139.475px">
                               Designation
                               </th>
 
-                              <th
-                                class="sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Role: activate to sort column ascending"
-                                style="width: 70.475px"
-                              >
+                              <th  class="sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Role: activate to sort column ascending"  style="width: 70.475px">
                               Status
                               </th>
-                              <th
-                                class="  no-sort sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Action: activate to sort column ascending"
-                                style="width: 50.45px"
-                              >
+                              <th  class="  no-sort sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Action: activate to sort column ascending"  style="width: 50.45px">
                                 Joining Date
                               </th>
-                              <th
-                                class="  no-sort sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Action: activate to sort column ascending"
-                                style="width: 50.45px"
-                              >
+                              <th  class="  no-sort sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Action: activate to sort column ascending"  style="width: 50.45px">
                                 DOB
                               </th>
-                              <th
-                                class="  no-sort sorting"
-                                tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                rowspan="1"
-                                colspan="1"
-                                aria-label="Action: activate to sort column ascending"
-                                style="width: 50.45px"
-                              >
+                              <th id="employee-action" class="  no-sort sorting"  tabindex="0"  aria-controls="DataTables_Table_0"  rowspan="1"  colspan="1"  aria-label="Action: activate to sort column ascending"  style="width: 50.45px">
                                 Action
                               </th>
                             </tr>
@@ -261,64 +176,12 @@
                       </table>
                     </div>
                   </div>
-                  <div class="row mt-4">
-                    <div class="col-sm-12 col-md-5">
-                      <div
-                        class="dataTables_info"
-                        id="DataTables_Table_0_info"
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Showing 1 to 7 of 7 entries
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-md-7">
-                      <div
-                        class="dataTables_paginate paging_simple_numbers"
-                        id="DataTables_Table_0_paginate"
-                      >
-                        <ul class="pagination">
-                          <li
-                            class="paginate_button page-item previous disabled"
-                            id="DataTables_Table_0_previous"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="0"
-                              tabindex="0"
-                              class="page-link"
-                              ><i class="fa fa-angle-double-left"></i>
-                            </a>
-                          </li>
-                          <li class="paginate_button page-item active">
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="1"
-                              tabindex="0"
-                              class="page-link"
-                              >1</a
-                            >
-                          </li>
-                          <li
-                            class="paginate_button page-item next disabled"
-                            id="DataTables_Table_0_next"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="2"
-                              tabindex="0"
-                              class="page-link"
-                            >
-                              <i class="fa fa-angle-double-right"></i
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+
+                  
+                  <div class="row mt-4" id="pagination_footer">
                   </div>
+
+
                 </div>
               </div>
             </div>
@@ -329,108 +192,42 @@
 
 
       <div id="add_data" class="modal custom-modal fade" role="dialog">
-        <div
-          class="modal-dialog modal-dialog-centered modal-lg"
-          role="document"
-        >
+        <div  class="modal-dialog modal-dialog-centered modal-80"  role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Add Employee</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
+              <button  type="button"  class="btn-close"  data-bs-dismiss="modal"  aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
             <div class="modal-body">
               <form id="add_employee_form">
                 <div class="row">
-                  <div class="col-sm-6">
+
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label">Employee Name <span class="text-danger">*</span></label>
-                        <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                        <label class="col-form-label" for="employee_employee_photo">Profile Photo <span class="text-danger">*</span></label>
                       </div>
-                      <input class="form-control" type="text" id="name" />
+                      <input class="form-control" type="file" id="employee_employee_photo" />
                     </div>
                   </div>
-                  <div class="col-sm-6">
+
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Email <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" type="email" id="email" />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Personal Email <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" type="email" id="personalEmail" />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Password <span class="text-danger">*</span></label>
-                      </div>
-                      <input
-                        class="form-control"
-                        type="Password"
-                        id="password"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Role <span class="text-danger">*</span></label>
+                        <label class="col-form-label"  >Access Level <span class="text-danger">*</span></label>
                       </div>
                       <select class="form-control" id="roles">
-                        <option value="" >Select Role</option>
-  
-                        <option value="Employee" >Employee</option>
-                        <option value="Supervisor" >Supervisor</option>
-  
+                        <option value="" >Select Access Level</option>
+                        <option value="Manager" >Manager</option>
+                        <option value="HR" >HR</option>
+                        <option value="Employee" >Employee</option>  
                       </select>
                     </div>
                   </div>  
-                 
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Joining Date <span class="text-danger">*</span></label>
-                      </div>
-                      <input
-                        class="form-control"
-                        id="joiningDate"
-                        type="date"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Phone <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" type="tel" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                    </div>
-                  </div>
-  
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >DOB <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" id="DOB" type="date" />
-                    </div>
-                  </div>
-  
-                  <div class="col-sm-6">
+
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Status <span class="text-danger">*</span></label>
@@ -442,7 +239,75 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Joining Date <span class="text-danger">*</span></label>
+                      </div>
+                      <input
+                        class="form-control"
+                        id="joiningDate"
+                        type="date"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_name">Name <span class="text-danger">*</span></label>
+                        <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                      </div>
+                      <input class="form-control" type="text" id="employee_name" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Email (Office) <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="email" id="email" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Personal Email <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="email" id="personalEmail" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Password <span class="text-danger">*</span></label>
+                      </div>
+                      <div class="position-relative">
+                        <input class="form-control" type="password" id="password" >
+                        <span onclick="togglePasswordOnClick('password','ts')" class="fa-solid fa-eye-slash toggle-password" id="ts"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Phone <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="tel" id="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                    </div>
+                  </div>
+  
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >DOB <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" id="DOB" type="date" />
+                    </div>
+                  </div>
+                  
+  
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Department <span class="text-danger">*</span></label>
@@ -452,7 +317,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Designation <span class="text-danger">*</span></label>
@@ -462,7 +327,151 @@
                       </select>
                     </div>
                   </div> 
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">Gender <span class="text-danger">*</span></label>
+                      </div>
+                      <select class="form-control" id="employee-gender">
+                        <option value="" disabled="" selected="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Others</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">Address <span class="text-danger">*</span></label>
+                      </div>
+                      <input type="text" class="form-control" id="employee-address">
+                    </div>
+                  </div>
+
+                  <hr>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_addhar_card_number">Aadhar Card Number <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_addhar_card_number" placeholder="Enter Addhar Card Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_addhar_card_number">Aadhar Card File (Front + Back) <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="aadharCardImage"  multiple>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pan_card">Pan Card Number<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_pan_card" style="text-transform: uppercase;" placeholder="Enter Pan Card Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pan_card">Pan Card File<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="panCardImage" >
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pf_number">PF Number<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_pf_number"  placeholder="Enter PF Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pf_number">PF File<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="pfFileImage" multiple />
+                    </div>
+                  </div>
+
+
+                    <hr>
   
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_bank_name">Bank Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_bank_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_branch_name">Branch Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_branch_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_holder_name">Account Holder Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_holder_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_account_type">Account Type <span class="text-danger">*</span></label>
+                      </div>
+                      
+                      <select class="form-control" id="employee_account_type" required="">
+                        <option value="" disabled="" selected="">Select Account Type</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Current">Current</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_account_number">Account Number <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_account_number" />
+                    </div>
+                  </div>
+  
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_ifsc_code">IFSC Code <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="employee_ifsc_code" />
+                    </div>
+                  </div>
+
+
+
+
                 </div>
                 <div class="submit-section">
                   <button class="btn btn-primary submit-btn" type="submit" >
@@ -477,75 +486,33 @@
   
       <div id="edit_data" class="modal custom-modal fade" role="dialog">
         <div
-          class="modal-dialog modal-dialog-centered modal-lg"
+          class="modal-dialog modal-dialog-centered modal-80"
           role="document"
         >
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Edit Employee</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
+              <button  type="button"  class="btn-close"  data-bs-dismiss="modal"  aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
             <div class="modal-body">
               <form id="employee-update-form">
+                <input type="text" class="form-control" hidden name="" id="update-id">
+
                 <div class="row">
-                  <div class="col-sm-6">
+
+                  
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label">Employee Name <span class="text-danger">*</span></label>
+                        <label class="col-form-label" for="employee_employee_photo">Profile Photo <span class="text-danger">*</span></label>
                       </div>
-                      <input class="form-control" type="text" id="update-name" />
-                      <input type="text" class="form-control" hidden name="" id="update-id">
+                      <input class="form-control" type="file" id="update-employee_employee_photo" />
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Email <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" readonly type="email" id="update-email" />
-                    </div>
-                  </div>
-  
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Joining Date <span class="text-danger">*</span></label>
-                      </div>
-                      <input
-                        class="form-control"
-                        id="update-joiningDate"
-                        type="date"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >Phone <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" type="tel" id="update-mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
-                    </div>
-                  </div>
-  
-  
-  
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label"  >DOB <span class="text-danger">*</span></label>
-                      </div>
-                      <input class="form-control" id="update-DOB" type="date" />
-                    </div>
-                  </div>
-  
-                  <div class="col-sm-6">
+
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Status <span class="text-danger">*</span></label>
@@ -557,10 +524,64 @@
                       </select>
                     </div>
                   </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Joining Date <span class="text-danger">*</span></label>
+                      </div>
+                      <input
+                        class="form-control"
+                        id="update-joiningDate"
+                        type="date"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_name">Name <span class="text-danger">*</span></label>
+                        <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_name" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Email (Office) <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="email" id="update-email" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Personal Email <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="email" id="update-personalEmail" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Phone <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="tel" id="update-mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                    </div>
+                  </div>
+  
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >DOB <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" id="update-DOB" type="date" />
+                    </div>
+                  </div>
                   
   
-                 
-                  <div class="col-sm-6">
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Department <span class="text-danger">*</span></label>
@@ -570,10 +591,7 @@
                       </select>
                     </div>
                   </div>
-                  
-                  
-  
-                  <div class="col-sm-6">
+                  <div class="col-sm-2">
                     <div class="input-block mb-3">
                       <div class="d-flex align-items-center justify-content-between">
                         <label class="col-form-label"  >Designation <span class="text-danger">*</span></label>
@@ -582,9 +600,151 @@
                         <option value="" disabled selected>Select Designation</option>
                       </select>
                     </div>
+                  </div> 
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">Gender <span class="text-danger">*</span></label>
+                      </div>
+                      <select class="form-control" id="update-employee-gender">
+                        <option value="" disabled="" selected="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Others</option>
+                      </select>
+                    </div>
                   </div>
-                  
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">Address <span class="text-danger">*</span></label>
+                      </div>
+                      <input type="text" class="form-control" id="update-employee-address">
+                    </div>
+                  </div>
+
+                  <hr>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_addhar_card_number">Aadhar Card Number <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_addhar_card_number" placeholder="Enter Addhar Card Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_addhar_card_number">Aadhar Card File (Front + Back) <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="update-aadharCardImage"  multiple>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pan_card">Pan Card Number<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_pan_card" style="text-transform: uppercase;" placeholder="Enter Pan Card Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pan_card">Pan Card File<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="update-panCardImage" >
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pf_number">PF Number<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_pf_number"  placeholder="Enter PF Number" />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_pf_number">PF File<span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control " type="file" id="pfFileImage" multiple />
+                    </div>
+                  </div>
+
+
+                    <hr>
   
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_bank_name">Bank Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_bank_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_branch_name">Branch Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_branch_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_holder_name">Account Holder Name <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_holder_name" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_account_type">Account Type <span class="text-danger">*</span></label>
+                      </div>
+                      
+                      <select class="form-control" id="update-employee_account_type" required="">
+                        <option value="" disabled="" selected="">Select Account Type</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Current">Current</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_account_number">Account Number <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_account_number" />
+                    </div>
+                  </div>
+  
+                  <div class="col-sm-2">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label" for="employee_ifsc_code">IFSC Code <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="text" id="update-employee_ifsc_code" />
+                    </div>
+                  </div>
+
+
+
   
                 </div>
                 <div class="submit-section">
@@ -613,7 +773,7 @@
                       href="javascript:void(0);"
                       id="deleteButton"
                       class="btn btn-primary continue-btn"
-                      data-bs-dismiss="modal"n
+                      data-bs-dismiss="modal"
                       >Delete</a
                     >
                   </div>
@@ -633,9 +793,6 @@
         </div>
       </div>
 
-
-
-      
   
       <div class="modal custom-modal fade" id="export_data" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
@@ -673,6 +830,17 @@
       </div>
 
     </div>
+
+    <style>
+      @media (min-width: 992px) {
+        .modal-80 {
+          --bs-modal-width: 90%;
+        }
+      }
+    </style>
+
+    <script src="./assets/custom/globalPassword.js"></script>
+
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -726,25 +894,8 @@
       ></script>
 
 
-       <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+       <script src="./assets/custom/sidebar.js"></script>
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
 
   </body>
 </html>

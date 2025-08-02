@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta name="author" content="" />
+    <title>Offer List</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- <script src="app.js"></script> -->
+    <!-- <scriptsrc=src=""></scriptsrc=> -->
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper" style="min-height: 695px">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Offer</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="offer-list.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Offer</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row filter-row">
+            <div class="col-sm-6 col-md-6">
+              <div class="input-block mb-3 form-focus">
+                <input
+                  id="offerTitle"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Offer Name"
+                  fdprocessedid="64h436"
+                />
+              </div>
+            </div>
+            <!-- <div class="col-sm-6 col-md-4">
+              <div class="input-block mb-3 form-focus">
+                <input
+                id="project "
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Project Name"
+                  fdprocessedid="78ccye"
+                />
+              </div>
+            </div> -->
+            <div class="col-sm-6 col-md-6">
+              <button id="searchButton" class="btn btn-success w-100">
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <div
+                  id="DataTables_Table_0_wrapper"
+                  class="dataTables_wrapper dt-bootstrap4 no-footer"
+                >
+                  <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                      <div
+                        class="dataTables_length"
+                        id="DataTables_Table_0_length"
+                      ></div>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                      <div class="mohit-d-flex-justify-around-2">
+                        <button
+                          class="btn rounded add-btn disabled"
+                          id="download_excel_multiple_file"
+                          data-bs-toggle="modal"
+                          data-bs-target="#export_data"
+                        >
+                          <i class="fa-solid fa-arrow-down"></i> Download Offer's
+                          List
+                        </button>
+
+                        <button
+                          class="btn rounded add-btn disabled hr_restriction employee_restriction"
+                          id="delete_btn_multiple_file"
+                          data-bs-toggle="modal"
+                          data-bs-target="#delete_data"
+                        >
+                          <i class="fa-solid fa-times"></i> Remove Offer
+                        </button>
+                        <!-- <button
+                          class="btn rounded add-btn"
+                          id="upload_excel_multiple_file"
+                          data-bs-toggle="modal"
+                          data-bs-target="#import_data"
+                        >
+                          <i class="fa-solid fa-arrow-down"></i> Import File
+                        </button> -->
+                        <a
+                          href="./add-offer.html"
+                          id="add-task-btn"
+                          class="btn rounded add-btn hr_restriction employee_restriction"
+                          ><i class="fa-solid fa-plus"></i> Add Offer</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-sm-12" style="overflow-y: auto">
+                      <table class="table table-striped custom-table datatable">
+                        <thead>
+                          <tr>
+                            <th>
+                              <input type="checkbox" class="checkbox_all" name="" id=""/>
+                            </th>
+                            <th>Offer Id</th>
+                            <th> Offer Name</th>
+                            <th> Date</th>
+                            <!-- <th>  Phone</th> -->
+                            <!-- <th>  Department</th> -->
+                            <!-- <th>Designation</th> -->
+                            <th>Customer Name</th>
+                            <th>EMD</th>                            
+                            <th class="text-center">Offer Converted</th>
+                            <!-- <th>Remark</th> -->
+                            
+                          
+                           
+                          
+                            
+                            <th class="text-end">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="offerData"></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4" id="pagination_footer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal custom-modal fade" id="delete_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Delete Offer</h3>
+                <p>Are you sure want to delete?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="deleteButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"
+                      n
+                      >Delete</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal custom-modal fade" id="export_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Export Offer</h3>
+                <p>Are you sure want to download the File?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="exportButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"n
+                      >Download</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+
+
+
+
+
+
+      
+      <div id="emd_modal" class="modal custom-modal fade" role="dialog">
+        <div
+          class="modal-dialog modal-dialog-centered modal-ls"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">EMD Section</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <input type="text" id="_hidden_id_no_offer_list" hidden>
+
+              
+              <div class="col-sm-12">
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label"  >EMD Status <span class="text-danger">*</span></label>
+                  </div>
+                  
+                  <select class="form-control" id="emdSectionCondition" >
+                    <option value="" selected="" disabled="">Select Status</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>                
+
+
+              
+              <form id="formModelEmdSection" class="d-none">
+
+                  
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">
+                          EMD Amount <span class="text-danger">*</span>
+                        </label>
+                      </div>
+                      <input class="form-control" type="text" id="emdAmount" placeholder="Enter EMD Amount">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">
+                          EMD Date <span class="text-danger">*</span>
+                        </label>
+                      </div>
+                      <input class="form-control" type="date" id="emdDate">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="input-block mb-0">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">
+                          Remark <span class="text-danger">*</span>
+                        </label>
+                      </div>
+                      <textarea id="emdRemark" name="emd-remark" rows="4" placeholder="Enter Your Remark Here" style="  border-color: rgb(211, 211, 212);  border-radius: 5px; width: 100%;"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="input-block mb-0 text-center">
+                      <button class="btn btn-primary submit-btn" id="submitProduct" type="submit">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+
+
+
+
+
+
+
+
+      <div id="editFollowups" class="modal custom-modal fade" role="dialog">
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit FollowUp</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="add_FollowUp_form">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label">Today/Previous Date</label>
+                      </div>
+                      <input class="form-control" type="date" id="follow-up-date" />
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Next FollowUp Date <span class="text-danger">*</span></label>
+                      </div>
+                      <input class="form-control" type="date" id="follow-up-next-date" />
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Status <span class="text-danger">*</span></label>
+                      </div>
+                      <select class="form-control" id="follow-up-status">
+                        <option value="" disabled selected>Select Status</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Active">Active</option>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Interested">Interested</option>
+                        <option value=" Not Interested">Not Interested</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Closed">Closed</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="input-block mb-3">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <label class="col-form-label"  >Remark <span class="text-danger">*</span></label>
+                      </div>
+                      <textarea  id="follow-up-remark" name="contractor-remark" rows="4" cols="97" style="border-color: #D3D3D4;border-radius: 5px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="submit-section mt-3">
+                  <button class="btn btn-primary submit-btn" type="submit" data-bs-dismiss="modal">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script>
+      function handleFileSelected() {
+        const fileInput = document.getElementById("file_input");
+        if (fileInput.files.length > 0) {
+          alert(`${fileInput.files.length} file(s) selected for upload.`);
+        }
+      }
+    </script> -->
+    <!-- <script>
+      function handleFileSelected() {
+        const fileInput = document.getElementById("file_input");
+        const displayElement = document.getElementById("showfilename");
+
+        // Check if files are selected
+        if (fileInput.files.length > 0) {
+          // Get all file names
+          const fileNames = Array.from(fileInput.files).map(
+            (file) => file.name
+          );
+
+          // Display file names separated by commas
+          displayElement.textContent = `Selected file(s): ${fileNames.join(
+            ", "
+          )}`;
+        } else {
+          displayElement.textContent = "No files selected";
+        }
+      }
+    </script> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="module" src="./assets/custom/offer-list.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript" 
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+
+    <script src="./assets/custom/sidebar.js"></script>
+  </body>
+</html>

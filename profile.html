@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+  data-sidebar-image="none">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="keywords"
+    content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects" />
+  <meta name="author" content="" />
+  <title>Profile</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/material.css" />
+
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+  <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+  <link rel="stylesheet" href="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <div id="header-placeholder"></div>
+
+    <div id="sidebar-placeholder"></div>
+
+  
+    <div class="page-wrapper">
+      <div class="content container-fluid pb-0">
+        <div class="page-header">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="page-title">Profile</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="admin-dashboard.html">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Profile</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-0">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="profile-view">
+                  <div class="profile-img-wrap">
+                    <div class="profile-img">
+                      <a href="#"><img id="file-display" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
+                    </div>
+                  </div>
+                  <div class="profile-basic">
+                    <div class="row">
+
+                      <div class="col-md-5">
+                        <ul class="personal-info">
+                          <li>
+                            <div class="title">Name:</div>
+                            <div class="text"><a id="name" href="#"></a></div>
+                          </li>
+                          <li>
+                            <div class="title">Phone:</div>
+                            <div class="text"><a id="mobile" href="#"></a></div>
+                          </li>
+                          <li>
+                            <div class="title">Email:</div>
+                            <div class="text"><a id="email" href="#"> </a></div>
+                          </li>
+                          <li>
+                            <div class="title">DOB:</div>
+                            <div class="text"><a id="DOB" href="#"> </a></div>
+                          </li>
+                          <li>
+                            <div class="title">Address:</div>
+                            <div class="text"><a id="address" href="#"> </a></div>
+                          </li>
+                          <li>
+                            <div class="title">Gender:</div>
+                            <div class="text"><a id="gender" href="#"> </a></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pro-edit">
+                    <a data-bs-target="#profile_info" data-bs-toggle="modal" class="edit-icon" href="#">
+                      <i class="fa-solid fa-pencil"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+    
+      </div>
+
+      <div id="profile_info" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel"
+        aria-hidden="true">>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+              </div>
+
+              <div class="modal-body">
+                <form id="profile-update-form">
+                  <div class="profile-img-wrap edit-img">
+                    <img id="update-profileImage" class="inline-block" src="assets/img/profiles/avatar-02.jpg"
+                      alt="User Image" />
+                    <div class="fileupload btn">
+                      <span class="btn-text">Edit</span>
+                      <input class="upload" type="file" id="update-file" accept="image/*" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="update-name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="mobile">Phone</label>
+                    <input type="text" id="update-mobile" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="DOB">DOB</label>
+                    <input type="text" id="update-DOB" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="update-address" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <div>
+                      <label>
+                        <input type="radio" name="gender" value="Male" id="update-gender-male" class="form-check-input">
+                        Male
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" name="gender" value="Female" id="update-gender-female"
+                          class="form-check-input"> Female
+                      </label>
+                    </div>
+
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit" data-bs-dismiss="modal">Save
+                  changes</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+    </div>
+    <script type="module" src="./assets/custom/user.js"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+    <script src="assets/js/jquery.slimscroll.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+    <script src="assets/plugins/morris/morris.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+    <script src="assets/js/greedynav.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+    <script src="assets/js/layout.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+    <script src="assets/js/theme-settings.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+
+    <script src="assets/js/app.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
+    <script src="./assets/custom/sidebar.js"></script>
+
+
+
+</body>
+
+</html>

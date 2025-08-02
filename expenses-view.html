@@ -1141,7 +1141,7 @@
 <div class="col-sm-3">
 <div class="input-block mb-3">
 <label class="col-form-label">Rate</label>
-<input placeholder="$50" class="form-control" value="$3000" type="text">
+<input placeholder="$50" class="form-control" value="$6000" type="text">
 </div>
 </div>
 <div class="col-sm-3">
@@ -1320,22 +1320,6 @@
     ></script>
     <script src="./assets/custom/viewExpenses.js"></script>
   </body>
-  <script>
-    $(document).ready(function () {
-      // Load header
-      $("#header-placeholder").load("header.html", function () {
-        // Fetch role from localStorage
-        var userRole = localStorage.getItem("User_role");
+  <script src="./assets/custom/sidebar.js"></script>
 
-        // Inject role into the header-role span
-        if (userRole) {
-          $("#role").text(userRole);
-        } else {
-          $("#role").text("Guest");
-        }
-      });
-
-      $("#sidebar-placeholder").load("sidebar.html");
-    });
-  </script>
 </html>

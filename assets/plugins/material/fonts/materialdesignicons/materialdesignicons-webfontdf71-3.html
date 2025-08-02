@@ -8,22 +8,5 @@
 <address>Apache/2.4.52 (Ubuntu) Server at   Port 443</address>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
-
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script></html>
+  <script src="./assets/custom/sidebar.js"></script>
+</html>

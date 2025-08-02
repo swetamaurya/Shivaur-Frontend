@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta
+      name="author"
+      content=""
+    />
+    <title>Office Task Dashboard  </title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- <script src="app.js"></script> -->
+    <!-- <scriptsrc=src=""></scriptsrc=> -->
+  </head>
+  <body>
+  
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+
+      <div class="page-wrapper" style="min-height: 695px">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Office Tasks</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="office-tasks.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Tasks</li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="row filter-row">
+            <div class="col-sm-6 col-md-4">
+              <div class="input-block mb-3 form-focus">
+                <input
+                id="title"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Office Task Name"
+                  fdprocessedid="64h436"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="input-block mb-3 form-focus">
+                <input
+                id="taskId"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Task Id"
+                  fdprocessedid="78ccye"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <button id="searchButton" class="btn btn-success w-100">Search</button>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <div
+                  id="DataTables_Table_0_wrapper"
+                  class="dataTables_wrapper dt-bootstrap4 no-footer"
+                >
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      
+
+                      <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="mohit-d-flex-justify-around-2">
+                        <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" data-bs-toggle="modal" data-bs-target="#export_data" ><i class="fa-solid fa-arrow-down"></i> Download Task's List</button >
+                        <button class="btn rounded add-btn disabled hr_restriction employee_restriction" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-solid fa-times"></i> Remove Task</button >
+                        <a href="./office-add-tasks.html" id="add-task-btn" class="btn rounded add-btn hr_restriction employee_restriction" ><i class="fa-solid fa-plus"></i> Add Office Task</a>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-sm-12" style="overflow-y: auto;">
+                      
+                <table class="table table-striped custom-table datatable">
+                  <thead>
+                    <tr>
+                      <th ><input type="checkbox" class="checkbox_all" name="" id=""></th>
+                      <th>Task Name</th>
+                      <th>Task Id</th>
+                      <th>Project Name</th>
+                      <!-- <th>Assign Employee</th> -->
+                      <th>Start Date</th>
+                      <th>Deadline Date</th>
+                      <th>Status</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableData"></tbody>
+              </table>
+                    </div>
+                  </div>
+
+                  
+                  <div class="row mt-4" id="pagination_footer">
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="modal custom-modal fade" id="delete_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Delete Office Task</h3>
+                <p>Are you sure want to delete?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="deleteButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"n
+                      >Delete</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+  
+      <div class="modal custom-modal fade" id="export_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Export Office Task</h3>
+                <p>Are you sure want to download the File?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="exportButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"n
+                      >Download</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script  type="module" src="./assets/custom/office-task.js"></script>
+
+
+      <script
+        src="assets/js/bootstrap.bundle.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/jquery.slimscroll.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/plugins/morris/morris.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/plugins/raphael/raphael.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/chart.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/greedynav.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/layout.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/theme-settings.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/app.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+        defer
+      ></script>
+
+
+       <script src="./assets/custom/sidebar.js"></script>
+
+
+  </body>
+</html>

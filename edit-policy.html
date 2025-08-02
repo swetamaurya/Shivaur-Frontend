@@ -105,25 +105,9 @@
     <script src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
 
+        <script src="./assets/custom/sidebar.js"></script>
         <script type="module" src="./assets/custom/editPolicy.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Load header
-            $("#header-placeholder").load("header.html", function () {
-                // Fetch role from localStorage
-                var userRole = localStorage.getItem("User_role");
 
-                // Inject role into the header-role span
-                if (userRole) {
-                    $("#role").text(userRole);
-                } else {
-                    $("#role").text("Guest");
-                }
-            });
-
-            $("#sidebar-placeholder").load("sidebar.html");
-        });
-    </script>
 </body>
 
 </html>

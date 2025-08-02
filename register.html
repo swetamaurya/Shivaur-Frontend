@@ -50,9 +50,8 @@
           <option value="" disabled selected>Select Role</option>
           <option value="Admin">Admin</option>
           <option value="Employee">Employee</option>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Client">Client</option>
-        </select>
+          <option value="HR">HR</option>
+          <option value="Manager">Manager</option>        </select>
       </div>
   
     
@@ -68,34 +67,16 @@
 </div>
 </div>
 </div>
-</div>
+</div>  
 </div>
 <script type="module"  src="./assets/custom/register.js"></script>
 
-<script src="assets/js/jquery-3.7.1.min.js" type="f597e53e2263853579fdc1e9-text/javascript"></script>
-<script src="assets/js/bootstrap.bundle.min.js" type="f597e53e2263853579fdc1e9-text/javascript"></script>
-<script src="assets/js/app.js" type="f597e53e2263853579fdc1e9-text/javascript"></script> 
- <script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="f597e53e2263853579fdc1e9-|49" defer></script> 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script  type="module" src="assets/js/jquery-3.7.1.min.js" type="f597e53e2263853579fdc1e9-text/javascript"></script>
+<script  type="module" src="assets/js/bootstrap.bundle.min.js" type="f597e53e2263853579fdc1e9-text/javascript"></script>
+<script  type="module" src="assets/js/app.js" type="f597e53e2263853579fdc1e9-text/javascript"></script> 
+ <script type="module"  src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="f597e53e2263853579fdc1e9-|49" defer></script> 
+<script  type="module" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
  </html>

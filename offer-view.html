@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+  data-sidebar-image="none">
+
+ 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords"
+    content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+  <meta name="author" content="">
+  <title>Offer View</title>
+
+
+  <link
+  rel="shortcut icon"
+  type="image/x-icon"
+  href="assets/img/fevicons.png"
+/>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+  <link
+    rel="stylesheet"
+    href="assets/plugins/fontawesome/css/fontawesome.min.css"
+  />
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/material.css" />
+
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+  <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+  <link rel="stylesheet" href="assets/css/ckeditor.css" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <div class="main-wrapper">
+
+    <div id="header-placeholder"></div>
+  
+    <div id="sidebar-placeholder"></div>
+  
+    <div class="page-wrapper">
+  
+      <div class="content container-fluid pb-0">
+  
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Offer</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="invoice-view.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Offer</li>
+              </ul>
+            </div>
+            <div class="col-auto float-end ms-auto">
+              <div class="btn-group btn-group-sm">
+                <button onclick="handleClickToDownloadPdf()" class="btn btn-white">
+                  click here to download as a PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="add-remark">
+
+        </div>
+  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card" id="generatePdfFile">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-6 m-b-20">
+                    <img src="assets/img/logo-shivaur-2.jpg" class="inv-logo" alt="Logo">
+                    <ul class="list-unstyled"></ul>
+                  </div>
+                  <div class="col-sm-6 m-b-20">
+                    <div class="invoice-details">
+                      <h3 id="estimatesId" class="text-uppercase">
+                        #<span id="estId">Enquiry</span> / <span id="proNm">Offer</span>  
+                        <br> 
+                        <span id="prodNm">View</span>
+                      </h3>
+                      <ul class="list-unstyled">
+                        <li> Date: <span id="createDate"></span></li>
+                        <!-- <li>Due date: <span id="expiryDate"></span></li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-lg-12 m-b-20">
+                    <h5><b>Ref: </b><b id="referenceNo"></b></h5>
+                    <ul class="list-unstyled">
+                      <li><b>Sub With Enquiry Details: </b><span id="enquiryDetails"></span></li>
+                      <li><b>Customer Details: </b><span id="customerDetails"></span></li>
+                      <li><b>Pricing Details: </b><span id="price"></span></li>
+                      <li id="clientAddr" style="width: 300px;"></li>
+                    </ul>
+                  </div>
+                </div>
+  
+                <div class="container my-5">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="border p-4">
+                        <p>Dear Sir,</p>
+                        <p>Thank you very much for your enquiry.</p>
+                        <p>We trust you shall find that our offer meets your requirement and look forward to your valuable orders.</p>
+                        <p>In the meantime, if you need any additional information, please feel free to contact us.</p>
+                        <br>
+                        <p>Yours faithfully,</p>
+                        <p><strong>Shreya Shradha</strong></p>
+                        <p>Assistant Manager</p>
+                        <p>Mob. No. - <strong>9031008618</strong>, <strong>9031008619</strong></p>
+                        <p>For, <strong>Shivaur Infrastructures & Project Engineers Private Limited</strong></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-sm-12 col-lg-12 m-b-20">
+                  <ul class="list-unstyled">
+                    <li><b>Commercial Terms &amp; Condition: </b><span id="policy"></span></li>
+                    <li><b>Other Information Terms </b><span id="otherInfo"></span></li>
+                    <li id="clientAddr" style="width: 300px;"></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Email Modal -->
+        <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-gradient-primary text-white text-center py-2">
+                <h5 class="modal-title w-100" id="emailModalLabel">
+                  <i class="fas fa-envelope me-2"></i>Send Offer
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body p-3">
+                <form id="emailForm">
+                  <div class="mb-2">
+                    <label for="recipientEmail" class="form-label fw-semibold text-muted small">Recipient Email</label>
+                    <input
+                      type="email"
+                      name="to"
+                      id="recipientEmail"
+                      class="form-control shadow-sm"
+                      placeholder="Enter recipient email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-2">
+                    <label for="ccEmail" class="form-label fw-semibold text-muted small">CC</label>
+                    <input
+                      type="text"
+                      name="cc"
+                      id="ccEmail"
+                      class="form-control shadow-sm"
+                      placeholder="Enter CC email(s), separated by commas"
+                    />
+                  </div>
+                  
+                  <div class="mb-2">
+                    <label for="emailSubject" class="form-label fw-semibold text-muted small">Subject</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      id="emailSubject"
+                      class="form-control shadow-sm"
+                      placeholder="Enter email subject"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="emailMessage" class="form-label fw-semibold text-muted small">Message</label>
+                    <textarea
+                      name="message"
+                      id="emailMessage"
+                      rows="3"
+                      class="form-control shadow-sm"
+                      placeholder="Write your message here..."
+                    ></textarea>
+                  </div>
+                  <div class="d-grid">
+                    <button type="button" id="sendEmailModal" class="btn btn-gradient-primary">
+                      <i class="fas fa-paper-plane me-1"></i>Send Email
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+  
+        <!-- Main Form -->
+        <div class="submit-section" style="float: none;">
+          <button type="button" class="btn btn-primary submit-btn" id="submitOffer">
+            Send Offer With Email
+          </button>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+   
+ 
+  <!-- <script type="module" src="./assets/custom/offer.js"></script> -->
+  <script type="module" src="./assets/custom/offerView.js"></script>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script
+  src="assets/js/jquery-3.7.1.min.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script
+  src="assets/js/bootstrap.bundle.min.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+
+<script
+  src="assets/js/jquery.slimscroll.min.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+
+<script
+  src="assets/plugins/morris/morris.min.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+<script
+  src="assets/plugins/raphael/raphael.min.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+<script
+  src="assets/js/chart.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+<script
+  src="assets/js/greedynav.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+
+<script
+  src="assets/js/layout.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+<script
+  src="assets/js/theme-settings.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+
+<script
+  src="assets/js/app.js"
+  type="a584005f29a7ae81ebc6d9e7-text/javascript"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+  data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+  defer
+></script>
+
+
+</body>
+  <script src="./assets/custom/sidebar.js"></script>
+
+
+ 
+</html>

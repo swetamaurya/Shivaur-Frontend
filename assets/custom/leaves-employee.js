@@ -1,6 +1,18 @@
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 import { checkbox_function } from './multi_checkbox.js';
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
@@ -9,6 +21,9 @@ import { leave_API, leaveType_API } from './apis.js';
 // -------------------------------------------------------------------------
 import {individual_delete, objects_data_handler_function} from './globalFunctionsDelete.js';
 window.individual_delete = individual_delete;
+// -------------------------------------------------------------------------
+import {rtnPaginationParameters, setTotalDataCount} from './globalFunctionPagination.js';
+// -------------------------------------------------------------------------
 import {} from "./globalFunctionsExport.js";
 // =================================================================================
 const token = localStorage.getItem('token');
@@ -23,8 +38,7 @@ async function leaveSelectOption() {
                 'Content-Type': 'application/json'
             }
         });
-        const res = await response.json();
-        console.log("Leave Types: ", res);
+        const res = (await response.json())?.data;
 
         let t1 = document.getElementById("edit-leaveType");
         let t2 = document.getElementById("leaveType");
@@ -58,8 +72,8 @@ async function fetchDesignationsAndDepartments() {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            cachedDesignations = await designationResponse.json();
-            console.log("Designations:", cachedDesignations);
+            let r1 = await designationResponse.json();    
+            cachedDesignations = (r1)?.data;
         } catch (error) {
             console.error('Error fetching designations:', error);
         }
@@ -84,31 +98,52 @@ async function all_data_load_dashboard() {
     await fetchDesignationsAndDepartments();
 
     try {
-        const response = await fetch(`${leave_API}/get`, {
+        const response = await fetch(`${leave_API}/get${rtnPaginationParameters()}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-        const res = await response.json();
 
-        // Display the leave type counts
-        document.getElementById('total_medical_leave').textContent = res.leaveTypeCounts['Medical Leave'] || 0;
-        document.getElementById('total_other_leave').textContent = res.leaveTypeCounts['Other Leave'] || 0;
-        document.getElementById('paidLeaveCount').textContent = res.leaveTypeCounts['Paid Leave'] || 0;
-        document.getElementById('casualLeaveCount').textContent = res.leaveTypeCounts['Casual Leave'] || 0;
+        const res = await response.json();
+        setTotalDataCount(res?.summary?.totalRecords);
+
+        // **Handle leave type counts properly**
+        let leaveTypeCounts = res?.leaveTypeCounts || {}; // Default to empty if missing
+        let medicalLeave = leaveTypeCounts['Medical Leave'] || 0;
+        let otherLeave = leaveTypeCounts['Other Leave'] || 0;
+        let paidLeave = leaveTypeCounts['Paid Leave'] || 0;
+        let casualLeave = leaveTypeCounts['Casual Leave'] || 0;
+
+        // **Dynamically calculate leave counts if missing in API**
+        if (Object.keys(leaveTypeCounts).length === 0) {
+            res.leaves.forEach((leave) => {
+                if (leave?.leaveType?.leaveName === "Medical Leave") medicalLeave++;
+                if (leave?.leaveType?.leaveName === "Other Leave") otherLeave++;
+                if (leave?.leaveType?.leaveName === "Paid Leave") paidLeave++;
+                if (leave?.leaveType?.leaveName === "Casual Leave") casualLeave++;
+            });
+        }
+
+        // **Update UI**
+        document.getElementById('total_medical_leave').textContent = medicalLeave;
+        document.getElementById('total_other_leave').textContent = otherLeave;
+        document.getElementById('paidLeaveCount').textContent = paidLeave;
+        document.getElementById('casualLeaveCount').textContent = casualLeave;
 
         let r = res.leaves;
         let tableRows = '';
 
         if (r && r.length > 0) {
             r.forEach(e => {
-                const designation = getCachedDesignation(e.leaveType);
+                // **Handle cases where `leaveType` is missing**
+                const leaveTypeName = e?.leaveType?.leaveName || '-';
+
                 tableRows += `
                     <tr data-id="${e._id || '-'}">
                         <td><input type="checkbox" class="checkbox_child" value="${e._id || '-'}"></td>
-                        <td>${e.leaveType && e.leaveType.leaveName ? e.leaveType.leaveName : '-'}</td>
+                        <td>${leaveTypeName}</td>
                         <td>${formatDate(e.from) || '-'}</td>
                         <td>${formatDate(e.to) || '-'}</td>
                         <td>${e.noOfDays || '-'}</td>
@@ -124,7 +159,7 @@ async function all_data_load_dashboard() {
                                     <a class="dropdown-item" onclick="handleClickOnEditLeaves('${e._id}')" data-bs-toggle="modal" data-bs-target="#edit_data">
                                         <i class="fa-solid fa-pencil m-r-5"></i> Edit
                                     </a>
-                                    <a class="dropdown-item" onclick="individual_delete('${e._id}')" href="#" data-bs-toggle="modal" data-bs-target="#delete_data">
+                                    <a class="dropdown-item employee_restriction" onclick="individual_delete('${e._id}')" href="#" data-bs-toggle="modal" data-bs-target="#delete_data">
                                         <i class="fa-regular fa-trash-can m-r-5"></i> Delete
                                     </a>
                                 </div> 
@@ -134,9 +169,12 @@ async function all_data_load_dashboard() {
             });
             table.innerHTML = tableRows;
             checkbox_function();
+        } else {
+            table.innerHTML = `<tr><td colspan="9" class="text-center">No leave records found</td></tr>`;
         }
     } catch (error) {
         console.error('Error loading dashboard data:', error);
+        table.innerHTML = `<tr><td colspan="9" class="text-center">Error fetching data</td></tr>`;
     }
 
     try {
@@ -145,6 +183,8 @@ async function all_data_load_dashboard() {
         console.log(error);
     }
 }
+
+
 
 // =============================================================================================
 // =============================================================================================
@@ -200,7 +240,7 @@ document.getElementById('add-leave-employee-form').addEventListener('submit', as
         const resp = await response.json();
         console.log(resp);
         const success = response.ok;
-        status_popup(success ? "Data Updated <br> Successfully" : "Please try again later", success);
+        status_popup(success ? "Leave Created <br> Successfully!" : "Please try again later", success);
         if (success){
             all_data_load_dashboard();
         }
@@ -297,7 +337,7 @@ window.handleClickOnEditLeaves = async function handleClickOnEditLeaves(e){
 
     try{
         document.getElementById("update-id").values = d1?._id;
-        document.getElementById("edit-leaveType").value = d1?.leaveType || '';
+        document.getElementById("edit-leaveType").value = d1?.leaveType._id || '';
         document.getElementById("edit-from").value = formatDateForInput(d1?.from) || '';
         document.getElementById("edit-to").value = formatDateForInput(d1?.to) || '';
         document.getElementById("edit-noOfDays").value = d1?.noOfDays || '';
@@ -349,7 +389,7 @@ document.getElementById('edit-leave-employee-form').addEventListener('submit',as
         }) 
     
         const success = response.ok;
-        status_popup(success ? "Data Updated <br> Successfully" : "Please try <br> again later", success);
+        status_popup(success ? "Leave Updated <br> Successfully!" : "Please try <br> again later", success);
         if (success){
             all_data_load_dashboard();
         }
@@ -513,6 +553,9 @@ document.getElementById('half_day_checkbox').addEventListener('change', function
         document.getElementById('halfDayOption').value = ''; // Reset half-day value
     }
 });
+
+
+
 // Set the min attribute of date inputs to today's date
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];

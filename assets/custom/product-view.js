@@ -1,7 +1,20 @@
-if(!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
-
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
+// -------------------------------------------------------------------------
+import {main_hidder_function} from './gloabl_hide.js';
 import { loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { formatDate, capitalizeFirstLetter } from './globalFunctions2.js'
 import {product_API} from './apis.js';
@@ -34,7 +47,7 @@ async function taskViewLoad() {
 
         try{
                 
-            document.getElementById("taskName").innerText = `${r2?.productName || '-'} (${r2?.productId})`;
+            document.getElementById("taskName").innerText = `${r2?.material || '-'} (${r2?.productId})`;
             document.getElementById("viewDescription").innerText = r2?.description || '-';
         } catch(error){console.log(error)}
     //   =========================================================================================
@@ -52,7 +65,7 @@ async function taskViewLoad() {
                                 </tr>
                                 <tr>
                                     <td>Supplier : </td>
-                                    <td class="text-end">${r2?.supplier}</td>
+                                    <td class="text-end">${r2?.vendor?.vendorName}</td>
                                 </tr>
                                 <tr>
                                     <td>Status : </td>
@@ -60,25 +73,32 @@ async function taskViewLoad() {
                                 </tr>
                                 <tr>
                                     <td>Price : </td>
-                                    <td class="text-end">${r2?.price}</td>
+                                    <td class="text-end">₹${r2?.price}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantity : </td>
                                     <td class="text-end">${r2?.quantity}</td>
                                 </tr>
-                                `;
+                                <tr>
+                                    <td>Total Price : </td>
+                                    <td class="text-end">₹${r2?.totalPrice}</td>
+                                </tr>
+                                 <tr>
+                                    <td>Unit : </td>
+                                    <td class="text-end">${r2?.unit}</td>
+                                </tr>`;
             tbodyone.id = 'tbodyone';
             aa1.appendChild(tbodyone);
         } catch (error){console.log(error)}
     //   =========================================================================================
-        try{
-            let aa2 = document.getElementById("assigned-project-list");
-            (r2?.assignedTo).map((e)=>{
-                let li1 = document.createElement("li");
-                li1.innerText = ` - ${e?.name} (${e?.userId})`;
-                aa2.appendChild(li1);
-            });    
-        } catch(error){console.log(error)}
+            // try{
+            //     let aa2 = document.getElementById("assigned-project-list");
+            //     (r2?.assignedTo).map((e)=>{
+            //         let li1 = document.createElement("li");
+            //         li1.innerText = ` - ${e?.name} (${e?.userId})`;
+            //         aa2.appendChild(li1);
+            //     });    
+            // } catch(error){console.log(error)}
         // =========================================================================================
         try{
             let rd_doc = r2?.images;
@@ -114,12 +134,17 @@ async function taskViewLoad() {
     try{
         remove_loading_shimmer();
     } catch(error){console.log(error)}
+    try{
+        main_hidder_function();
+    } catch (error){console.log(error)}
 }
 
 
 
-document.getElementById("edit_task_btn").addEventListener("click", function(){
-      window.location.href = `/front-end/edit-product.html?id=${_id_param}`;
+document.getElementById("edit_task_btn").addEventListener("click",()=>{
+      window.location.href = `edit-product.html?id=${_id_param}`;
   })
   
+
+ 
 

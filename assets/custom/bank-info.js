@@ -1,7 +1,19 @@
 
-if (!localStorage.getItem("token")) {
-  window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { user_API } from './apis.js';
@@ -30,7 +42,7 @@ window.onload = async () => {
       res.users.employees.forEach((e) => {
         let option = document.createElement("option");
         option.value = e._id;
-        option.textContent = e.name;
+        option.textContent = `${e.name} (${e?.userId})`;
         option.dataset.email = e.email; // Store email in data attribute
         empSelectOption.appendChild(option);
       });
@@ -96,7 +108,7 @@ document.getElementById('submitBankDetails')?.addEventListener('click', async (e
     });
 
     const success = response.ok;
-    status_popup(success ? "Data Updated <br> Successfully!" : "Please try <br> again later", success);
+    status_popup(success ? "Bank Information Updated <br> Successfully!" : "Please try <br> again later", success);
     if (success) {
       setTimeout(() => {
         window.location.href = 'bank-list.html'; // Adjust this path if needed
@@ -184,8 +196,9 @@ function validateBankDetailsForm() {
   }
 
   // PAN Number Validation
-  if (!panNumber.value.trim()) {
-    showError(panNumber, "PAN number is required");
+  const panPattern = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // PAN format: 5 letters, 4 digits, 1 letter
+  if (!panNumber.value.trim() || !panPattern.test(panNumber.value)) {
+    showError(panNumber, "PAN number is not valid");
     isValid = false;
   }
 

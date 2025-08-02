@@ -1,17 +1,32 @@
 
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 const token = localStorage.getItem('token');
 // =======================================================================================
 import { r_arr1, u_arr1, disableBtns } from './multi_checkbox.js';
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { delete_API } from './apis.js';
+// ---------------------------------------------------------------------------------------
+import { forGloablDelete_js, pagination_data_handler_function } from './globalFunctionPagination.js';
 // =======================================================================================
 
-let table_data_reload;
+// let table_data_reload;
 export function objects_data_handler_function(table_data_function){
-    table_data_reload = table_data_function;
+    pagination_data_handler_function(table_data_function);
+    // table_data_reload = table_data_function;
 }
 
 const dbmf = document.getElementById("delete_btn_multiple_file");
@@ -65,16 +80,19 @@ async function deleteEventFunction(event) {
             // ----------------------------------------------------------------------------------------------------
 
             const success = response.ok;
-            status_popup(success ? "Data Remove <br> Successfully" : "Please try <br> again later", success);
+            status_popup(success ? "Data Removed <br> Successfully!" : "Please try <br> again later", success);
             
             if (success){
-                table_data_reload();
+                // table_data_reload();
+                forGloablDelete_js();
             }
         } catch (error) {
             console.error("Error deleting data:", error);
             status_popup("Please try <br> again later", false);
-        }finally {
-            remove_loading_shimmer();
         }
+        // ----------------------------------------------------------------------------------------------------
+        try{
+            remove_loading_shimmer();
+        } catch(error){console.log(error)}
     }
 }

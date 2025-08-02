@@ -142,8 +142,7 @@ export async function status_popup(message_you_want_to_show, status_true_or_fals
 
         // Ternary operator
         let content = `<div class="custom-modal_1_my">
-                            <button class="my_overlay_btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-                            ${
+                             ${
                                 status_true_or_false
                                     ? `<div class="succes_1_my succes-animation_1_my icon-top_1_my" style="margin-top: 50px;" id="b1b1">${timer_1}</div>
                                        <div class="succes_1_my border-bottom_1_my"></div>
@@ -180,10 +179,10 @@ export async function status_popup(message_you_want_to_show, status_true_or_fals
         document.body.removeChild(document.getElementById('overlay_message_curd_1_my'));
     }
     try {
-        document.querySelector('.my_overlay_btn').addEventListener('click', function () {
-            clearInterval(c);
-            document.body.removeChild(document.getElementById('overlay_message_curd_1_my'));
-        });
+        // document.querySelector('.my_overlay_btn').addEventListener('click', function () {
+        //     clearInterval(c);
+        //     document.body.removeChild(document.getElementById('overlay_message_curd_1_my'));
+        // });
     } catch (error) {
         console.error(error);
     }

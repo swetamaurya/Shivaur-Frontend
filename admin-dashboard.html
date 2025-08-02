@@ -7,7 +7,7 @@
   data-sidebar-size="lg"
   data-sidebar-image="none"
 >
-   <head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
@@ -15,10 +15,7 @@
       name="keywords"
       content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
     />
-    <meta
-      name="author"
-      content=""
-    />
+    <meta name="author" content="" />
     <title>Admin Dashboard</title>
 
     <link
@@ -41,16 +38,39 @@
     <link rel="stylesheet" href="assets/plugins/morris/morris.css" />
 
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .project-list {
+        position: absolute;
+    right: 15px;
+    top: 6px;
+      }
+      .progress,
+      .progress-stacked {
+        height: 2rem !important;
+      }
+      .stats-box.progress-bar-main {
+        padding: 5px 22px;
+        border-radius: 10px;
+      }
+      .admin-dashboard table tr th{
+
+        background-color: rgb(248 248 248);
+    padding: 7px 16px;
+    color: #b70909;
+    font-size: 12px;
+    text-transform: uppercase;
+       
+        &:first-child, &:last-child{
+          border-radius: 0;
+        }
+
+      }
+    </style>
   </head>
   <body>
-    <div class="main-wrapper">
-       
-
+    <div class="main-wrapper admin-dashboard">
       <div id="header-placeholder"></div>
-
       <div id="sidebar-placeholder"></div>
- >
-
       <div class="page-wrapper">
         <div class="content container-fluid pb-0">
           <div class="page-header">
@@ -82,7 +102,8 @@
               <div class="card dash-widget">
                 <div class="card-body">
                   <span class="dash-widget-icon"
-                    ><i class="la la-users"></i></span>
+                    ><i class="la la-users"></i
+                  ></span>
                   <div class="dash-widget-info">
                     <h3 class="clients-count">0</h3>
                     <span>Clients</span>
@@ -116,198 +137,380 @@
                 </div>
               </div>
             </div>
-     
-          <div class="row">
-            <div class="col-md-6 d-flex">
-              <div class="card card-table flex-fill">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Invoices</h3>
-                </div>
+            <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
+              <div class="card flex-fill">
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table id="invoicesTable" class="table custom-table mb-0">
-                      <thead>
-                        <tr>
-                          <th>Invoice ID</th>
-                          <th>Client Name</th>
-                          <th>Due Date</th>
-                          <th>Total</th>
-                          <!-- <th class="text-end">Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <a href="invoices.html">View all invoices</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 d-flex">
-              <div class="card card-table flex-fill">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Clients</h3>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table id="clientsTable" class="table custom-table mb-0">
-                      <thead>
-                        <tr>
-                          <th>Client Name</th>
-                          <th> Email</th>
-                           <th>Status</th>
-                          <!-- <th class="text-end">Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <a href="clients-list.html">View all clients</a>
-                </div>
-              </div>
-            </div>
-           
-          </div>
-          <div class="row">
-            <div class="col-md-6 d-flex">
-              <div class="card card-table flex-fill">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Projects</h3>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table  id="projectsTable" class="table custom-table mb-0">
-                      <thead>
-                        <tr>
-                          <th>Project Name</th>
-                          <th>Client Name</th>
+                  <div class="statistics">
+                    <div class="row">
+                      <div class="stats-box progress-bar-main mb-4" id="statPercBox">
+                        <div class="progress my-3 p-0"></div>
+                      </div>
+                      <div
+                        class="col-sm-6"
+                        style="border-right: 2px dashed #d3d3d4"
+                      >
+                        <!--<h4 class="card-title text-center">Task Statistics</h4>-->
+                        <div class="row">
+                          <div class="col-md-6 col-6 text-center">
+                            <div class="stats-box mb-4">
+                              <p>Total Tasks</p>
+                              <h3 id="totalTasksCount">0</h3>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-6 text-center">
+                            <div class="stats-box mb-4">
+                              <p>Overdue Tasks</p>
+                              <h3 id="overdueTasksCount">0</h3>
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="input-block mb-3F">
+                              <div class="d-flex align-items-center justify-content-between">
+                                <label class="col-form-label">Projects <span class="text-danger">*</span></label>
+                              </div>
+                              <select name="" id="project_select_option" class="form-control">
+                                <option disabled selected value="" >Select Assign Project</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-6 text-center">
+                            <div class="input-block mb-3">
+                              <div
+                                class="d-flex align-items-center justify-content-between"
+                              >
+                                <label class="col-form-label"
+                                  >From Date
+                                  <span class="text-danger">*</span></label
+                                >
+                              </div>
+                              <input
+                                class="form-control"
+                                type="date"
+                                id="fromDate"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-6 text-center">
+                            <div class="input-block mb-3">
+                              <div
+                                class="d-flex align-items-center justify-content-between"
+                              >
+                                <label class="col-form-label"
+                                  >To Date
+                                  <span class="text-danger">*</span></label
+                                >
+                              </div>
+                              <input
+                                class="form-control"
+                                type="date"
+                                id="toDate"
+                              />
+                            </div>
+                          </div>
                           
-                          <th>Deadline</th><th>Status</th>
-                           <!-- <th class="text-end">Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
+                          <form action="" id="taskStatisticsId">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <button type="submit" class="btn w-100 btn-primary" fdprocessedid="ibeibr">Search</button>
+                              </div>
+                              <div class="col-md-6">
+                                <button type="button" class="btn w-100 btn-outline-secondary" onclick="window.location.reload();" fdprocessedid="cwzaqb">Clear</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="col-sm-6" id="taskStatistics">
+                        <div
+                          id="taskStatisticsBreakdown"
+                          class="task-breakdown"
+                        ></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="card-footer">
-                  <a href="project-list.html">View all projects</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 d-flex">
-              <div class="card card-table flex-fill">
-                <div class="card-header">
-                  <h3 class="card-title mb-0">Products</h3>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table  id="productsTable" class="table custom-table mb-0">
-                      <thead>
-                        <tr>
-                          <th>Product Name</th>
-                          <th>Category Name</th>
-                          <th>Price</th>
-                          <th>Status</th>
-                           <!-- <th class="text-end">Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <div class="card card-table flex-fill">
+                  <div class="card-header" style="background-color: #373737">
+                    <h3 class="card-title mb-0 text-white">Projects</h3>
+                    <a
+                      href="project-list.html"
+                      class="project-list"
+                      target="_blank"
+                      style="color: #ffffff"
+                      title="View All Projects"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        class="bi bi-box-arrow-up-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="projectData" class="table custom-table mb-0">
+                        <thead>
+                          <tr>
+                            <th>Created At</th>
+                            <th>Project Name</th>
+                            <!-- <th>Project Id</th> -->
+                            <!-- <th>Client Name</th> -->
+
+                            <th>Deadline</th>
+                            <!-- <th>Status</th> -->
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-                <div class="card-footer">
-                  <a href="product-list.html">View all products</a>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="card card-table flex-fill">
+                  <div class="card-header" style="background-color: #373737">
+                    <h3 class="card-title mb-0 text-white">Enquiries</h3>
+                    <a
+                      href="enquiry-list.html"
+                      class="project-list"
+                      target="_blank"
+                      title="View All Enquiries"
+                      style="color: #ffffff"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        class="bi bi-box-arrow-up-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="enquiryData" class="table custom-table mb-0">
+                        <thead>
+                          <tr>
+                            <th>Enquiry Date</th>
+                            <th>PIC</th>
+                            <th>Enquiry Created By</th>
+                            <!-- <th>Offer Reference No</th> -->
+                            <!-- <th>Offer Date</th> -->
+                            <!-- <th>Detail of Enquiry</th> -->
+
+                            <!-- <th class="text-end">Action</th> -->
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- <div class="card-footer">
+                    <a href="enquiry-list.html">View all enquiry</a>
+                  </div> -->
                 </div>
               </div>
             </div>
-          
+
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <div class="card card-table flex-fill">
+                  <div class="card-header" style="background-color: #373737">
+                    <h3 class="card-title mb-0 text-white">Invoices</h3>
+                    <a
+                      href="invoices.html"
+                      class="project-list"
+                      target="_blank"
+                      title="View All Invoices"
+                      style="color: #ffffff"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        class="bi bi-box-arrow-up-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="tableData" class="table custom-table mb-0">
+                        <thead>
+                          <tr>
+                            <th>Invoice ID</th>
+                            <th>Client Name</th>
+                            <!-- <th>Project Name</th> -->
+                            <th>Due Date</th>
+                            <!-- <th>Total</th> -->
+                            <!-- <th class="text-end">Action</th> -->
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- <div class="card-footer">
+                    <a href="invoices.html">View all invoices</a>
+                  </div> -->
+                </div>
+              </div>
+              <div class="col-md-6 d-flex">
+                <div class="card card-table flex-fill">
+                  <div class="card-header" style="background-color: #373737">
+                    <h3 class="card-title mb-0 text-white">Offers</h3>
+                    <a
+                      href="offer-list.html"
+                      class="project-list"
+                      target="_blank"
+                      title="View All Offers"
+                      style="color: #ffffff"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        class="bi bi-box-arrow-up-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="offerData" class="table custom-table mb-0">
+                        <thead>
+                          <tr>
+                            <!-- <th>Reference Number</th> -->
+                            <th>Offer Date</th>
+
+                            <!-- <th>Enquiry Title</th> -->
+                            <th>Customer Name</th>
+                            <th>Offer Title</th>
+                            <th>View</th>
+
+                            <!-- <th>Customer Email</th> -->
+                            <!-- <th>Customer Phone</th> -->
+                            <!-- <th>Customer Department</th> -->
+                            <!-- <th>Customer Company</th> -->
+                            <!-- <th>Offer Price</th> -->
+                            <!-- <th class="text-end">Action</th> -->
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- <div class="card-footer">
+                    <a href="offer-list.html">View all offers</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <script type="module" src="./assets/custom/admin-dashboard.js"></script>
+
+      <script
+        src="assets/js/jquery-3.7.1.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script
+        src="assets/js/bootstrap.bundle.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/jquery.slimscroll.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/plugins/morris/morris.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/plugins/raphael/raphael.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/chart.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/greedynav.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/layout.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/theme-settings.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/app.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+        defer
+      ></script>
+
+      <script src="./assets/custom/sidebar.js"></script>
     </div>
-
-   <script  type="module"  src="./assets/custom/admin-dashboard.js"></script>
- 
-    <script
-      src="assets/js/jquery-3.7.1.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-    <script
-      src="assets/js/bootstrap.bundle.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/jquery.slimscroll.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/plugins/morris/morris.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/plugins/raphael/raphael.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/chart.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/greedynav.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/layout.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/theme-settings.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/app.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-  src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-  data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
-  defer
-></script> 
-
-  </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
-
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
-
-
- 
-
- </html>
+  </body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Product Management Page" />
+    <meta
+      name="keywords"
+      content="admin, products, bootstrap, inventory, business, corporate"
+    />
+    <meta name="author" content="YourCompany" />
+    <title>Edit Offer</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/summernote-bs4.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper">
+        <div class="product-form mx-4 my-3">
+          <div class="my-4">
+            <h2>Edit Offer</h2>
+          </div>
+
+          <form id="edit_offer_form">
+            <div class="row">
+              <!-- <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Reference Number
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="ref" />
+                </div>
+              </div> -->
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Date <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="date" id="date" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Offer Convert Status
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <select class="form-control" id="offerStatus">
+                    <option value="" selected="" disabled="">
+                      Select Status
+                    </option>
+                    <option value="Converted">Converted</option>
+                    <option value="Lost">Lost</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4" id="lostOrderReason" style="display: none;">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label">Lost Order Reason</label>
+                      
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <select class="form-control" id="emdSelect">
+                    <option value="" selected="" disabled="">
+                      Select Reason
+                    </option>
+                    <option value="Price High">Price High</option>
+                    <option value="Rejected in technical part">Rejected in technical part</option>
+                    <option value="Custom Reasons">Custom Reasons</option>
+                  </select>
+                </div>
+              </div>
+              <div id="add-remark" class="col-sm-8" style="display: none;"> 
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label">Remark <span class="text-danger">*</span></label>
+                  </div>
+                  <textarea id="addRemark"  style="
+                  border-color: rgb(211, 211, 212);
+                  width: 100%;
+                  height: 43px;
+                  padding: 10px;
+                  border-radius: 5px;
+                " placeholder="Enter Your Message Here"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Enquiry Title <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="enquiryTitle" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Offer Title <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="offerTitle" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Name <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="customerName" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Email <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="customerEmail" />
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Phone <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="customerPhone" />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Department
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="customerDepartment"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Designation
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="customerDesignation"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Customer Company
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <select
+                    class="form-control"
+                    id="customerCompany"
+                    ></select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Offer Price <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="offerPrice" />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label">
+                      EMD Status <span class="text-danger">*</span>
+                    </label>
+                  </div>
+                  <select class="form-control" id="emdSelectStatus">
+                    <option value="" selected="" disabled="">
+                      Select Status
+                    </option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12" id="emdDetails" style="display: none">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Earnest Money Detail (EMD)</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="input-block mb-3">
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <label class="col-form-label">
+                              EMD Amount <span class="text-danger">*</span>
+                            </label>
+                          </div>
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="emdAmount"
+                            placeholder="Enter EMD Amount"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="input-block mb-3">
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <label class="col-form-label">
+                              EMD Date <span class="text-danger">*</span>
+                            </label>
+                          </div>
+                          <input
+                            class="form-control"
+                            type="date"
+                            id="emdDate"
+                          />
+                        </div>
+                      </div>
+                      <!-- <div class="col-sm-4">
+                        <div class="input-block mb-3">
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <label class="col-form-label">
+                              EMD Instrument Number
+                              <span class="text-danger">*</span>
+                            </label>
+                          </div>
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="emdInstrumentNumber"
+                            placeholder="Enter EMD Instrument Number"
+                          />
+                        </div>
+                      </div> -->
+                      <div class="col-sm-12">
+                        <div class="input-block mb-3">
+                          <div
+                            class="d-flex align-items-center justify-content-between"
+                          >
+                            <label class="col-form-label">
+                              Remark <span class="text-danger">*</span>
+                            </label>
+                          </div>
+                          <textarea
+                            id="emdRemark"
+                            name="emd-remark"
+                            rows="4"
+                            placeholder="Enter Your Remark Here"
+                            style="
+                              border-color: rgb(211, 211, 212);
+                              border-radius: 5px;
+                              width: 100%;
+                              padding: 10px;
+                            "
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Terms & Condition</h5>
+                  </div>
+                  <div class="card-body">
+                    <div id="summernote"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Description <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <textarea
+                    rows="4"
+                    id="description"
+                    class="form-control"
+                    placeholder="Enter Your Message Here"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="submit-section mb-4">
+              <button
+                class="btn btn-primary submit-btn"
+                id="submitProduct"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- JS Scripts -->
+    <!-- <script type="module" src="./assets/custom/add-product.js"></script> -->
+    <!-- <script src="assets/js/jquery-3.7.1.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/summernote-bs4.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+
+    <script type="module" src="./assets/custom/edit-offer.js"></script>
+    <script src="./assets/custom/sidebar.js"></script>
+  </body>
+</html>

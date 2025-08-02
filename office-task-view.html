@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Tasks"
+    />
+    <meta name="author" content="" />
+    <title>View Office Task</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+ 
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Office Task Details</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="office-task-view.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Task</li>
+                </ul>
+              </div>
+              <div class="col-auto float-end ms-auto ">
+                <a
+                  href="#"
+                  class="btn rounded add-btn hr_restriction"
+                  id="edit_task_btn"
+                  ><i class="fa-solid fa-plus"></i> Edit Task</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-xl-7">
+              <div class="card">
+                <div class="card-body">
+                  <div class="task-title">
+                    <p><strong>Task Name: - </strong></p>
+                    <p id="taskName"></p>
+                  </div>
+                  <hr>
+                  <p><strong>Description: - </strong></p>
+                  <p id="viewDescription"></p>
+                </div>
+              </div>
+
+
+              <div class="card d-none" id="file_main_div">
+                <div class="card-body">
+                  <h5 class="card-title m-b-20">Uploaded files</h5>                
+                  <div class="row d-" id="uploaded_files">
+                    <div class="col-md-12">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-white">
+                          <thead>
+                            <tr>
+                              <th class="col-sm-1">#</th>
+                              <th class="col-sm-10">Files</th>
+                              <th class="col-sm-1 text-center"> Action</th>
+                            </tr>
+                          </thead>
+                          <tbody id="uploaded_files_tbodyone">
+                         </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-lg-6 col-xl-5">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title m-b-15">Task details</h6>
+
+                  <table class="table table-striped table-border" id="taskTableId">
+                  </table> 
+                  
+                </div>
+              </div>
+              <div class="card Task-user">
+                <div class="card-body">
+                  <h6 class="card-title m-b-20">
+                    Assigned Tasks To Employee -
+                   
+                  </h6>
+                  <ul class="list-box" id="assigned-project-list">
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+     
+
+        
+
+      </div>
+    </div>
+    <script type="module" src="./assets/custom/office-task-veiw.js"></script>
+
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
+  <script src="./assets/custom/sidebar.js"></script>
+
+
+  <script>
+    // function viewTaskDetails(id) {
+    //   window.location.href = `edit-Task.html?id=${id}`;
+    // }
+  </script>
+</html>

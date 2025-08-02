@@ -19,7 +19,7 @@
       name="author"
       content=""
     />
-    <title>Expenses  </title>
+    <title>Expenses List </title>
 
     <link
       rel="shortcut icon"
@@ -79,23 +79,20 @@
           </div>
 
           <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
               <div class="input-block mb-3 form-focus">
-                <input id="employeeId"   type="text"   class="form-control floating"   placeholder="Enter Expense Name"   fdprocessedid="64h436" />
+                <input id="expenseName"   type="text"   class="form-control floating"   placeholder="Enter Expense Name"   fdprocessedid="64h436" />
               </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+           
+            
+            <div class="col-sm-6 col-md-4">
               <div class="input-block mb-3 form-focus">
-                <input id="employeeName"   type="text"   class="form-control floating"   placeholder="Enter Purchase By (Emp Name)"   fdprocessedid="78ccye" />
+                <input id="purchaseDate"   type="date"   class="form-control floating"   placeholder="Enter Purchased By"   fdprocessedid="78ccye" />
               </div>
             </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="input-block mb-3 form-focus">
-                <input id="employeeName"   type="date"   class="form-control floating"   placeholder="Enter Purchased By"   fdprocessedid="78ccye" />
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <a href="javascript:void(0)" class="btn btn-success w-100"><i class="fa fa-search" aria-hidden="true"></i> Search </a>
+            <div class="col-sm-6 col-md-4">
+              <button id="searchButton" class="btn btn-success w-100">Search</button>
             </div>
           </div>
 
@@ -108,30 +105,16 @@
                 >
                   <div class="row">
                     <div class="col-sm-12 col-md-6">
-                      <div
-                        class="dataTables_length"
-                        id="DataTables_Table_0_length"
-                      >
-                        <label
-                          >Show entries</label>
-                          <select
-                            name="DataTables_Table_0_length"
-                            aria-controls="DataTables_Table_0"
-                            class="ms-2 custom-select custom-select-sm form-select form-control-sm"
-                            fdprocessedid="2bf78h"
-                          >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                          </select>
-                      </div>
+
+
+                      <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="mohit-d-flex-justify-around-2">
                         <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" data-bs-toggle="modal" data-bs-target="#export_data" ><i class="fa-solid fa-arrow-down"></i> Download Expense's List</button >
-                        <button class="btn rounded add-btn disabled" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-solid fa-times"></i> Remove Expense</button >
-                        <a href="#" class="btn rounded add-btn" data-bs-toggle="modal" data-bs-target="#add_data"><i class="fa-solid fa-plus"></i> Add Expense</a>
+                        <button class="btn rounded add-btn disabled  hr_restriction " id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-solid fa-times"></i> Remove Expense</button >
+                        <a href="#" class="btn rounded add-btn  hr_restriction " data-bs-toggle="modal" data-bs-target="#add_data"><i class="fa-solid fa-plus"></i> Add Expense</a>
                       </div>
                     </div>
                     
@@ -149,7 +132,7 @@
                             <th>Purchase Date</th>
                             <th>Amount</th>
                             <th>Paid By</th>
-                            <th class="text-center">Status</th>
+                            <th>Status</th>
                             <th class="text-end">Actions</th>
                           </tr>
                         </thead>
@@ -157,64 +140,12 @@
                       </table>
                     </div>
                   </div>
-                  <div class="row mt-4">
-                    <div class="col-sm-12 col-md-5">
-                      <div
-                        class="dataTables_info"
-                        id="DataTables_Table_0_info"
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Showing 1 to 7 of 7 entries
-                      </div>
-                    </div>
-                    <div class="col-sm-12 col-md-7">
-                      <div
-                        class="dataTables_paginate paging_simple_numbers"
-                        id="DataTables_Table_0_paginate"
-                      >
-                        <ul class="pagination">
-                          <li
-                            class="paginate_button page-item previous disabled"
-                            id="DataTables_Table_0_previous"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="0"
-                              tabindex="0"
-                              class="page-link"
-                              ><i class="fa fa-angle-double-left"></i>
-                            </a>
-                          </li>
-                          <li class="paginate_button page-item active">
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="1"
-                              tabindex="0"
-                              class="page-link"
-                              >1</a
-                            >
-                          </li>
-                          <li
-                            class="paginate_button page-item next disabled"
-                            id="DataTables_Table_0_next"
-                          >
-                            <a
-                              href="#"
-                              aria-controls="DataTables_Table_0"
-                              data-dt-idx="2"
-                              tabindex="0"
-                              class="page-link"
-                            >
-                              <i class="fa fa-angle-double-right"></i
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+
+                  
+                  <div class="row mt-4" id="pagination_footer">
                   </div>
+
+
                 </div>
               </div>
             </div>
@@ -270,7 +201,7 @@
                       <input
                         class="form-control"
                         id="add-item-name"
-                        placeholder="Enter Item Names"
+                        placeholder="Enter Item Name"
                         type="text"
                       />
                     </div>
@@ -372,28 +303,28 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Item Name</label>
-                      <input type="text" name="" id="_id_hidden" hidden>
-                      <input  id="edit-item-name"  class="form-control"  value="Dell Laptop"  type="text"/>
+                      <label class="col-form-label">Expense Name <span class="text-danger">*</span></label>
+                      <input  id="edit-expense-name"  class="form-control"  value=" "  type="text"/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Expense Name</label>
-                      <input  id="edit-expense-name"  class="form-control"  value="Amazon"  type="text"/>
+                      <label class="col-form-label">Item Name <span class="text-danger">*</span></label>
+                      <input type="text" name="" id="_id_hidden" hidden>
+                      <input  id="edit-item-name"  class="form-control"  value=" "  type="text"/>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Purchase Date</label>
+                      <label class="col-form-label">Purchase Date <span class="text-danger">*</span></label>
                         <input  id="edit-purchase-date"  class="form-control"  type="date"/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Purchased By</label>
+                      <label class="col-form-label">Purchased By <span class="text-danger">*</span></label>
                       <select class="form-control" id="edit-purchaseBy_select_option">
                         <option value="" selected disabled>Select Purchase By</option>
                       </select>
@@ -403,16 +334,16 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Amount</label>
-                      <input  id="edit-amount"  placeholder="$50"  class="form-control"  type="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                      <label class="col-form-label">Amount <span class="text-danger">*</span></label>
+                      <input  id="edit-amount"  placeholder=""  class="form-control"  type="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Paid By</label>
+                      <label class="col-form-label">Paid By <span class="text-danger">*</span></label>
                       <select class="form-control" id="edit-paid-by">
-                        <option>Cash</option>
-                        <option>Cheque</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Cheque">Cheque</option>
                       </select>
                     </div>
                   </div>
@@ -420,10 +351,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="input-block mb-3">
-                      <label class="col-form-label">Status</label>
+                      <label class="col-form-label">Status <span class="text-danger">*</span></label>
                       <select class="form-control" id="edit-status">
-                        <option>Approved</option>
-                        <option>Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
                       </select>
                     </div>
                   </div>
@@ -439,7 +370,7 @@
                   <textarea rows="4" id="edit-description" class="form-control" placeholder="Enter your message here"></textarea>
                 </div>
 
-                <div class="input-block mb-3 d-none" id="uploadFilesDiv">
+                <!-- <div class="input-block mb-3 d-none" id="uploadFilesDiv">
                   <hr>
                   <label class="col-form-label">Uploaded Files</label>
                   <table class="table">
@@ -453,7 +384,7 @@
                     <tbody id="uplaodFilesTable">
                     </tbody>
                   </table>
-                </div>
+                </div> -->
 
                 <div class="submit-section">
                   <button type="submit" class="btn btn-primary submit-btn">
@@ -481,13 +412,13 @@
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Item Name</label>
-                    <input  id="view-item-name"  class="form-control"  value="Dell Laptop" disabled  type="text"/>
+                    <input  id="view-item-name"  class="form-control"  value=" " disabled  type="text"/>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Expense Name</label>
-                    <input  id="view-expense-name"  class="form-control"  value="Amazon" disabled  type="text"/>
+                    <input  id="view-expense-name"  class="form-control"  value=" " disabled  type="text"/>
                   </div>
                 </div>
               </div>
@@ -501,9 +432,8 @@
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Purchased By</label>
-                    <select class="form-control" id="view-purchaseBy_select_option" disabled>
-                      <option value="" selected disabled>Select Purchase By</option>
-                    </select>
+                    <input class="form-control" id="view-purchaseBy_select_option" disabled>
+                     </input>
                   </div>
                 </div>
               </div>
@@ -511,16 +441,14 @@
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Amount</label>
-                    <input  id="view-amount"  placeholder="$50"  class="form-control"  value="$10000"  type="text" disabled/>
+                    <input  id="view-amount"  placeholder=" "  class="form-control"  value="$10000"  type="text" disabled/>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Paid By</label>
-                    <select class="form-control" id="view-paid-by" disabled>
-                      <option>Cash</option>
-                      <option>Cheque</option>
-                    </select>
+                    <input class="form-control" id="view-paid-by" disabled>
+                     </input>
                   </div>
                 </div>
               </div>
@@ -528,10 +456,8 @@
                 <div class="col-md-6">
                   <div class="input-block mb-3">
                     <label class="col-form-label">Status</label>
-                    <select class="form-control" id="view-status"  disabled>
-                      <option>Approved</option>
-                      <option>Pending</option>
-                    </select>
+                    <input class="form-control" id="view-status"  disabled>
+                   </input>
                   </div>
                 </div>
               </div>
@@ -541,7 +467,7 @@
               </div>
               
               <div class="input-block mb-3 d-none" id="viewUploadFilesDiv">
-                <hr>
+                 
                 <label class="col-form-label">Uploaded Files</label>
                 <table class="table">
                   <thead>
@@ -691,25 +617,8 @@
       ></script>
 
 
-       <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+       <script src="./assets/custom/sidebar.js"></script>
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
 
   </body>
 </html>

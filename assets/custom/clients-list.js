@@ -1,19 +1,118 @@
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
+
+
+
 // =================================================================================
+import { user_API } from './apis.js';
 import { checkbox_function } from './multi_checkbox.js';
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
-import { user_API } from './apis.js';
+// -------------------------------------------------------------------------
+import {main_hidder_function} from './gloabl_hide.js';
+// import { globalSearch } from './globalSearch.js'; // API URL
+import { global_search_API } from './apis.js'; // Define your global search API URL
+const token = localStorage.getItem('token');
 // -------------------------------------------------------------------------
 import {individual_delete, objects_data_handler_function} from './globalFunctionsDelete.js';
 window.individual_delete = individual_delete;
+import {rtnPaginationParameters, setTotalDataCount} from './globalFunctionPagination.js';
 
 import {} from "./globalFunctionsExport.js";
 // =================================================================================
-const token = localStorage.getItem('token');
-// =================================================================================
 
+// =================================================================================
+ 
+ // Function to handle search and update the same table
+ async function handleSearch() {
+    const searchFields = ["userId", "name"]; // IDs of input fields
+    const roles = "Client"
+    const searchType = "user"; // Keep the type as 'user' since model is the same
+    const tableData = document.getElementById("tableData");
+    let x = '';
+
+    try {
+        loading_shimmer();
+
+        // Fetch search results
+        const queryParams = new URLSearchParams({ type: searchType ,roles});
+        searchFields.forEach((field) => {
+            const value = document.getElementById(field)?.value;
+            if (value) queryParams.append(field, value);
+        });
+
+        const response = await fetch(`${global_search_API}?${queryParams.toString()}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        const res = await response.json();
+        setTotalDataCount(res?.totalCount);
+ 
+        let clients = res?.data.filter(user => user?.roles === "Client") || [];        // let clients = client?.roles
+
+        if (clients.length > 0) {
+            clients.forEach((e) => {
+                x += `<tr data-id="${e?._id}">
+                        <td><input type="checkbox" class="checkbox_child" value="${e?._id || '-'}"></td>
+                        <td>${e?.name || '-'}</td>
+                        <td>${e?.userId || ''}</td>
+                        <td>${e?.contactName || '-'}</td>
+                        <td>${e?.email || '-'}</td>
+                        <td>${e?.mobile || '-'}</td>
+                        <td>${e?.status || '-'}</td>
+                        <td class="text-end">
+                            <div class="dropdown dropdown-action">
+                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" onclick="handleClickOnViewClient('${e?._id}')"  data-bs-toggle="modal" data-bs-target="#view_data"><i class="fa-regular fa-eye m-r-5"></i> View</a>
+                                    <a class="dropdown-item hr_restriction employee_restriction" onclick="handleClickOnEditClient('${e?._id}')" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                    <a class="dropdown-item hr_restriction employee_restriction" onclick="individual_delete('${e?._id}')" href="#" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>`;
+            });
+        } else {
+            x = `<tr><td colspan="8" class="text-center">No results found</td></tr>`;
+        }
+    } catch (error) {
+        console.error("Error during search:", error);
+        x = `<tr><td colspan="8" class="text-center">An error occurred during search</td></tr>`;
+    } finally {
+        tableData.innerHTML = x;
+        checkbox_function(); // Reinitialize checkboxes
+        remove_loading_shimmer();
+    }
+    try {
+        main_hidder_function();
+    } catch (error) { console.log(error) }
+}
+
+
+
+
+// =======================================================================================
+// Event listener for search button
+document.getElementById("searchButton").addEventListener("click", (e) => {
+    e.preventDefault();
+    handleSearch(); // Trigger search
+});
 
 async function all_data_load_dashboard(){
     const tableData = document.getElementById("tableData");
@@ -23,7 +122,7 @@ async function all_data_load_dashboard(){
     } catch(error){console.log(error)}
     // -----------------------------------------------------------------------------------
     try{
-        const response = await fetch(`${user_API}/data/get`, {
+        const response = await fetch(`${user_API}/data/get${rtnPaginationParameters()}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +131,8 @@ async function all_data_load_dashboard(){
         });
     
         const res = await response.json();
-        
+        console.log("broro :- ",res);
+        setTotalDataCount(res?.totalClients);
         let user = res?.users?.clients;
 
         if(user.length>0){
@@ -52,8 +152,8 @@ async function all_data_load_dashboard(){
                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" onclick="handleClickOnViewClient('${e?._id}')"  data-bs-toggle="modal" data-bs-target="#view_data"><i class="fa-regular fa-eye m-r-5"></i> View</a>
-                                    <a class="dropdown-item" onclick="handleClickOnEditClient('${e?._id}')" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
-                                    <a class="dropdown-item" onclick="individual_delete('${e?._id}')" href="#" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+                                    <a class="dropdown-item hr_restriction employee_restriction" onclick="handleClickOnEditClient('${e?._id}')" data-bs-toggle="modal" data-bs-target="#edit_data"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                    <a class="dropdown-item hr_restriction employee_restriction" onclick="individual_delete('${e?._id}')" href="#" data-bs-toggle="modal" data-bs-target="#delete_data"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
                                 </div>
                             </div>
                         </td>
@@ -62,13 +162,13 @@ async function all_data_load_dashboard(){
         } else {
             x = `
                 <tr>
-                    <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i> Data is not available, please insert the data</td>
+                    <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i>No Data Found</td>
                 </tr>`;
         }
     } catch(error){
         x += `
                 <tr>
-                    <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i> Data is not available, please insert the data</td>
+                    <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i>No Data Found</td>
                 </tr>`;
     }
     tableData.innerHTML = x;
@@ -77,6 +177,9 @@ async function all_data_load_dashboard(){
     try{
         remove_loading_shimmer();
     } catch(error){console.log(error)}
+    try{
+        main_hidder_function();
+    } catch (error){console.log(error)}
 }
 
 // =======================================================================================
@@ -195,7 +298,7 @@ clientUpdateForm.addEventListener('submit', async (event) => {
             if(c1){
                 all_data_load_dashboard();
             }
-            status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+            status_popup( ((c1) ? "Customer Updated <br> Successfully!" : "Please try <br> again later"), (c1) );
         } catch (error){}
     } catch (error) {
         console.error('Error updating client:', error);
@@ -219,7 +322,7 @@ addClientForm.addEventListener('submit', async (event) => {
     } catch(error){console.log(error)}
     // -----------------------------------------------------------------------------------
     
-    let name = document.getElementById('name').value;
+    let name = document.getElementById('name_client').value;
     let address = document.getElementById('address').value;
     let email = document.getElementById('email').value;
     let mobile = document.getElementById('mobile').value;
@@ -248,12 +351,12 @@ addClientForm.addEventListener('submit', async (event) => {
         if(c1){
             all_data_load_dashboard();
         }
-        status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+        status_popup( ((c1) ? "Customer Created <br> Successfully!" : "Please try <br> again later"), (c1) );
     } catch (error){
         status_popup("Please try <br> again later", false);
     }
     try{
-        document.getElementById('name').value = '';
+        document.getElementById('name_client').value = '';
         document.getElementById('address').value = '';
         document.getElementById('email').value = '';
         document.getElementById('mobile').value = '';
@@ -277,7 +380,7 @@ function validateEmployeeForm(formType) {
     clearErrors(); // Clear previous error messages
   
     const fieldsToValidate = formType === "add" ? {
-        name: "name",
+        name: "name_client",
         email: "email",
         address: "address",
         mobile: "mobile",
@@ -307,7 +410,7 @@ function validateEmployeeForm(formType) {
         } else if (fieldName === "mobile" && (field.value.length < 10 || field.value.length > 13)) {
             showError(field, "Mobile number must be between 10 and 13 digits");
             isValid = false;
-        } else if (fieldName === "name" || fieldName === "update-name") {
+        } else if (fieldName === "name_client" || fieldName === "update-name") {
             if (/\d/.test(field.value)) {
             showError(field, "Name cannot contain numbers");
             isValid = false;

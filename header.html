@@ -34,10 +34,10 @@
       </li> -->
 
       <li class="nav-item dropdown">
-        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+        <!-- <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
           <i class="fa-regular fa-bell"></i>
           <span class="badge rounded-pill">3</span>
-        </a>
+        </a> -->
         <!-- Notification dropdown content -->
       </li>
 
@@ -47,10 +47,10 @@
             <span class="status online"></span></span>
           <span id="role"></span> <!-- Role is updated dynamically here -->
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="profile.html">My Profile</a>
-          <a class="dropdown-item"    href="addUser.html">Add User</a>
-          <a class="dropdown-item" href="index.html">Logout</a>
+        <div id="pages" class="dropdown-menu">
+          <a id="profile" class="dropdown-item" href="profile.html">My Profile</a>
+          <!-- <a class="dropdown-item employee_restriction"    href="addUser.html">Add User</a> -->
+          <a class="dropdown-item logoutBtn" href="#">Logout</a>
         </div>
       </li>
     </ul>
@@ -60,7 +60,7 @@
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="profile.html">My Profile</a>
         <a  class="dropdown-item"   href="addUser.html">Add User</a>
-        <a class="dropdown-item" href="index.html">Logout</a>
+        <a class="dropdown-item logoutBtn" href="#">Logout</a>
       </div>
     </div>
 
@@ -70,4 +70,7 @@
     </div> -->
   </div>
 </div>
-<!-- <script src="./assets/custom/user.js"></script> -->
+<script src="./assets/custom/user.js"></script>
+ <script src="./assets/custom/logout.js"></script>
+ <script src="./assets/custom/profile.js"></script>
+ 

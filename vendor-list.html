@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta name="author" content="" />
+    <title>Vendor</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- <script src="app.js"></script> -->
+    <!-- <scriptsrc=src=""></scriptsrc=> -->
+     <style>
+      #update-remark{
+        max-width: 100%;
+      }
+      @media screen and (min-width:575px) {
+        #remark{
+          max-width: 212%;
+        }
+      }
+     </style>
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper" style="min-height: 695px">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="page-title">Vendor</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="vendor-list.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Vendor</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row filter-row">
+            <div class="col-sm-6 col-md-4">
+              <div class="input-block mb-3 form-focus">
+                <input
+                  id="vendorName"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Vendor Name"
+                  fdprocessedid="78ccye"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+              <div class="input-block mb-3 form-focus">
+                <input
+                  id="vendorId"
+                  type="text"
+                  class="form-control floating"
+                  placeholder="Enter Vendor Id"
+                  fdprocessedid="78ccye"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <button id="searchButton" class="btn btn-success w-100">
+                Search
+              </button>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <div
+                  id="DataTables_Table_0_wrapper"
+                  class="dataTables_wrapper dt-bootstrap4 no-footer"
+                >
+                  <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                      <div
+                        class="dataTables_length"
+                        id="DataTables_Table_0_length"
+                      ></div>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                      <div class="mohit-d-flex-justify-around-2">
+                        <button
+                          class="btn rounded add-btn disabled"
+                          id="download_excel_multiple_file"
+                          data-bs-toggle="modal"
+                          data-bs-target="#export_data"
+                        >
+                          <i class="fa-solid fa-arrow-down"></i> Download
+                          Vendor's List
+                        </button>
+                        <button
+                          class="btn rounded add-btn disabled"
+                          id="delete_btn_multiple_file"
+                          data-bs-toggle="modal"
+                          data-bs-target="#delete_data"
+                        >
+                          <i class="fa-solid fa-times"></i> Remove Vendor
+                        </button>
+                        <a
+                          href="#"
+                          class="btn rounded add-btn"
+                          id="add-employee-btn"
+                          data-bs-toggle="modal"
+                          data-bs-target="#add_data"
+                          ><i class="fa-solid fa-plus"></i> Add Vendor</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-sm-12" style="overflow-y: auto">
+                      <table
+                        class="table table-striped custom-table datatable dataTable no-footer"
+                        id="DataTables_Table_0 "
+                        role="grid"
+                        aria-describedby="DataTables_Table_0_info"
+                      >
+                        <thead>
+                          <tr role="row">
+                            <th
+                              class="sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Employee ID: activate to sort column ascending"
+                              style="width: 0px; padding-left: 1.35rem"
+                            >
+                              <input
+                                type="checkbox"
+                                class="checkbox_all"
+                                name=""
+                                id=""
+                              />
+                            </th>
+                            <th
+                              class="sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Employee ID: activate to sort column ascending"
+                              style="width: 200.6125px"
+                            >
+                              Vendor Name
+                            </th>
+                            <th
+                              class="text-nowrap sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Join Date: activate to sort column ascending"
+                              style="width: 83.175px"
+                            >
+                              Vendor Id
+                            </th>
+                            <th
+                              class="sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Role: activate to sort column ascending"
+                              style="width: 139.475px"
+                            >
+                              Contact No.
+                            </th>
+                            <th
+                              class="sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Role: activate to sort column ascending"
+                              style="width: 139.475px"
+                            >
+                              Aadhar No.
+                            </th>
+                            <th
+                              class="sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Role: activate to sort column ascending"
+                              style="width: 70.475px"
+                            >
+                              Pan No.
+                            </th>
+                            <th
+                              id="employee-action"
+                              class="no-sort sorting"
+                              tabindex="0"
+                              aria-controls="DataTables_Table_0"
+                              rowspan="1"
+                              colspan="1"
+                              aria-label="Action: activate to sort column ascending"
+                              style="width: 50.45px"
+                            >
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="tableData"></tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4" id="pagination_footer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="add_data" class="modal custom-modal fade" role="dialog">
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Vendor</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="add_Vendor_form">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Vendor Name <span class="text-danger">*</span></label
+                        >
+                        <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="vendor_name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="email" id="email" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Phone No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="tel"
+                        id="mobile"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                      />
+                    </div>
+                  </div>
+
+               
+                  <!-- Expertise rows will be appended below -->
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Aadhar No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="aadharNumber"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >PAN Number <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="panNumber"
+                        oninput="this.value = this.value.toUpperCase()"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >GST No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="gstNumber" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Address <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="address" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label" for="gender"
+                          >Gender <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <select class="form-control" id="gender" >
+                        <option value="" disabled selected>
+                          Select Gender
+                        </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="input-block col-sm-6">
+                    <label class="col-form-label">Upload Files</label>
+                    <input
+                      class="form-control"
+                      id="contractor-file"
+                      type="file"
+                      multiple=""
+                    />
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Work Detail Expertise
+                          <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="contractor-expertise"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-1 d-flex align-content-center flex-wrap">
+                    <td class="text-center">
+                      <a
+                        onclick="addExpertiseRow()"
+                        href="javascript:void(0)"
+                        class="text-success font-18 abc"
+                        title="Add"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </a>
+                    </td>
+                  </div>
+
+                  <div class="expertiseContainer"></div>
+
+                </div>
+                <div class="submit-section">
+                  <button class="btn btn-primary submit-btn" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="edit_data" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Vendor</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="update_Vendor_form">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Vendor Name <span class="text-danger">*</span></label
+                        >
+                        <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="update-name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="email"
+                        id="update-email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Phone No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="tel"
+                        id="update-mobile"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Aadhar No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="updateaadharNumber"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >PAN No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="updatepanNumber"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >GST No. <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="updategstNumber"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label" for="gender"
+                          >Gender <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <select class="form-control" id="updategender" >
+                        <option value="" disabled selected>
+                          Select Gender
+                        </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Address <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="updateaddress"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Remark <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <!-- <textarea id="follow-up-remark" rows="4" cols="97" style="border-color: #D3D3D4;border-radius: 5px;"></textarea> -->
+                      <textarea
+                        rows="4"
+                        cols="97"
+                        style="border-color: #d3d3d4; border-radius: 5px"
+                        id="update-remark"
+                      >
+                      </textarea>
+                    </div>
+                    
+                  </div>
+                  <div class="input-block col-sm-6">
+                    <label class="col-form-label">Upload Files</label>
+                    <input class="form-control" id="update-contractor-file" type="file" multiple="">
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Work Detail Expertise
+                          <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="updateContractor-expertise"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-1 d-flex align-content-center flex-wrap">
+                    <td class="text-center">
+                      <a
+                        onclick="addEditExpertiseRow()"
+                        href="javascript:void(0)"
+                        class="text-success font-18 abc"
+                        title="Add"
+                      >
+                        <i class="fa-solid fa-plus"></i>
+                      </a>
+                    </td>
+                  </div>
+
+                  <div class="editExpertiseContainer"></div>
+ </div>
+                  <div class="submit-section mt-3">
+                    <button
+                      class="btn btn-primary submit-btn"
+                      type="submit"
+                     >
+                      Submit
+                    </button>
+                  </div>
+                <!-- </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal custom-modal fade" id="delete_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Delete Vendor</h3>
+                <p>Are you sure want to delete?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="deleteButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"
+                      >Delete</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal custom-modal fade" id="export_data" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="form-header">
+                <h3>Export Vendor</h3>
+                <p>Are you sure want to download the File?</p>
+              </div>
+              <div class="modal-btn delete-action">
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      href="javascript:void(0);"
+                      id="exportButton"
+                      class="btn btn-primary continue-btn"
+                      data-bs-dismiss="modal"
+                      n
+                      >Download</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                      id="cancelButton"
+                      href="javascript:void(0);"
+                      data-bs-dismiss="modal"
+                      class="btn btn-primary cancel-btn"
+                      >Cancel</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script type="module" src="./assets/custom/vendor-list.js"></script>
+
+      <script
+        src="assets/js/bootstrap.bundle.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/jquery.slimscroll.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/plugins/morris/morris.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/plugins/raphael/raphael.min.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/chart.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/greedynav.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/layout.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="assets/js/theme-settings.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+
+      <script
+        src="assets/js/app.js"
+        type="a584005f29a7ae81ebc6d9e7-text/javascript"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+        defer
+      ></script>
+
+      <script src="./assets/custom/sidebar.js"></script>
+    </div>
+  </body>
+</html>

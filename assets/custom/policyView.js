@@ -1,13 +1,38 @@
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 let role = localStorage.getItem('User_role')
-if(!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+
 
 import {policy_API} from './apis.js';
 
 const token = localStorage.getItem('token');
 
 // =======================================================
+//Function to print the dates
+let currentDate;
+let updateDate
+function generateDate(currDate,updDate){
+let b = currDate.split('T');
+let date = b[0].split('-')
+currentDate = `${date[2]}-${date[1]}-${date[0]}`
+
+let upDate = updDate.split('T');
+let updatedDate = upDate[0].split('-')
+updateDate = `${updatedDate[2]}-${updatedDate[1]}-${updatedDate[0]}`
+}
 // =======================================================
 projectViewLoad();
 async function projectViewLoad() {
@@ -23,6 +48,10 @@ async function projectViewLoad() {
     let res = await response.json();
 
     console.log(res);
+    let createdAt = res?.createdAt? res?.createdAt : new Date()
+    let updatedAt = res?.updatedAt? res?.updatedAt : new Date()
+    generateDate(createdAt,updatedAt)
+
     // let createdDate = res.createdAtFormatted.split(' ')[0]
     // let createdTime = res.createdAtFormatted.split(' ')[1]
     // let created = res.createdAtFormatted.split(' ')[2]
@@ -44,11 +73,11 @@ async function projectViewLoad() {
                         </tr>
                         <tr>
                             <td>Created At : </td>
-                            <td class="text-end">${res.createdAtFormatted}</td>
+                            <td class="text-end">${currentDate}</td>
                         </tr>
                         <tr>
                             <td>Upadted At : </td>
-                            <td class="text-end">${res.updatedAtFormatted}</td>
+                            <td class="text-end">${updateDate}</td>
                         </tr>`;
     tbodyone.id = 'tbodyone';
     policyTableData.appendChild(tbodyone);

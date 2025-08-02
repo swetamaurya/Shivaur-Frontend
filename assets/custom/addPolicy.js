@@ -1,3 +1,19 @@
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
+
 const token = localStorage.getItem("token");
 import {status_popup} from './globalFunctions1.js';
 import {departments_API , policy_API} from './apis.js';
@@ -14,7 +30,7 @@ try {
     console.log(res);
   
 const department = document.getElementById("department_select_option");
-res.forEach((departments) => {
+res?.data.forEach((departments) => {
     const option = document.createElement("option");
     option.value = departments._id;
     option.text = `${departments?.departments}`;
@@ -65,7 +81,7 @@ addPolicyForm.addEventListener("submit", async function (event) {
       console.log(res)
       const c1 = (response.ok==true);
       try{
-          status_popup( ((c1) ? "Policy Created <br> Successfully" : "Please try again later"), (c1) );
+          status_popup( ((c1) ? "Policy Created <br> Successfully!" : "Please try again later"), (c1) );
           setTimeout(function(){
               window.location.href = 'policies.html'; // Adjust this path if needed
           },(Number(document.getElementById("b1b1").innerText)*1000));

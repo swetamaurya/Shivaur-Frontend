@@ -333,25 +333,8 @@ library_add_check
   ></script>
   
   </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+  <script src="./assets/custom/sidebar.js"></script>
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
 
 <!-- Mirrored from    by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 06:21:01 GMT -->
 </html>

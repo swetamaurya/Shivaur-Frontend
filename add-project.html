@@ -1,369 +1,515 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  data-layout="vertical"
-  data-topbar="light"
-  data-sidebar="dark"
-  data-sidebar-size="lg"
-  data-sidebar-image="none"
->
-  <!-- Mirrored from smarthr.dreamstechnologies.com/html/template/project-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 06:21:43 GMT -->
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects" />
+		<meta name="author" content=" " />
+		<title>Projects </title>
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png" />
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css" />
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+		<link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/material.css" />
+		<link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+		<link rel="stylesheet" href="assets/css/select2.min.css" />
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="assets/css/ckeditor.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
+		<style>
+			.custom-dropdown {
+				position: relative;
+				display: inline-block;
+			}
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Smarthr - Bootstrap Admin Template" />
-    <meta
-      name="keywords"
-      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
-    />
-    <meta
-      name="author"
-      content="Dreamstechnologies - Bootstrap Admin Template"
-    />
-    <title>Projects - HRMS admin template</title>
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 200px;
+				box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+				padding: 12px;
+				z-index: 1;
+			}
 
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="assets/img/fevicon.png"
-    />
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-
-    <link
-      rel="stylesheet"
-      href="assets/plugins/fontawesome/css/fontawesome.min.css"
-    />
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
-
-    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/material.css" />
-
-    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
-
-    <link rel="stylesheet" href="assets/css/select2.min.css" />
-
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
-
-    <link rel="stylesheet" href="assets/css/ckeditor.css" />
-
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-
-  <body>
-    <div class="main-wrapper">
-      <div id="header-placeholder"></div>
-
-      <div id="sidebar-placeholder"></div>
-
-      <div class="page-wrapper">
-        <div class="project-form mx-4 my-3">
-          <div class="page-header my-4">
-            <div class="row align-items-center">
-              <div class="col">
-                <h3 class="page-title">Create Project</h3>
-                <ul class="breadcrumb">
-                  <li class="breadcrumb-item">
-                    <a href="project-list.html">Dashboard</a>
-                  </li>
-                  <li class="breadcrumb-item active">Project</li>
-                </ul>
-              </div>
-              
-            </div>
-          </div>
-          
-          <form id="add_project_form">
-            <div class="row">
-
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Project Name <span class="text-danger">*</span></label>
-                  </div>
-                  <input class="form-control" type="text" id="projectName" placeholder="Enter Project's Name" />
-                </div>
-              </div>
-              
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Status <span class="text-danger">*</span></label>
-                  </div>
-                  <select class="form-control" id="statuss">
-                    <option value="" disabled selected>Select Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                    <option value="Hold">Hold</option>
-                    <option value="In-Progress">In-Progress</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Closed">Closed</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Client Name <span class="text-danger">*</span></label>
-                  </div>
-                  <select name="" id="client_select_option" class="form-control">
-                    <option value="" selected disabled>Select Client's Name</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Assign Project <span class="text-danger">*</span></label>
-                  </div>
-                  <select name="" id="emp_select_option" class="form-control">
-                    <option value="" disabled selected>Select Assign Project</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Start Date <span class="text-danger">*</span></label>
-                  </div>
-                  <input class="form-control" type="date" id="startDate" />
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">DeadLine <span class="text-danger">*</span></label>
-                  </div>
-                  <input class="form-control" type="date" id="deadline" />
-                </div>
-              </div>    
-                    
-<hr>
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Price <span class="text-danger">*</span></label>
-                  </div>
-                  <input placeholder="" class="form-control" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="number" id="price" value="0"/>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="input-block mb-3">
-                          <div class="d-flex align-items-center justify-content-between">
-                            <label class="col-form-label">Tax Value(in %) <span class="text-danger">*</span></label>
-                          </div>
-                          <input placeholder="" class="form-control" type="number" value="0" id="tax" step="0.01" min="0" />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="input-block mb-3">
-                          <label class="col-form-label">Tax Value (in ₹)</label>
-                          <input placeholder="" class="form-control" type="number" min="0" value="0" id="tax_rs" disabled   />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <label class="col-form-label">Tax Type <span class="text-danger">*</span></label>
-                    </div>
-                    <select class="form-control" id="taxType">
-                      <option value="" disabled="" selected="">Select Tax</option>
-                      <option value="GST">GST</option>
-                      <option value="VAT">VAT</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label">Discount (in %) <span class="text-danger">*</span></label>
-                      </div>
-                      <input placeholder="" class="form-control" type="number" min="0" id="discount_p" value="0"/>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-block mb-3">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <label class="col-form-label">Discount (in ₹)<span class="text-danger">*</span></label>
-                      </div>
-                      <input placeholder="" class="form-control" type="number" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="discount_rs" value="0"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="input-block mb-3">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <label class="col-form-label">Total Calculated Amount <span class="text-danger">*</span></label>
-                  </div>
-                  <input placeholder="" class="form-control" type="number" id="totalPrice" value="0" disabled />
-                </div>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="col-md-12">
-                <div class="d-flex align-items-center justify-content-between">
-                  <label class="col-form-label">Payment Section <span class="text-danger">*</span></label>
-                </div>
-                
-                <div class="table-responsive">
-                  <table class="table table-hover table-white" id="addTable">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th class="col-sm-2">Payment Date</th>
-                        <th class="col-md-6">Amount</th>
-                        <th class="col-md-6">Status</th>
-                        <th class="col-md-6">Payment Complition Date</th>
-                        <th> Action</th>
-                      </tr>
-                    </thead>
-                    <tbody class="tbodyone">
-                      <tr class="installmentData">
-                        <td>1</td>
-                        <td>
-                           <input class="form-control paymentDate" type="date" id="paymentDate">
-                        </td>
-                        <td>
-                          <input class="form-control paymentAmount" type="number" id="paymentAmount" placeholder="Enter Installment Amount" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                        </td>
-                        <td>
-                          <!-- <input class="form-control description" type="text"> -->
-                          <select class="form-control paymentStatus" id="paymentStatus">
-                            <option value="" disabled="" selected="">Select Status</option>
-                            <option value="Active">Paid</option>
-                            <option value="Pending">Pending</option>
-                          </select>
-                        </td>
-                        <td>
-                          <input class="form-control paidDate" type="date" id="paidDate">
-                        </td>
-                        <td class="text-center">
-                          <a href="javascript:void(0)" class="text-success font-18 addProduct" onclick="addInvoiceTableRow('addTable')" title="Add"><i
-                              class="fa-solid fa-plus"></i></a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-<hr>
-            <div class="input-block mb-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <label class="col-form-label">Description <span class="text-danger">*</span></label>  
-              </div>
-              <textarea
-                rows="4"
-                id="description"
-                class="form-control"
-                placeholder="Enter Your Message Here"
-              ></textarea>
-
-              <div id="editor"></div>
-            </div>
-
-            <div class="input-block mb-3">
-              <label class="col-form-label">Upload Files</label>
-              <input class="form-control" id="project-file" type="file" multiple />
-            </div>
-            <div class="submit-section" style="float: none;">
-              <button class="btn btn-primary submit-btn" id="submit">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Js Scripts  -->
-    <script
-      src="assets/js/jquery-3.7.1.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script
-      src="assets/js/bootstrap.bundle.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/jquery.slimscroll.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/plugins/morris/morris.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/plugins/raphael/raphael.min.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/chart.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/greedynav.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/layout.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="assets/js/theme-settings.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-
-    <script
-      src="assets/js/app.js"
-      type="a584005f29a7ae81ebc6d9e7-text/javascript"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
-      defer
-    ></script>
-    <script type="module" src="./assets/custom/add-project.js"></script>
-  </body>
-  <script>
-    $(document).ready(function () {
-      // Load header
-      $("#header-placeholder").load("header.html", function () {
-        // Fetch role from localStorage
-        var userRole = localStorage.getItem("User_role");
-
-        // Inject role into the header-role span
-        if (userRole) {
-          $("#role").text(userRole);
-        } else {
-          $("#role").text("Guest");
-        }
-      });
-
-      $("#sidebar-placeholder").load("sidebar.html");
-    });
-  </script>
+			.custom-dropdown:hover .dropdown-content {
+				display: block;
+				display: flex;
+				flex-direction: column;
+				gap: 0.50rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-wrapper">
+			<div id="header-placeholder"></div>
+			<div id="sidebar-placeholder"></div>
+			<div class="page-wrapper">
+				<div class="project-form mx-4 my-3">
+					<div class="page-header my-4">
+						<div class="row align-items-center">
+							<div class="col">
+								<h3 class="page-title">Create Project</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="project-list.html">Dashboard</a>
+									</li>
+									<li class="breadcrumb-item active">Project</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<form id="add_project_form">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Project Name <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input class="form-control" type="text" id="projectName" placeholder="Enter Project's Name" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Status <span class="text-danger">*</span>
+										</label>
+									</div>
+									<select class="form-control" id="statuss">
+										<option value="" disabled selected>Select Status</option>
+										<option selected value="Ready to Start">Ready to Start</option>
+										<option value="In-Progress">In-Progress</option>
+										<option value="Completed">Completed</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Client Name <span class="text-danger">*</span>
+										</label>
+									</div>
+									<select name="" id="client_select_option" class="form-control">
+										<option value="" selected disabled>Select Client's Name</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Assign Project <span class="text-danger">*</span>
+										</label>
+									</div>
+									<select name="" id="emp_select_option" class="form-control">
+										<option value="" disabled selected>Select Assign Project</option>
+									</select>
+								</div>
+							</div>
+							<hr>
+							<div class="col-sm-3">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Agreement / Start Date <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input class="form-control" type="date" id="startDate" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Deadline Date <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input class="form-control" type="date" id="deadline" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Actual Completion Date <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input class="form-control" type="date" id="complitionDate" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Time Extension Date</label>
+									</div>
+									<input class="form-control" type="date" id="extensionDate" />
+								</div>
+							</div>
+							<hr>
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Agreement Value <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input placeholder="" class="form-control" min="0" onkeypress="return event.charCode >= 48 && event.charCode 
+												<= 57" type="number" id="price" value="0" />
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="input-block mb-3">
+											<div class="d-flex align-items-center justify-content-between">
+												<label class="col-form-label">Discount (in %) <span class="text-danger">*</span>
+												</label>
+											</div>
+											<input placeholder="" class="form-control" type="number" min="0" id="discount_p" value="0" />
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="input-block mb-3">
+											<div class="d-flex align-items-center justify-content-between">
+												<label class="col-form-label">Discount (in ₹) <span class="text-danger">*</span>
+												</label>
+											</div>
+											<input placeholder="" class="form-control" type="number" min="0" onkeypress="return event.charCode >= 48 && event.charCode 
+															<= 57" id="discount_rs" value="0" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="d-flex align-items-center justify-content-between">
+											<label class="col-form-label">Tax Type <span class="text-danger">*</span>
+											</label>
+										</div>
+										<select class="form-control" id="taxType">
+											<option value="" disabled="" selected="">Select Tax</option>
+											<option value="GST">GST</option>
+											<option value="VAT">VAT</option>
+										</select>
+									</div>
+									<div class="col-sm-6">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="input-block mb-3">
+													<div class="d-flex align-items-center justify-content-between">
+														<label class="col-form-label">Tax Value(in %) <span class="text-danger">*</span>
+														</label>
+													</div>
+													<input placeholder="" class="form-control" type="number" value="0" id="tax" step="0.01" min="0" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-block mb-3">
+													<label class="col-form-label">Tax Value (in ₹)</label>
+													<input placeholder="" class="form-control" type="number" min="0" value="0" id="tax_rs" disabled />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-block mb-3">
+									<div class="d-flex align-items-center justify-content-between">
+										<label class="col-form-label">Total Calculated Amount <span class="text-danger">*</span>
+										</label>
+									</div>
+									<input placeholder="" class="form-control" type="number" id="totalPrice" value="0" disabled />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex align-items-center justify-content-between">
+									<label class="col-form-label">Payment Section <span class="text-danger">*</span>
+									</label>
+								</div>
+								<!-- <div class="table-responsive"> -->
+								<div class="">
+									<table class="table table-hover table-white" id="addTable">
+										<thead>
+											<tr>
+												<th class="d-none" hidden>S. No.</th>
+												<th class="col-sm-1">Payment Date</th>
+												<th class="col-md-1">Gross Amt.</th>
+												<th class="col-md-2">Deduction Details</th>
+												<th class="col-md-2">Net Amt.</th>
+												<th class="col-md-1">Status</th>
+												<th class="col-md-2">MB Number</th>
+												<th class="col-md-1">MB Files</th>
+												<th class="col-md-1">MB Complition Date</th>
+												<th> Action</th>
+											</tr>
+										</thead>
+										<tbody class="tbodyone">
+											<tr class="installmentData">
+												<td hidden class="d-none"> 1 </td>
+												<td>
+													<input class="form-control paymentDate" type="date" id="paymentDate">
+												</td>
+												<td>
+													<input class="form-control paymentAmount" type="number" id="paymentAmount" placeholder="Enter Installment Amount" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+												</td>
+												<td>
+													<div class="custom-dropdown w-100">
+														<button type="button" class="  dropdown-toggle w-100 border text-start" style="background-color: white; padding: 10px;">Select an Option</button>
+														<div class="dropdown-content w-100 ">
+															<div>
+																<label class="col-form-label">Total Income Tax </label>
+																<input class="form-control deduction_income" type="text" placeholder="Enter Income Tax ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total GST </label>
+																<input class="form-control deduction_gst " type="text" placeholder="Enter GST ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total Royalty </label>
+																<input class="form-control deduction_royalty " type="text" placeholder="Enter Royalty ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total Late Deduction </label>
+																<input class="form-control deduction_late " type="text" placeholder="Enter Late Deduction ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total Security Deposit </label>
+																<input class="form-control deduction_security " type="text" placeholder="Enter Security Deposit ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total Labour Cess </label>
+																<input class="form-control deduction_labour_cess " type="text" placeholder="Enter Labour Cess ₹">
+															</div>
+															<div>
+																<label class="col-form-label">Total Any Other Deduction </label>
+																<input class="form-control deduction_other " type="text" placeholder="Enter Any Other Deduction ₹">
+															</div>
+														</div>
+													</div>
+												</td>
+												<td>
+													<input class="form-control ttl_net_amt" disabled type="number" placeholder="Total Net Amount">
+												</td>
+												<td>
+													<select class="form-control paymentStatus" id="paymentStatus">
+														<option value="" selected="">Select Status</option>
+														<option value="Paid">Paid</option>
+														<option value="Pending">Pending</option>
+													</select>
+												</td>
+												<td>
+													<input class="form-control" type="text">
+												</td>
+												<td>
+													<input class="form-control" type="file" multiple>
+												</td>
+												<td>
+													<input class="form-control paidDate" type="date" id="paidDate">
+												</td>
+												<td class="text-center">
+													<a onclick="addInvoiceTableRow('addTable')" href="javascript:void(0)" class="text-success font-18 addProduct" title="Add">
+														<i class="fa-solid fa-plus"></i>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="row">
+									<div class="col-sm-3">
+										<label class="col-form-label">Total Gross Amount </label>
+										<input class="form-control " id="tga_disabled_input" disabled type="number">
+									</div>
+									<div class="col-sm-3">
+										<div class="custom-dropdown w-100">
+											<label class="col-form-label">Total Deduction Details </label>
+											<button type="button" class="  dropdown-toggle w-100 border text-start" style="background-color: white; padding: 10px;">Select an Option</button>
+											<div class="dropdown-content w-100 ">
+												<div>
+													<label class="col-form-label">Total Income Tax </label>
+													<input class="form-control " id="tit_disabled_input" type="text" placeholder="Enter Income Tax ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total GST </label>
+													<input class="form-control  " id="tgst_disabled_input" type="text" placeholder="Enter GST ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total Royalty </label>
+													<input class="form-control  " id="trlty_disabled_input" type="text" placeholder="Enter Royalty ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total Late Deduction </label>
+													<input class="form-control  " id="tld_disabled_input" type="text" placeholder="Enter Late Deduction ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total Security Deposit </label>
+													<input class="form-control  " id="tsd_disabled_input" type="text" placeholder="Enter Security Deposit ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total Labour Cess </label>
+													<input class="form-control  " id="tlcs_disabled_input" type="text" placeholder="Enter Labour Cess ₹" disabled>
+												</div>
+												<div>
+													<label class="col-form-label">Total Any Other Deduction </label>
+													<input class="form-control  " id="taod_disabled_input" type="text" placeholder="Enter Any Other Deduction ₹" disabled>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<label class="col-form-label">Total Deduction Amount </label>
+										<input class="form-control " id="tda_disabled_input" disabled type="number">
+									</div>
+									<div class="col-sm-3">
+										<label class="col-form-label">Total Net Amount </label>
+										<input class="form-control " id="tna_disabled_input" disabled type="number">
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex align-items-center justify-content-between">
+									<label class="col-form-label">Material Requirement Section <span class="text-danger">*</span>
+									</label>
+								</div>
+								<!-- <div class="table-responsive"> -->
+								<div class="">
+									<table class="table table-hover table-white" id="addTableMaterial">
+										<thead>
+											<tr>
+												<th class="col-sm-1">S. No.</th>
+												<th class="col-sm-3">Material</th>
+												<th class="col-md-3">Specs</th>
+												<th class="col-md-3">Quantity</th>
+												<th class="col-md-3">Unit</th>
+												<th> Action</th>
+											</tr>
+										</thead>
+										<tbody class="tbodytwo">
+											<tr class="">
+												<td> 1 </td>
+												<td id="selectMaterialOneTime"></td>
+												<td>
+													<input class="form-control " type="text">
+												</td>
+												<td>
+													<input class="form-control" type="text">
+												</td>
+												<td>
+													<select class="form-control">
+														<option value="" selected="" disabled="">Select Units</option>
+														<option value="Feet">Feet</option>
+														<option value="Meter">Meter</option>
+														<option value="Nos">Nos</option>
+														<option value="Kg">Kg</option>
+														<option value="Cft">Cft</option>
+														<option value="Depth">Depth</option>
+														<option value="Pcs">Pcs</option>
+														<option value="Bags">Bags</option>
+													</select>
+												</td>
+												<td class="text-center">
+													<a onclick="addMaterialTableRow('addTableMaterial')" href="javascript:void(0)" class="text-success font-18 " title="Add">
+														<i class="fa-solid fa-plus"></i>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex align-items-center justify-content-between">
+									<label class="col-form-label">SD Section <span class="text-danger">*</span>
+									</label>
+								</div>
+								<!-- <div class="table-responsive"> -->
+								<div class="">
+									<table class="table table-hover table-white" id="addTableSDSection">
+										<thead>
+											<tr>
+												<th class="col-sm-1">S. No.</th>
+												<th class="col-sm-3">Amount</th>
+												<th class="col-md-3">Remark</th>
+												<th class="col-md-3">Amount Status</th>
+												<th class="col-md-3">Upoload File</th>
+												<th> Action</th>
+											</tr>
+										</thead>
+										<tbody class="tbodythree">
+											<tr class="">
+												<td> 1 </td>
+												<td>
+													<input class="form-control" type="text">
+												</td>
+												<td>
+													<input class="form-control " type="text">
+												</td>
+												<td>
+													<select class="form-control " id="">
+														<option value="" selected="" disabled>Select ID-Proof</option>
+														<option value="FD">FD</option>
+														<option value="BG">BG</option>
+														<option value="Online Transfer">Online Transfer</option>
+														<option value="Passbook">Passbook</option>
+													</select>
+												</td>
+												<td>
+													<input class="form-control" type="file" multiple>
+												</td>
+												<td class="text-center">
+													<a onclick="addSDSectionTableRow('addTableSDSection')" href="javascript:void(0)" class="text-success font-18 " title="Add">
+														<i class="fa-solid fa-plus"></i>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="input-block mb-3">
+							<div class="d-flex align-items-center justify-content-between">
+								<label class="col-form-label">Description <span class="text-danger">*</span>
+								</label>
+							</div>
+							<textarea rows="4" id="description" class="form-control" placeholder="Enter Your Message Here"></textarea>
+							<div id="editor"></div>
+						</div>
+						<div class="input-block mb-3">
+							<label class="col-form-label">Upload Files</label>
+							<input class="form-control" id="project-file" type="file" multiple />
+						</div>
+						<div class="submit-section" style="float: none;">
+							<button type="submit" class="btn btn-primary submit-btn" id="submit"> Submit </button>
+							<a href="project-list.html" type="button" class="btn btn-outline-secondary  submit-btn">Cancel</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Js Scripts  -->
+		<script src="assets/js/jquery-3.7.1.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="assets/js/bootstrap.bundle.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/jquery.slimscroll.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/plugins/morris/morris.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/plugins/raphael/raphael.min.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/chart.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/greedynav.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/layout.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/theme-settings.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="assets/js/app.js" type="a584005f29a7ae81ebc6d9e7-text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="a584005f29a7ae81ebc6d9e7-|49" defer></script>
+		<script type="module" src="./assets/custom/add-project.js"></script>
+	</body>
+	<script src="./assets/custom/sidebar.js"></script>
 </html>

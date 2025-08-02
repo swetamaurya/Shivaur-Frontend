@@ -43,9 +43,21 @@ let accumulatedWorkTime = parseInt(localStorage.getItem("accumulatedWorkTime") |
 let accumulatedBreakTime = parseInt(localStorage.getItem("totalBreakTime") || "0");
 
 // Redirect if no token
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 
 import { attendance_API } from './apis.js';
 

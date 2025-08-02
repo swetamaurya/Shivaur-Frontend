@@ -68,13 +68,35 @@
         <div class="content container-fluid pb-0">
           <div class="page-header">
             <div class="row">
-              <div class="col-sm-12">
-                <div><span id="role"></span></div>
-                <h3 class="page-title">Profile</h3>
+              <div class="col-sm-6">
+                 <h3 class="page-title" id="profile_name">Profile</h3>
+              </div>
+              <div class="col-sm-6">
+                
+                <!-- <div>  <a
+                  class="btn rounded add-btn"
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_resignation"
+                  ><i class="fa-solid fa-plus"></i> Add Resignation</a>
+                </div> -->
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
 
+
+              <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="mohit-d-flex-justify-around-2">
+                
+               
+              </div>
+            </div>
+          </div>
           <div class="card mb-0">
             <div class="card-body">
               <div class="row">
@@ -189,6 +211,58 @@
               class="pro-overview tab-pane fade show active"
             >
               <div class="row"> 
+               
+
+                
+                <div class="col-md-6 d-flex  ">
+
+                  <div class="card profile-box flex-fill" id="fileDocumentUploaded">
+                  </div>
+
+                </div>
+
+
+                <div class="col-md-6 d-flex">
+                  <div class="card profile-box flex-fill">
+                    <div class="card-body">
+                      <h3 class="card-title">
+                        Bank information
+                      </h3>
+                       <ul class="personal-info">
+                        <li>
+                          <div class="title">Account Holder's Name</div>
+                          <div class="text" id="view-holderName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank name</div>
+                          <div class="text" id="view-bankName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Branch Name</div>
+                          <div class="text" id="view-branchName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Account Type</div>
+                          <div class="text" id="view-accountType"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank account No.</div>
+                          <div class="text" id="view-accountNumber"></div>
+                        </li>
+                        <li>
+                          <div class="title">IFSC Code</div>
+                          <div class="text" id="view-IFSCCode"></div>
+                        </li>
+                        <li>
+                          <div class="title">PAN No</div>
+                          <div class="text" id="view-panNumber"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                 
+                
                 <div class="col-md-6 d-flex">
                   <div class="card profile-box flex-fill">
                     <div class="card-body">
@@ -244,47 +318,7 @@
                     </div>
                   </div>
                 </div>
-               
-                <div class="col-md-6 d-flex">
-                  <div class="card profile-box flex-fill">
-                    <div class="card-body">
-                      <h3 class="card-title">
-                        Bank information
-                      </h3>
-                       <ul class="personal-info">
-                        <li>
-                          <div class="title">Account Holder's Name</div>
-                          <div class="text" id="view-holderName"></div>
-                        </li>
-                        <li>
-                          <div class="title">Bank name</div>
-                          <div class="text" id="view-bankName"></div>
-                        </li>
-                        <li>
-                          <div class="title">Branch Name</div>
-                          <div class="text" id="view-branchName"></div>
-                        </li>
-                        <li>
-                          <div class="title">Account Type</div>
-                          <div class="text" id="view-accountType"></div>
-                        </li>
-                        <li>
-                          <div class="title">Bank account No.</div>
-                          <div class="text" id="view-accountNumber"></div>
-                        </li>
-                        <li>
-                          <div class="title">IFSC Code</div>
-                          <div class="text" id="view-IFSCCode"></div>
-                        </li>
-                        <li>
-                          <div class="title">PAN No</div>
-                          <div class="text" id="view-panNumber"></div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                 
+
               </div>
             
             </div>
@@ -880,27 +914,60 @@
       </div>
     </div>
 
+    <div id="add_resignation" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Resignation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>  
+          <div class="modal-body">
+            <form id="add-resignation-form">
+              <!-- Hidden field for employee ID -->
+              <input id="add_employee_id" name="employee_id" type="hidden">
     
+              <div class="input-block mb-3">
+                <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                <input id="add_employee_name" name="employee_name" type="text" class="form-control" required disabled>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                <input id="add_email" name="email" type="email" class="form-control" required disabled>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Notice Date <span class="text-danger">*</span></label>
+                <input id="add_noticeDate" name="noticeDate" type="date" class="form-control" required>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Resignation Date <span class="text-danger">*</span></label>
+                <input id="add_resignationDate" name="resignationDate" type="date" class="form-control" required>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Reason <span class="text-danger">*</span></label>
+                <textarea id="add_reason" name="reason" class="form-control" rows="4" required></textarea>
+              </div>
+    
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn" data-bs-dismiss="modal" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+ 
     <script type="module" src="./assets/custom/userprofile.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        // Load header
-        $("#header-placeholder").load("header.html", function () {
-          // Fetch role from localStorage
-          var userRole = localStorage.getItem("User_role");
-  
-          // Inject role into the header-role span
-          if (userRole) {
-            $("#role").text(userRole);
-          } else {
-            $("#role").text("Guest");
-          }
-        });
-  
-        $("#sidebar-placeholder").load("sidebar.html");
-      });
-    </script>
+    <script src="./assets/custom/sidebar.js"></script>
+
 
     <script
       src="assets/js/bootstrap.bundle.min.js"

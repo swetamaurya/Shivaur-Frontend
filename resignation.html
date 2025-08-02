@@ -69,10 +69,10 @@
 </div>
 
 <div class="row filter-row">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-6 col-md-6 ">
     <div class="input-block mb-3 form-focus">
       <input
-      id="employeeId"
+      id="employee.name"
         type="text"
         class="form-control floating"
         placeholder="Employee Name"
@@ -80,8 +80,8 @@
       />
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <a href="javascript:void(0)" class="btn btn-success w-100"><i class="fa fa-search" aria-hidden="true"></i> Search </a>
+  <div class="col-sm-6 col-md-6 ">
+    <button id="searchButton" class="btn btn-success w-100">Search</button>
   </div>
   </div>
   <div class="row mt-4">
@@ -93,30 +93,17 @@
         >
           <div class="row">
             <div class="col-sm-12 col-md-6">
-              <div
-                class="dataTables_length"
-                id="DataTables_Table_0_length"
-              >
-                <label
-                  >Show entries</label>
-                  <select
-                    name="DataTables_Table_0_length"
-                    aria-controls="DataTables_Table_0"
-                    class="ms-2 custom-select custom-select-sm form-select form-control-sm"
-                    fdprocessedid="2bf78h"
-                  >
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                  </select>
-              </div>
+
+
+              <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
             </div>
             <div class="col-sm-12 col-md-6">
               <div class="mohit-d-flex-justify-around-2">
-                <button class="btn rounded add-btn disabled" id="download_excel_multiple_file" ><i class="fa-solid fa-arrow-down"></i> Download Resignation's List</button >
+                <button class="btn rounded add-btn disabled" id="download_excel_multiple_file"  data-bs-toggle="modal"
+                data-bs-target="#data_export" ><i class="fa-solid fa-arrow-down"></i> Download Resignation's List</button >
                 <button class="btn rounded add-btn disabled" id="delete_btn_multiple_file" data-bs-toggle="modal" data-bs-target="#delete_resignation"><i class="fa-solid fa-times"></i> Remove Resignation</button >
-                <a class="btn rounded add-btn" href="#" data-bs-toggle="modal" data-bs-target="#add_resignation"><i class="fa-solid fa-plus"></i> Add Resignation</a>
+                <!-- <a class="btn rounded add-btn" href="#" data-bs-toggle="modal" data-bs-target="#add_resignation"><i class="fa-solid fa-plus"></i> Add Resignation</a> -->
               </div>
             </div>
             
@@ -130,10 +117,11 @@
 <tr>
   <th><input type="checkbox" class="checkbox_all" name="" id=""></th>
   <th>Resigning Employee </th>
-<th>Department </th>
+<th>Email </th>
 <th>Reason </th>
 <th>Notice Date </th>
 <th>Resignation Date </th>
+<th class="text-center">Status</th>
 <th class=" ">Action</th>
 </tr>
 </thead>
@@ -144,64 +132,11 @@
 </div>
 </div>
 </div>
-<div class="row mt-4">
-  <div class="col-sm-12 col-md-5">
-    <div
-      class="dataTables_info"
-      id="DataTables_Table_0_info"
-      role="status"
-      aria-live="polite"
-    >
-      Showing 1 to 7 of 7 entries
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-7">
-    <div
-      class="dataTables_paginate paging_simple_numbers"
-      id="DataTables_Table_0_paginate"
-    >
-      <ul class="pagination">
-        <li
-          class="paginate_button page-item previous disabled"
-          id="DataTables_Table_0_previous"
-        >
-          <a
-            href="#"
-            aria-controls="DataTables_Table_0"
-            data-dt-idx="0"
-            tabindex="0"
-            class="page-link"
-            ><i class="fa fa-angle-double-left"></i>
-          </a>
-        </li>
-        <li class="paginate_button page-item active">
-          <a
-            href="#"
-            aria-controls="DataTables_Table_0"
-            data-dt-idx="1"
-            tabindex="0"
-            class="page-link"
-            >1</a
-          >
-        </li>
-        <li
-          class="paginate_button page-item next disabled"
-          id="DataTables_Table_0_next"
-        >
-          <a
-            href="#"
-            aria-controls="DataTables_Table_0"
-            data-dt-idx="2"
-            tabindex="0"
-            class="page-link"
-          >
-            <i class="fa fa-angle-double-right"></i
-          ></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+
+                  
+<div class="row mt-4" id="pagination_footer">
 </div>
+
 </div>
 </div>
 </div>
@@ -210,54 +145,6 @@
 </div>
 
 
-<div id="add_resignation" class="modal custom-modal fade" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Resignation</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="add-resignation-form">
-          <div class="input-block mb-3">
-            <label class="col-form-label">Resigning Employee <span class="text-danger">*</span></label>
-             <select class="form-control" id="add_employee" required>
-              <option value="" disabled selected>Loading Employee...</option>
-          </select>
-          </div>
-
-          <div class="input-block mb-3">
-            <label class="col-form-label">Department <span class="text-danger">*</span></label>
-            <select class="form-control" id="departments" required>
-                <option value="" disabled selected>Loading departments...</option>
-            </select>
-        </div>
-
-          <div class="input-block mb-3">
-            <label class="col-form-label">Notice Date <span class="text-danger">*</span></label>
-            <input id="add_noticeDate" name="noticeDate" type="date" class="form-control">
-          </div>
-
-          <div class="input-block mb-3">
-            <label class="col-form-label">Resignation Date <span class="text-danger">*</span></label>
-            <input id="add_resignationDate" name="resignationDate" type="date" class="form-control">
-          </div>
-
-          <div class="input-block mb-3">
-            <label class="col-form-label">Reason <span class="text-danger">*</span></label>
-            <textarea id="add_reason" name="reason" class="form-control" rows="4"></textarea>
-          </div>
-
-          <div class="submit-section">
-            <button class="btn btn-primary submit-btn" data-bs-dismiss="modal" type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Edit Resignation Modal -->
 <div id="edit_resignation" class="modal custom-modal fade" role="dialog">
@@ -277,11 +164,10 @@
           </div>
 
           <div class="input-block mb-3">
-            <label class="col-form-label">Department <span class="text-danger">*</span></label>
-            <select class="form-control" id="edit_departments" required>
-              <option value="" disabled selected>Loading departments...</option>
-            </select>
-          </div>
+            <label class="col-form-label">Email <span class="text-danger">*</span></label>
+            <input disabled id="edit_email" name="email" type="email" class="form-control">
+
+        </div>
 
           <div class="input-block mb-3">
             <label class="col-form-label">Notice Date <span class="text-danger">*</span></label>
@@ -298,6 +184,7 @@
             <textarea id="edit_reason" name="reason" class="form-control" rows="4" required></textarea>
           </div>
 
+       
           <div class="submit-section">
             <button class="btn btn-primary submit-btn" data-bs-dismiss="modal" type="submit">Submit</button>
           </div>
@@ -306,6 +193,77 @@
 </div>
 </div>
 </div>
+
+<div class="modal custom-modal fade" id="approve_resignation" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Resignation Approve</h3>
+          <p>Are you sure you want to approve this resignation?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <a href="javascript:void(0);" class="btn btn-primary continue-btn status-btn"
+              data-bs-dismiss="modal"
+                data-status="Approved">Approved</a>
+            </div>
+            <div class="col-6">
+              <a href="javascript:void(0);" class="btn btn-primary cancel-btn status-btn"
+              data-bs-dismiss="modal"
+                data-status="Declined">Declined</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div
+id="data_export"
+class="modal custom-modal fade"
+role="dialog"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="form-header">
+        <h3>Export Excel File</h3>
+        <p>Are you sure you want to Download File?</p>
+      </div>
+      <div class="modal-btn delete-action">
+        <div class="row">
+          <div class="col-6">
+            <a
+              href="javascript:void(0);"
+              id="exportButton"
+              class="btn btn-primary continue-btn"
+              data-bs-dismiss="modal"
+              n
+              >Download</a
+            >
+          </div>
+          <div class="col-6">
+            <a
+              id="cancelButton"
+              href="javascript:void(0);"
+              data-bs-dismiss="modal"
+              class="btn btn-primary cancel-btn"
+              >Cancel</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
  <div id="delete_resignation" class="modal custom-modal fade" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
@@ -399,24 +357,7 @@
 ></script>
 
   </body> 
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+  <script src="./assets/custom/sidebar.js"></script>
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
 
  </html>

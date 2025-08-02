@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none" 
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta name="author" content="" />
+    <title>Edit Leads</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="assets/css/ckeditor.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      #follow-up-remark{
+        max-width: 100%;
+      }
+      @media screen and (min-width:575px) {
+        #follow-up-remark{
+          max-width: 212%;
+        }
+      }
+     </style>
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+
+      <div class="page-wrapper">
+        <div class="project-form mx-4 my-3">
+          <div class="page-header py-3">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <h3 class="page-title">Edit Lead</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="lead-list.html">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Lead</li>
+                </ul>
+              </div>
+              <div class="col-6 text-end" id="addEditFollowUpBtn">
+                
+              </div>
+            </div>
+          </div>
+
+          <div id="addFollowups" class="modal custom-modal fade" role="dialog">
+            <div
+              class="modal-dialog modal-dialog-centered modal-lg"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit FollowUp</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="edit_FollowUp_form">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label">Created By</label>
+                          </div>
+                          <input class="form-control" type="text" id="createdByFollowUp" disabled />
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label">Today/Previous Date</label>
+                          </div>
+                          <input class="form-control" type="date" id="follow-up-date" />
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label"  >Next FollowUp Date <span class="text-danger">*</span></label>
+                          </div>
+                          <input class="form-control" type="date" id="follow-up-next-date" />
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label"  >Status <span class="text-danger">*</span></label>
+                          </div>
+                          <select class="form-control" id="follow-up-status">
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Active">Active</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Interested">Interested</option>
+                            <option value=" Not Interested">Not Interested</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Closed">Closed</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label"  >Remark <span class="text-danger">*</span></label>
+                          </div>
+                          <textarea  id="follow-up-remark" name="contractor-remark" rows="4" cols="97" style="border-color: #D3D3D4;border-radius: 5px;"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="submit-section mt-3">
+                      <button class="btn btn-primary submit-btn" type="submit">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form id="edit_lead_form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Name <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="text" id="leadName" />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type=" " id="email" />
+                    </div>
+                  </div>
+    
+                  <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                      <div
+                        class="d-flex align-items-center justify-content-between"
+                      >
+                        <label class="col-form-label"
+                          >Mobile <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <input class="form-control" type="" id="mobile" />
+                    </div>
+                  </div>
+
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Company / Organization
+                      <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="company_organization"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Department <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="department" />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Designation <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="designation" />
+                </div>
+              </div>
+
+          
+
+             
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Address <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="text" id="address" />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label"  >Zip Code <span class="text-danger">*</span></label>
+                  </div>
+                  <input class="form-control" type="text" id="zipCode"   />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <label class="col-form-label"
+                      >Date <span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input class="form-control" type="date" id="date" />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label"  >Status <span class="text-danger">*</span></label>
+                  </div>
+                  <select class="form-control" id="status">                                -->
+                    <option value="Active">Active</option>
+                    <option value="In Active">In Active</option>
+                    <option value="Past Customer">Past Customer</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-block mb-3">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <label class="col-form-label"  >Created By <span class="text-danger">*</span></label>
+                  </div>
+                  <input class="form-control" type="text" id="createdBy" disabled />
+                </div>
+            </div>
+
+              <div class="input-block mb-6">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label class="col-form-label"
+                    >Description <span class="text-danger">*</span></label
+                  >
+                </div>
+                <textarea
+                  rows="4"
+                  id="description"
+                  class="form-control"
+                  placeholder="Enter your message here"
+                ></textarea>
+              </div>
+              <!-- <hr />
+              <div class="col-md-12">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label class="col-form-label"
+                    >Follow Up Details <span class="text-danger">*</span></label
+                  >
+                </div> -->
+
+                 <!-- <div class="table-responsive">
+                  <table class="table table-hover table-white" id="addFollowUpDetails">
+                    <thead>
+                      <tr>
+                        <th class="col-sm-1">#</th>
+                        <th class="col-sm-2">Date</th>
+                        <th class="col-sm-3">Remark</th>
+                        <th class="col-sm-3">Next Follow Up Date</th>
+                        <th class="col-sm-2">Status</th>
+
+                        <th class="col-sm-1 text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody class="followupTable" id="followupTbody">
+                      <tr class="followUpDetailsRow">
+                        <td>1</td>
+                        <td>
+                          <input
+                            class="form-control followupDate"
+                            type="date"
+                            
+                          />
+                        </td>
+                        <td>
+                          <textarea name="" class="followupRemark"></textarea>
+                        </td>
+                        
+                        <td>
+                          <input
+                            class="form-control followupNextDate"
+                            
+                            type="date"
+                          />
+                        </td>
+                        <td>
+                          
+                          <select class="form-control followupStatus">
+                            <option value="" disabled selected>Select Status</option>
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Active">Active</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Interested">Interested</option>
+        
+                            <option value=" Not Interested">Not Interested</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Pending">Pending</option>
+        
+                            <option value="Closed">Closed</option>
+                          </select>
+                        </td>
+
+                        <td class="text-center">
+                          <a
+                          onclick="addFollowUpDetailsTable()"
+                            href="javascript:void(0)"
+                            class="text-success mangobhai font-18 "
+                            title="Add"
+                            ><i 
+                            class="fa-solid fa-plus"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>  -->
+              </div>
+              <div class="submit-section" style="float: none">
+                <button
+                  type="submit"
+                  class="btn btn-primary submit-btn"
+                  id="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Js Scripts  -->
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+    <script type="module" src="./assets/custom/editLeads.js"></script>
+  </body>
+  <script src="./assets/custom/sidebar.js"></script>
+</html>

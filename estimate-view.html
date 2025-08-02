@@ -11,7 +11,7 @@
   <meta name="keywords"
     content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
   <meta name="author" content="">
-  <title>Estimates -  </title>
+  <title>Estimates   </title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png">
 
@@ -88,9 +88,9 @@
                     <h5><b>Estimate to: </b><b id="clientName">Lucky Singh</b></h5>
 
                     <ul class="list-unstyled">
-                      <li id="clientAddr" style="width: 300px;"></li>
                       <li><b>Ph. No.: </b><span id="clientph"></span></li>
                       <li><b>Email Id: </b><span id="clientMail"></span></li>
+                      <li id="clientAddr" style="width: 300px;"></li>
                     </ul>
                   </div>
                 </div>
@@ -123,19 +123,19 @@
                           <table class="table">
                             <tbody>
                               <tr>
-                                <th>Subtotal:</th>
+                                <td>Subtotal:</td>
                                 <td id="subTotal" class="text-end"></td>
                               </tr>
                               <tr>
-                                <th>Tax (<span id="taxType" class="text-regular"></span>):</th>
+                                <td>Tax (<span id="taxType" class="text-regular"></span>):</td>
                                 <td id="taxAmt" class="text-end"></td>
                               </tr>
                               <tr>
-                                <th>Discount:</th>
+                                <td>Discount:</td>
                                 <td id="discountAmt" class="text-end"></td>
                               </tr>
                               <tr>
-                                <th>Total:</th>
+                                <td>Total:</td>
                                 <td  class="text-end text-primary">
                                   <h5 id="grandTotal"></h5>
                                 </td>
@@ -190,25 +190,8 @@
 
 
 </body>
-  <script>
-    $(document).ready(function () {
-        // Load header
-        $('#header-placeholder').load('header.html', function() {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem('User_role');
-            
-            // Inject role into the header-role span
-            if (userRole) {
-                $('#role').text(userRole);
-            } else {
-                $('#role').text('Guest');
-            }
-        });
-    
+  <script src="./assets/custom/sidebar.js"></script>
 
-         $('#sidebar-placeholder').load('sidebar.html');
-    });
-</script>
 
 <!-- Mirrored from  /html/template/estimate-view.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Sep 2024 06:26:28 GMT -->
 

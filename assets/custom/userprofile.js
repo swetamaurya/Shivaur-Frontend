@@ -1,11 +1,23 @@
 // for employees-list.html
-if(!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
 import { formatDate, capitalizeFirstLetter } from './globalFunctions2.js'
-import {user_API,departments_API,desginations_API} from './apis.js';
+import {user_API,departments_API,desginations_API,resignation_API} from './apis.js';
 
 const token = localStorage.getItem('token');
 let _id_not_use_again;
@@ -25,7 +37,7 @@ async function dropDrownLoad() {
 
         console.log(r2)
         departments.innerHTML = '';
-        r2.forEach((e)=>{
+        r2?.data.forEach((e)=>{
             let s = document.createElement("option");
             s.value = e?._id;
             s.textContent = e?.departments;
@@ -45,7 +57,7 @@ async function dropDrownLoad() {
         console.log(r2)
     
         designations.innerHTML = '';
-        r2.forEach((e)=>{
+        r2?.data.forEach((e)=>{
             let s = document.createElement("option");
             s.value = e?._id;
             s.textContent = e?.designations;
@@ -85,6 +97,7 @@ async function all_data_load_dashboard(){
                 document.getElementById("view-profile-image").src = a1?.image || 'assets/img/profiles/avatar-02.jpg';
 
                 try{
+                    document.getElementById("profile_name").innerText = a1?.name || '-';
                     document.getElementById("view-name").innerText = a1?.name || '-';
                     document.getElementById("view-joining-date").innerText = formatDate(a1?.joiningDate) || '-';
                     document.getElementById("view-mobile").innerText = a1?.mobile || '-';
@@ -95,8 +108,8 @@ async function all_data_load_dashboard(){
                     document.getElementById("view-user-id").innerText = a1?.userId || '-';
                     document.getElementById("view-status").innerText = a1?.status || '-';
                     document.getElementById("view-roles").innerText = a1?.roles || '-';
-                    document.getElementById("view-department").innerText = await rtn_deprt(a1?.departments) || '-';
-                    document.getElementById("view-designation").innerText = await rtn_degi(a1?.designations) || '-';
+                    document.getElementById("view-department").innerText = a1?.departments?.departments || '-';
+                    document.getElementById("view-designation").innerText = a1?.designations?.designations || '-';
                     document.getElementById("view-address").innerText = a1?.address || '-';
                 } catch(error){console.log(error)}
                 try{
@@ -108,9 +121,9 @@ async function all_data_load_dashboard(){
                     document.getElementById("edit-mobile").value = a1?.mobile || '-';
                     document.getElementById("edit-roles").value = a1?.roles || '-';
                     document.getElementById("edit-email-id").value = a1?.email || '-';
-                    document.getElementById("edit-department").value = a1?.departments || '-';
+                    document.getElementById("edit-department").value = a1?.departments?._id || '-';
                     document.getElementById("edit-dob").value = a1?.DOB || '-';
-                    document.getElementById("edit-designation").value = a1?.designations || '-';
+                    document.getElementById("edit-designation").value = a1?.designations?._id || '-';
                     document.getElementById("edit-gender").value = a1?.gender || '-';
                     document.getElementById("edit-address").value = a1?.address || '-';
                 } catch(error){console.log(error)}
@@ -152,6 +165,121 @@ async function all_data_load_dashboard(){
                     document.getElementById("view-IFSCCode").innerText = a4?.IFSCCode || '-';
                     document.getElementById("view-panNumber").innerText = a4?.PANNumber || '-';
                 } catch(error){console.log(error)}
+                try{
+                    let dm1;
+                    if(a1?.aadharImage){
+                        let ddm1 = `
+                            <li>
+                                <div class="title">Aadhar Card (${a1?.aadharNumber})</div>
+                                <div class="text" ></div>
+                            </li>
+                        `;
+                        let ddm2 = ``;
+                        for(let i = 0; i<a1?.aadharImage.length; i++){
+                            ddm2 += `
+                                <tr>
+                                    <td>${1+i}</td>
+                                    <td>
+                                        <input class="form-control" type="name" value="File ${i+1}" disabled="" id="paymentDate">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="${a1?.aadharImage[i]}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            `;
+                        }
+                        dm1 = `
+                            ${ddm1}
+                            <li>
+                                <table class="table table-hover table-white">
+                                    <tbody id="">
+                                        ${ddm2}
+                                    </tbody>
+                                </table>
+                            </li>
+                        `;
+                    }
+                    let dm2;
+                    if(a1?.panImage){
+                        let ddm1 = `
+                            <li>
+                                <div class="title">Pan Card (${a1?.PANNumber})</div>
+                                <div class="text" ></div>
+                            </li>
+                        `;
+                        let ddm2 = `
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <input class="form-control" type="name" value="File 1" disabled="" id="paymentDate">
+                                </td>
+                                <td class="text-center">
+                                    <a href="${a1?.panImage}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                </td>
+                            </tr>
+                        `;
+
+                        dm2 = `
+                            ${ddm1}
+                            <li>
+                                <table class="table table-hover table-white">
+                                    <tbody id="">
+                                        ${ddm2}
+                                    </tbody>
+                                </table>
+                            </li>
+                        `;
+                    }
+                    let dm3;
+                    if(a1?.pfFiles){
+                        let ddm1 = `
+                            <li>
+                                <div class="title">PF Details (${a1?.pfNumber})</div>
+                                <div class="text" ></div>
+                            </li>
+                        `;
+                        let ddm2 = ``;
+                        for(let i = 0; i<a1?.pfFiles.length; i++){
+                            ddm2 += `
+                                <tr>
+                                    <td>${1+i}</td>
+                                    <td>
+                                        <input class="form-control" type="name" value="File ${i+1}" disabled="" id="paymentDate">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="${a1?.pfFiles[i]}" target="_blank" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                    </td>
+                                </tr>
+                            `;
+                        }
+                        dm3 = `
+                            ${ddm1}
+                            <li>
+                                <table class="table table-hover table-white">
+                                    <tbody id="">
+                                        ${ddm2}
+                                    </tbody>
+                                </table>
+                            </li>
+                        `;
+                    }
+
+
+                    let d1 = document.createElement("div");
+                    d1.classList.add("card-body");
+
+                    d1.innerHTML = `
+                        <h3 class="card-title">Files</h3>
+                        <ul class="personal-info">
+                            ${dm1}
+                            ${dm2}
+                            ${dm3}
+                        </ul>
+                    `;
+
+                    let pp1 = document.getElementById("fileDocumentUploaded");
+                    pp1.appendChild(d1);
+                } catch(error){console.log(error)}
             }else {
                 window.location.href = 'employees-list.html';
             }
@@ -165,39 +293,6 @@ async function all_data_load_dashboard(){
     try{
         remove_loading_shimmer();
     } catch(error){console.log(error)}
-}
-
-async function rtn_degi(degi_id){
-    let r1 = await fetch(`${desginations_API}/get`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-    });
-    let r2 = await r1.json();
-
-    for(let i = 0; i<r2.length; i++){
-        if((r2[i]?._id)==degi_id){
-            return r2[i]?.designations;
-        }
-    }
-}
-async function rtn_deprt(deprt_id){
-    let r1 = await fetch(`${departments_API}/get`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-    });
-    let r2 = await r1.json();
-
-    for(let i = 0; i<r2.length; i++){
-        if((r2[i]?._id)==deprt_id){
-            return r2[i]?.departments;
-        }
-    }
 }
 
 // =============================================================================================
@@ -255,7 +350,7 @@ document.getElementById('profile-update-form').addEventListener('submit', async 
         if(c1){
             all_data_load_dashboard();
         }           
-        status_popup( ((c1) ? "Data Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+        status_popup( ((c1) ? "Profile Updated <br> Successfully!" : "Please try <br> again later"), (c1) );
     } catch (error){
         console.log(error);
         status_popup("Please try <br> again later", false);
@@ -323,7 +418,7 @@ document.getElementById('emergency-contact-update-form').addEventListener('submi
         if(c1){
             all_data_load_dashboard();
         }           
-        status_popup( ((c1) ? "Date Updated <br> Successfully" : "Please try <br> again later"), (c1) );
+        status_popup( ((c1) ? "Emergency Contact Updated <br> Successfully!" : "Please try <br> again later"), (c1) );
     } catch (error){
         console.log(error);
         status_popup("Please try <br> again later", false);
@@ -506,3 +601,93 @@ function clearErrors() {
     const errorMessages = document.querySelectorAll('.text-danger.text-size.mohit_error_js_dynamic_validation');
     errorMessages.forEach((msg) => msg.remove());
 }
+// Populate the resignation form with the current user's profile information
+async function populateResignationForm() {
+    try {
+        const userId = new URLSearchParams(window.location.search).get('id'); // Extract user ID from the query parameter
+        if (!userId) throw new Error("User ID not found in the URL.");
+
+        // Fetch the user profile details
+        const response = await fetch(`${user_API}/get/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const userData = await response.json();
+        if (!response.ok || !userData) throw new Error("Failed to fetch user data.");
+
+        // Pre-fill the resignation form with the user details
+        const employeeNameField = document.getElementById('add_employee_name');
+        const emailField = document.getElementById('add_email');
+        const employeeIdField = document.getElementById('add_employee_id');
+
+        // Populate the fields with the current user's data
+        employeeNameField.value = userData.name || ''; // Set the employee name
+        employeeNameField.disabled = true; // Disable the field to prevent changes
+        emailField.value = userData.email || ''; // Set the email field
+        emailField.disabled = true; // Disable the email field to prevent changes
+        employeeIdField.value = userData._id || ''; // Set the employee ID (hidden field)
+    } catch (error) {
+        console.error("Error populating resignation form:", error);
+    }
+}
+
+// Add Resignation Form Submission
+document.getElementById('add-resignation-form').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent default form submission
+    const submitButton = event.target.querySelector("button[type='submit']");
+    submitButton.disabled = true; // Disable the submit button to prevent multiple submissions
+
+    try {
+        // Close modal (if any) and show loading shimmer
+        document.querySelectorAll(".btn-close").forEach(e => e.click());
+        loading_shimmer();
+
+        // Gather input values
+        const employeeId = document.getElementById('add_employee_id').value.trim();
+        const email = document.getElementById('add_email').value.trim();
+        const noticeDate = document.getElementById('add_noticeDate').value;
+        const resignationDate = document.getElementById('add_resignationDate').value;
+        const reason = document.getElementById('add_reason').value.trim();
+
+        // Validate required fields
+        if (!employeeId || !email || !noticeDate || !resignationDate || !reason) {
+            throw new Error("Please fill in all the required fields.");
+        }
+
+        // Make API call to submit the resignation
+        const response = await fetch(`${resignation_API}/post`, {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ employeeId, email, noticeDate, resignationDate, reason }),
+        });
+
+        // Handle success or failure
+        const success = response.ok;
+        status_popup(success ? "Resignation Created <br> Successfully!" : "Please try again later", success);
+
+        if (success) {
+            // Reload the resignation list after successful addition
+            populateResignationForm();
+        }
+    } catch (error) {
+        // Log and display error to the user
+        console.error('Error adding resignation:', error);
+        status_popup(error.message || "Please try <br> again later", false);
+    } finally {
+        // Re-enable submit button and remove shimmer
+        submitButton.disabled = false;
+        remove_loading_shimmer();
+    }
+});
+
+// Call the populate function on page load
+populateResignationForm();
+
+

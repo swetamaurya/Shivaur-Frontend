@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+  <head>
+    <style>
+      #view-gender::first-letter {
+          text-transform: uppercase;
+      }
+      #view-status::first-letter {
+          text-transform: uppercase;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta name="author" content="" />
+    <title>User Profile</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
+
+    <link rel="stylesheet" href="assets/css/select2.min.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+      
+
+      <div class="page-wrapper">
+        <div class="content container-fluid pb-0">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-6">
+                 <h3 class="page-title">Profile</h3>
+              </div>
+              <div class="col-sm-6">
+                
+                <div>  <a
+                    onclick="showData()"
+                  class="btn rounded add-btn"
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_resignation"
+                  ><i class="fa-solid fa-plus"></i> Add Resignation</a>
+                </div>
+                <div onclick="fetchResignationData()">  
+                    <a
+                  class="btn rounded add-btn"
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#view_resignation"
+                  ><i class="fa-solid fa-plus"></i> View Resignation</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+
+
+              <div class="dataTables_length" id="DataTables_Table_0_length"> </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="mohit-d-flex-justify-around-2">
+                
+               
+              </div>
+            </div>
+          </div>
+          <div class="card mb-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="profile-view">
+                    <div class="profile-img-wrap">
+                      <div class="profile-img">
+                        <img id="view-profile-image" src="assets/img/profiles/avatar-02.jpg" alt="User Image" />
+                      </div>
+                    </div>
+                    <div class="profile-basic">
+                      <div class="row">
+                        <div class="offset-md-1 col-md-5">
+                          <ul class="personal-info">
+                            <li>
+                              <div class="title">Name :</div>
+                              <div class="text"  id="view-name"></div>
+                            </li>
+                            <li>
+                              <div class="title">Joining Date :</div>
+                              <div class="text" id="view-joining-date"></div>
+                            </li>
+                            <li>
+                              <div class="title">Mobile No :</div>
+                              <div class="text" id="view-mobile"></div>
+                            </li>
+                            <li>
+                              <div class="title">Email Id :</div>
+                              <div class="text" id="view-email-id"></div>
+                            </li>
+                            <li>
+                              <div class="title">DOB :</div>
+                              <div class="text" id="view-dob"></div>
+                            </li>
+                            <!-- <li>
+                              <div class="title">Gender :</div>
+                              <div class="text" id="view-gender"></div>
+                            </li> -->
+                          </ul>
+                        </div>
+                        <div class="offset-md-1 col-md-5">
+                          <ul class="personal-info">
+                            <li>
+                              <div class="title">User Id :</div>
+                              <div class="text"  id="view-user-id"></div>
+                            </li>
+                            <li>
+                              <div class="title">Status :</div>
+                              <div class="text" id="view-status"></div>
+                            </li>
+                            <li>
+                              <div class="title">Roles :</div>
+                              <div class="text" id="view-roles"></div>
+                            </li>
+                            <li>
+                              <div class="title">Department :</div>
+                              <div class="text" id="view-department"></div>
+                            </li>
+                            <li>
+                              <div class="title">Designation :</div>
+                              <div class="text" id="view-designation"></div>
+                            </li>
+                            <!-- <li>
+                              <div class="title">Address :</div>
+                              <div class="text" id="view-address"></div>
+                            </li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pro-edit">
+                      <a
+                        data-bs-target="#edit_data_profile"
+                        data-bs-toggle="modal"
+                        class="edit-icon"
+                        href="#"
+                      >
+                        <i class="fa-solid fa-pencil"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card tab-box">
+            <div class="row user-tabs">
+              <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                  <li class="nav-item">
+                    <a
+                      href="#emp_profile"
+                      data-bs-toggle="tab"
+                      class="nav-link active"
+                      >Profile</a
+                    >
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a href="#emp_assets" data-bs-toggle="tab" class="nav-link"
+                      >Assets</a
+                    >
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content">
+            <div
+              id="emp_profile"
+              class="pro-overview tab-pane fade show active"
+            >
+              <div class="row"> 
+                <div class="col-md-6 d-flex">
+                  <div class="card profile-box flex-fill">
+                    <div class="card-body">
+                      <h3 class="card-title">
+                        Emergency Contact
+                        <a
+                          href="#"
+                          class="edit-icon"
+                          data-bs-toggle="modal"
+                          data-bs-target="#edit_data_emergency"
+                          ><i class="fa-solid fa-pencil"></i
+                        ></a>
+                      </h3>
+                      <h4 class="section-title">Primary</h4>
+                      <ul class="personal-info">
+                        <li>
+                          <div class="title">Name</div>
+                          <div class="text" id="view-primaryName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Relationship</div>
+                          <div class="text" id="view-primaryRelationship"></div>
+                        </li>
+                        <li>
+                          <div class="title">Phone</div>
+                          <div class="text" id="view-primaryPhone"></div>
+                        </li>
+                        <li>
+                          <div class="title">Address</div>
+                          <div class="text" id="view-primaryAddress"></div>
+                        </li>
+                      </ul>
+                      <hr />
+                      <h4 class="section-title">Secondary</h4>
+                      <ul class="personal-info">
+                        <li>
+                          <div class="title">Name</div>
+                          <div class="text" id="view-secondaryName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Relationship</div>
+                          <div class="text" id="view-secondaryRelationship"></div>
+                        </li>
+                        <li>
+                          <div class="title">Phone</div>
+                          <div class="text" id="view-secondaryPhone"></div>
+                        </li>
+                        <li>
+                          <div class="title">Address</div>
+                          <div class="text" id="view-secondaryAddress"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="col-md-6 d-flex">
+                  <div class="card profile-box flex-fill">
+                    <div class="card-body">
+                      <h3 class="card-title">
+                        Bank information
+                      </h3>
+                       <ul class="personal-info">
+                        <li>
+                          <div class="title">Account Holder's Name</div>
+                          <div class="text" id="view-holderName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank name</div>
+                          <div class="text" id="view-bankName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Branch Name</div>
+                          <div class="text" id="view-branchName"></div>
+                        </li>
+                        <li>
+                          <div class="title">Account Type</div>
+                          <div class="text" id="view-accountType"></div>
+                        </li>
+                        <li>
+                          <div class="title">Bank account No.</div>
+                          <div class="text" id="view-accountNumber"></div>
+                        </li>
+                        <li>
+                          <div class="title">IFSC Code</div>
+                          <div class="text" id="view-IFSCCode"></div>
+                        </li>
+                        <li>
+                          <div class="title">PAN No</div>
+                          <div class="text" id="view-panNumber"></div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                 
+              </div>
+            
+            </div>
+
+            <div class="tab-pane fade" id="emp_assets">
+              <div class="table-responsive table-newdatatable">
+                <table class="table table-new custom-table mb-0 datatable">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Asset ID</th>
+                      <th>Assigned Date</th>
+                      <th>Assignee</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <a href="assets-details.html" class="table-imgname">
+                          <img
+                            src="assets/img/laptop.png"
+                            class="me-2"
+                            alt="Laptop Image"
+                          />
+                          <span>Laptop</span>
+                        </a>
+                      </td>
+                      <td>AST - 001</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="javascript:void(0);"
+                          class="table-profileimage"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-02.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="javascript:void(0);" class="table-name">
+                          <span>John Paul Raj</span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="503a3f383e10342235313d37252923243533387e333f3d"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>
+                        <a href="assets-details.html" class="table-imgname">
+                          <img
+                            src="assets/img/laptop.png"
+                            class="me-2"
+                            alt="Laptop Image"
+                          />
+                          <span>Laptop</span>
+                        </a>
+                      </td>
+                      <td>AST - 002</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="javascript:void(0);"
+                          class="table-profileimage"
+                          data-bs-toggle="modal"
+                          data-bs-target="#edit-asset"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-05.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="javascript:void(0);" class="table-name">
+                          <span>Vinod Selvaraj</span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="35435c5b5a511b4675514750545852404c464150565d1b565a58"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>
+                        <a href="assets-details.html" class="table-imgname">
+                          <img
+                            src="assets/img/keyboard.png"
+                            class="me-2"
+                            alt="Keyboard Image"
+                          />
+                          <span>Dell Keyboard</span>
+                        </a>
+                      </td>
+                      <td>AST - 003</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="javascript:void(0);"
+                          class="table-profileimage"
+                          data-bs-toggle="modal"
+                          data-bs-target="#edit-asset"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-03.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="javascript:void(0);" class="table-name">
+                          <span>Harika </span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="177f76657e7c76396157736572767a70626e646372747f3974787a"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>
+                        <a href="#" class="table-imgname">
+                          <img
+                            src="assets/img/mouse.png"
+                            class="me-2"
+                            alt="Mouse Image"
+                          />
+                          <span>Logitech Mouse</span>
+                        </a>
+                      </td>
+                      <td>AST - 0024</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="assets-details.html"
+                          class="table-profileimage"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-02.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="assets-details.html" class="table-name">
+                          <span>Mythili</span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="b8d5c1ccd0d1d4d1f8dccaddd9d5dfcdc1cbccdddbd096dbd7d5"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>
+                        <a href="#" class="table-imgname">
+                          <img
+                            src="assets/img/laptop.png"
+                            class="me-2"
+                            alt="Laptop Image"
+                          />
+                          <span>Laptop</span>
+                        </a>
+                      </td>
+                      <td>AST - 005</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="assets-details.html"
+                          class="table-profileimage"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-02.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="assets-details.html" class="table-name">
+                          <span>John Paul Raj</span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="3f555057517f5b4d5a5e52584a464c4b5a5c57115c5052"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>
+                        <a href="#" class="table-imgname">
+                          <img
+                            src="assets/img/laptop.png"
+                            class="me-2"
+                            alt="Laptop Image"
+                          />
+                          <span>Laptop</span>
+                        </a>
+                      </td>
+                      <td>AST - 006</td>
+                      <td>22 Nov, 2022 10:32AM</td>
+                      <td class="table-namesplit">
+                        <a
+                          href="javascript:void(0);"
+                          class="table-profileimage"
+                        >
+                          <img
+                            src="assets/img/profiles/avatar-05.jpg"
+                            class="me-2"
+                            alt="User Image"
+                          />
+                        </a>
+                        <a href="javascript:void(0);" class="table-name">
+                          <span>Vinod Selvaraj</span>
+                          <p>
+                            <span
+                              class="__cf_email__"
+                              data-cfemail="16607f787972386556726473777b71636f656273757e3875797b"
+                              >[email&#160;protected]</span
+                            >
+                          </p>
+                        </a>
+                      </td>
+                      <td>
+                        <div class="table-actions d-flex">
+                          <a
+                            class="delete-table me-2"
+                            href="user-asset-details.html"
+                          >
+                            <img
+                              src="assets/img/icons/eye.svg"
+                              alt="Eye Icon"
+                            />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="edit_data_profile" class="modal custom-modal fade" role="dialog">
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Profile Information</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="profile-update-form">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="profile-img-wrap edit-img">
+                        <img class="inline-block" id="edit-profile-image" src="assets/img/profiles/avatar-02.jpg" alt="User Image" />
+                        <div class="fileupload btn">
+                          <span class="btn-text">edit</span>
+                          <input class="upload" id="edit-profile-image-update" type="file" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                          <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                        </div>
+                        <input type="text" class="form-control" id="edit-name" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">User ID <span class="text-danger">*</span></label>
+                        </div>
+                        <input type="text" class="form-control" id="edit-user-id" disabled   />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+                        </div>
+                        <input class="form-control datetimepicker" id="edit-joining-date" type="text" disabled/>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Status <span class="text-danger">*</span></label>
+                        </div>
+                        <select class="select form-control" id="edit-status">
+                          <option value="active">Active</option>
+                          <option value="inactive">Inactive</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Mobile No <span class="text-danger">*</span></label>
+                        </div>
+                        <input type="tel" class="form-control" id="edit-mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Roles <span class="text-danger">*</span></label>
+                        </div>
+                        <select class="form-control" id="edit-roles">
+                          <option value="">Select Role</option>
+                          <option value="Employee">Employee</option>
+                          <option value="Supervisor">Supervisor</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Email Id <span class="text-danger">*</span></label>
+                        </div>
+                        <input type="text" class="form-control" id="edit-email-id"  />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Department <span class="text-danger">*</span></label>
+                        </div>
+                        <select class="form-control" id="edit-department" >
+                          <option value="" disabled="" selected="">Select Department</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">DOB <span class="text-danger">*</span></label>
+                        </div>
+                        <input class="form-control datetimepicker" type="date" id="edit-dob"/>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Designation <span class="text-danger">*</span></label>
+                        </div>
+                        <select class="form-control" id="edit-designation" >
+                          <option value="" disabled="" selected="">Select Designation</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Gender <span class="text-danger">*</span></label>
+                        </div>
+                        <select class="form-control" id="edit-gender" >
+                          <option value="" disabled="" selected="">Select Gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Others</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-block mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <label class="col-form-label">Address <span class="text-danger">*</span></label>
+                        </div>
+                        <input type="text" class="form-control" id="edit-address"    />
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="submit-section">
+                    <button class="btn btn-primary submit-btn">Edit Profile</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="edit_data_emergency" class="modal custom-modal fade" role="dialog" >
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Emergency Contacts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="emergency-contact-update-form">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="card-title">Primary Contact</h3>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              
+                              <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                              <!-- <span class="text-danger text-size " style="font-size: 10px;" ><i class="fa-solid fa-times"></i> Enter Valid Name</span> -->
+                            </div>
+                            <input type="text" class="form-control" id="edit-primaryName" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Relationship <span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="text" id="edit-primaryRelationship" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Phone<span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="tel" id="edit-primaryPhone" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Address <span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="text" id="edit-primaryAddress" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="card-title">Secondary Contact</h3>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                            </div>
+                            <input type="text" class="form-control" id="edit-secondaryName" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Relationship <span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="text" id="edit-secondaryRelationship" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Phone <span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="tel" id="edit-secondaryPhone" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Address <span class="text-danger">*</span></label>
+                            </div>
+                            <input class="form-control" type="text" id="edit-secondaryAddress" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="submit-section">
+                    <button class="btn btn-primary submit-btn">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="add_resignation" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Resignation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>  
+          <div class="modal-body">
+            <form id="add-resignation-form">
+              <!-- Hidden field for employee ID -->
+              <input id="add_employee_id" name="employee_id" type="hidden">
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                <input id="add_employee_name" name="employee_name" type="text" class="form-control" required disabled>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                <input id="add_email" name="email" type="email" class="form-control" required disabled>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Notice Date <span class="text-danger">*</span></label>
+                <input id="add_noticeDate" name="noticeDate" type="date" class="form-control" required>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Resignation Date <span class="text-danger">*</span></label>
+                <input id="add_resignationDate" name="resignationDate" type="date" class="form-control" required>
+              </div>
+    
+              <div class="input-block mb-3">
+                <label class="col-form-label">Reason <span class="text-danger">*</span></label>
+                <textarea id="add_reason" name="reason" class="form-control" rows="4" required></textarea>
+              </div>
+    
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn" data-bs-dismiss="modal" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view_resignation" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Resignation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>  
+            <div class="modal-body">
+              <form id="view-resignation-form">
+                <!-- Hidden field for employee ID -->
+                <input id="add_employee_id" name="employee_id" type="hidden">
+      
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Name <span class="text-danger">*</span></label>
+                  <input id="view-employee-name" name="employee_name" type="text" class="form-control" required disabled>
+                </div>
+      
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Email <span class="text-danger">*</span></label>
+                  <input id="view-email" name="email" type="email" class="form-control" required disabled>
+                </div>
+      
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Notice Date <span class="text-danger">*</span></label>
+                  <input id="view-noticeDate" name="noticeDate" type="date" class="form-control" required disabled>
+                </div>
+      
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Resignation Date <span class="text-danger">*</span></label>
+                  <input id="view-resignationDate" name="resignationDate" type="date" class="form-control" required disabled>
+                </div>
+      
+                <div class="input-block mb-3">
+                  <label class="col-form-label">Reason <span class="text-danger">*</span></label>
+                  <textarea id="view-reason" name="reason" class="form-control" rows="4" required disabled></textarea>
+                </div>
+      
+                <div class="submit-section">
+                  <button class="btn btn-primary submit-btn" data-bs-dismiss="modal" type="submit">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+ 
+    <script type="module" src="./assets/custom/userP.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/custom/sidebar.js"></script>
+
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+      data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+      defer
+    ></script>
+
+    
+
+  </body>
+</html>

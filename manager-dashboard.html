@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+>
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects"
+    />
+    <meta
+      name="author"
+      content=""
+    />
+    <title>Manager Dashboard</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/fevicons.png"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/material.css" />
+
+    <link rel="stylesheet" href="assets/plugins/morris/morris.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+       
+
+      <div id="header-placeholder"></div>
+
+      <div id="sidebar-placeholder"></div>
+ 
+
+      <div class="page-wrapper">
+        <div class="content container-fluid pb-0">
+          <div class="page-header">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="page-title">Welcome Manager!</h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active">Dashboard</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="card-body">
+                  <span class="dash-widget-icon"
+                    ><i class="fa-solid fa-cubes"></i
+                  ></span>
+                  <div class="dash-widget-info">
+                    <h3 class="projects-count">0</h3>
+                    <span>Projects</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="card-body">
+                  <span class="dash-widget-icon"
+                    ><i class="la la-users"></i></span>
+                  <div class="dash-widget-info">
+                    <h3 class="clients-count">0</h3>
+                    <span>Clients</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="card-body">
+                  <span class="dash-widget-icon"
+                    ><i class="fa-regular fa-gem"></i
+                  ></span>
+                  <div class="dash-widget-info">
+                    <h3 class="tasks-count">0</h3>
+                    <span>Tasks</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+              <div class="card dash-widget">
+                <div class="card-body">
+                  <span class="dash-widget-icon"
+                    ><i class="fa-solid fa-user"></i
+                  ></span>
+                  <div class="dash-widget-info">
+                    <h3 class="employees-count">0</h3>
+                    <span>Employees</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+     
+          <div class="row">
+            <div class="col-md-6 d-flex">
+              <div class="card card-table flex-fill">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Invoices</h3>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="invoicesTable" class="table custom-table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Invoice ID</th>
+                          <th>Client Name</th>
+                          <th>Project Name</th>
+                          <th>Due Date</th>
+                          <th>Total</th>
+                          <!-- <th class="text-end">Action</th> -->
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="invoices.html">View all invoices</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex">
+              <div class="card card-table flex-fill">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Clients</h3>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="clientsTable" class="table custom-table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Client Name</th>
+                         
+                          <th> Email</th>
+                          <th>Contact Number</th>
+                           <th>Status</th>
+                          <!-- <th class="text-end">Action</th> -->
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="clients-list.html">View all clients</a>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-md-6 d-flex">
+              <div class="card card-table flex-fill">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Projects</h3>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table  id="projectsTable" class="table custom-table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Project Name</th>
+                          <th>Client Name</th>
+                          
+                          <th>Deadline</th>
+                          <th>Status</th>
+                           <!-- <th class="text-end">Action</th> -->
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="project-list.html">View all projects</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex">
+              <div class="card card-table flex-fill">
+                <div class="card-header">
+                  <h3 class="card-title mb-0">Products</h3>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table  id="productsTable" class="table custom-table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Product Name</th>
+                          <th>Category Name</th>
+                          <th>Price</th>
+                          <th>Status</th>
+                           <!-- <th class="text-end">Action</th> -->
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="product-list.html">View all products</a>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <script  type="module"  src="./assets/custom/admin-dashboard.js"></script>
+ 
+    <script
+      src="assets/js/jquery-3.7.1.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script
+      src="assets/js/bootstrap.bundle.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/jquery.slimscroll.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/plugins/morris/morris.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/plugins/raphael/raphael.min.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/chart.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/greedynav.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/layout.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+      src="assets/js/theme-settings.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+
+    <script
+      src="assets/js/app.js"
+      type="a584005f29a7ae81ebc6d9e7-text/javascript"
+    ></script>
+    <script
+  src="https://cdnjs.cloudflare.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+  data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
+  defer
+></script> 
+
+  </body> 
+  <script src="./assets/custom/sidebar.js"></script>
+
+
+
+ 
+
+ </html>
+
+ 
+  

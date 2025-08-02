@@ -1,7 +1,19 @@
 
-if (!localStorage.getItem("token")) {
-    window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 const token = localStorage.getItem('token');
 // =======================================================================================
 import { r_arr1, u_arr1, disableBtns } from './multi_checkbox.js';
@@ -58,7 +70,7 @@ async function deleteEventFunction(event) {
             // ----------------------------------------------------------------------------------------------------
 
             const success = response.ok;
-            status_popup(success ? "Data Exported <br> Successfully" : "Please try <br> again later", success);
+            status_popup(success ? "Data Exported <br> Successfully!" : "Please try <br> again later", success);
 
 
             if (response.ok) {

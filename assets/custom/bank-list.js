@@ -1,19 +1,132 @@
-if (!localStorage.getItem("token")) {
-  window.location.href = 'index.html';
-}
+(function(){
+    const timestamp = localStorage.getItem('timestampActiveSession');
+    if (timestamp) {
+        const currentTime = Date.now();
+        const timeDiff = currentTime - parseInt(timestamp);
+        let hrs = 9.5; // hrs session active condition
+        if (timeDiff > hrs * 60 * 60 * 1000) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    } else {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+})();
 // =================================================================================
 import { checkbox_function } from './multi_checkbox.js';
 import { status_popup, loading_shimmer, remove_loading_shimmer } from './globalFunctions1.js';
-import { user_API } from './apis.js';
+import { user_API , global_search_API } from './apis.js';
 // -------------------------------------------------------------------------
 import {individual_delete, objects_data_handler_function} from './globalFunctionsDelete.js';
 window.individual_delete = individual_delete;
 // -------------------------------------------------------------------------
+import {rtnPaginationParameters, setTotalDataCount} from './globalFunctionPagination.js';
+
 import {} from "./globalFunctionsExport.js";
 // =================================================================================
 const token = localStorage.getItem('token');
 // =================================================================================
- let employeesData = []; // Store the employee data globally
+ 
+async function handleSearch() {
+  const searchFields = ["name"]; // IDs of input fields
+  const searchType = "user"; // Type to pass to the backend
+  const bankDataTable = document.getElementById("bankData");
+
+  try {
+      loading_shimmer();
+
+      // Construct query parameters
+      const queryParams = new URLSearchParams({ type: searchType });
+      searchFields.forEach((field) => {
+          const value = document.getElementById(field)?.value;
+          if (value) queryParams.append(field, value);
+      });
+
+      console.log("Query Parameters:", queryParams.toString());
+
+      // Fetch search results
+      const response = await fetch(`${global_search_API}?${queryParams.toString()}`, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+          },
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const res = await response.json();
+      console.log("Fetched bank details:", res);
+
+      const employeesData = res?.data;
+
+      if (employeesData?.length > 0) {
+          const rows = employeesData.map((employee) => {
+              return `
+                  <tr data-id="${employee?._id || '-'}">
+                    <td><input type="checkbox" class="checkbox_child" value="${employee?._id || '-'}"></td>
+                    <td>${employee?.name || '-'} (${employee?.userId || '-'})</td>
+                    <td>${employee?.bankDetails?.bankName || '-'}</td>
+                    <td>${employee?.bankDetails?.accountNumber || '-'}</td>
+                    <td>${employee?.bankDetails?.IFSCCode || '-'}</td>
+                    <td>${employee?.bankDetails?.accountType || '-'}</td>
+                    <td>${employee?.bankDetails?.PANNumber || '-'}</td>
+                    <td class="text-end">
+                      <div class="dropdown dropdown-action">
+                        <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="material-icons">more_vert</i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" onclick="handleEditBankDetails('${employee?._id}')" data-bs-toggle="modal" data-bs-target="#edit_bank"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                          <a class="dropdown-item" onclick="individual_delete('${employee?._id}')" data-bs-toggle="modal" data-bs-target="#delete_bank"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>`;
+          });
+          bankDataTable.innerHTML = rows.join('');
+          checkbox_function();
+      } else {
+          bankDataTable.innerHTML = `
+              <tr>
+                  <td colspan="8" class="text-center"><i class="fa-solid fa-times"></i>No Data Found</td>
+              </tr>`;
+      }
+  } catch (error) {
+      console.error("Error during search:", error);
+      status_popup("Error loading data. Please try again.", false);
+  } finally {
+      remove_loading_shimmer();
+  }
+}
+
+// Event listener for search button
+document.getElementById("searchButton").addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("Search button clicked");
+  handleSearch(); // Trigger search
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let employeesData = []; // Store the employee data globally
  
  
 // Function to load all data for the dashboard
@@ -27,33 +140,34 @@ async function all_data_load_dashboard() {
     const bankDataTable = document.getElementById("bankData");
     bankDataTable.innerHTML = ''; // Clear table data
 
-    // Fetch employees' bank details on page load
-    const response = await fetch(`${user_API}/data/get`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  // Fetch employees' bank details on page load
+  const response = await fetch(`${user_API}/data/get${rtnPaginationParameters()}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    const res = await response.json();
-    console.log("Fetched bank details:", res);
+  const res = await response.json();
+  console.log("Fetched bank details:", res);
+  setTotalDataCount(res?.totalEmployees);
 
-    employeesData = res?.users?.employees;
+  employeesData = res?.users?.employees;
 
-    console.log(employeesData)
+  console.log(employeesData)
 
     if(employeesData.length>0){
       const rows = employeesData.map((employee) => {
         return `
           <tr data-id="${employee?._id || '-'}">
             <td><input type="checkbox" class="checkbox_child" value="${employee?._id || '-'}"></td>
-            <td>${employee?.name} (${employee?.userId})</td>
-            <td>${employee?.bankDetails?.bankName}</td>
-            <td>${employee?.bankDetails?.accountNumber}</td>
-            <td>${employee?.bankDetails?.IFSCCode}</td>
-            <td>${employee?.bankDetails?.accountType}</td>
-            <td>${employee?.bankDetails?.PANNumber}</td>
+            <td>${employee?.name || '-'} (${employee?.userId || '-'})</td>
+            <td>${employee?.bankDetails?.bankName || '-'}</td>
+            <td>${employee?.bankDetails?.accountNumber || '-'}</td>
+            <td>${employee?.bankDetails?.IFSCCode || '-'}</td>
+            <td>${employee?.bankDetails?.accountType || '-'}</td>
+            <td>${employee?.bankDetails?.PANNumber || '-'}</td>
             <td class="text-end">
               <div class="dropdown dropdown-action">
                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,7 +186,7 @@ async function all_data_load_dashboard() {
     } else {
       let rows = `
           <tr>
-              <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i> Data is not available, please insert the data</td>
+              <td  colspan="8" class='text-center'><i class="fa-solid fa-times"></i>No Data Found</td>
           </tr>`;
 
       bankDataTable.innerHTML = rows;
@@ -118,7 +232,7 @@ window.handleEditBankDetails = async function(_id) {
   // Attach new event listener for form submission
   editForm.onsubmit = async function(event) {
     event.preventDefault();
-    console.log("brother th is sis demo")
+    // console.log("brother th is sis demo")
     if (!validateBankForm()) {
       return; // Stop form submission if validation fails
     }
@@ -148,7 +262,7 @@ window.handleEditBankDetails = async function(_id) {
         body: JSON.stringify({ _id, bankDetails }),
       });
       const success = response.ok;
-      status_popup(success ? "Data Updated <br> Successfully!" : "Please try <br> again later", success);
+      status_popup(success ? "Bank Information Updated <br> Successfully!" : "Please try <br> again later", success);
 
       if (success) {
         await all_data_load_dashboard(); // Reload dashboard to reflect changes

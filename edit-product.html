@@ -6,9 +6,9 @@
     <meta name="description" content="Product Management Page" />
     <meta name="keywords" content="admin, products, bootstrap, inventory, business, corporate" />
     <meta name="author" content="YourCompany" />
-    <title>Products - Admin Template</title>
+    <title>Edit Material </title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/fevicons.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css" />
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
@@ -27,7 +27,7 @@
         <div class="page-wrapper">
             <div class="product-form mx-4 my-3">
                 <div class="my-4">
-                    <h2>Edit Product</h2>
+                    <h2>Edit Material</h2>
                 </div>
                 
                 <form id="add_product_form">
@@ -36,9 +36,9 @@
                       <div class="col-sm-6">
                           <div class="input-block mb-3">
                             <div class="d-flex align-items-center justify-content-between">
-                              <label class="col-form-label">Product Name <span class="text-danger">*</span></label>
+                              <label class="col-form-label">Material Name <span class="text-danger">*</span></label>
                             </div>
-                              <input class="form-control" type="text" id="productName" placeholder="Enter Product Name" />
+                              <input class="form-control" type="text" id="material" placeholder="Enter Product Name" />
                           </div>
                       </div>
                       <div class="col-sm-6">
@@ -52,13 +52,21 @@
                           
                           </div>
                       </div>
-                
-                      <div class="col-sm-6">
+                   
+                      <div class="col-sm-3">
                           <div class="input-block mb-3">
                             <div class="d-flex align-items-center justify-content-between">
-                              <label class="col-form-label">Price <span class="text-danger">*</span></label>
+                              <label class="col-form-label">Price (Per Unit) <span class="text-danger">*</span></label>
                             </div>
                               <input class="form-control" type="number" id="price" value="0" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="input-block mb-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label class="col-form-label">Total Price <span class="text-danger">*</span></label>
+                            </div>
+                              <input class="form-control" type="number" id="totalPrice" disabled/>
                           </div>
                       </div>
                       <div class="col-sm-6">
@@ -84,18 +92,40 @@
                           </div>
                       </div>
                       <div class="col-sm-6">
-                          <div class="input-block mb-3">
-                            <div class="d-flex align-items-center justify-content-between">
-                              <label class="col-form-label">Supplier Name <span class="text-danger">*</span></label>
-                            </div>
-                              <input class="form-control" type="text" id="supplier" placeholder="Enter Supplier Name" />
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label"  >Units <span class="text-danger">*</span></label>
                           </div>
+                          
+                          <select name="" id="unit" class="form-control">
+                            <option value="" selected disabled>Select Units</option>
+                            <option value="Feet">Feet</option>
+                            <option value="Meter">Meter</option>
+                            <option value="Nos">Nos</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Cft">Cft</option>
+                            <option value="Depth">Depth</option>
+                            <option value="Pcs">Pcs</option>
+                            <option value="Bags">Bags</option>
+                          </select>
+
+                        </div>
                       </div>
+                      <div class="col-sm-6">
+                        <div class="input-block mb-3">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <label class="col-form-label">Vendor Name <span class="text-danger">*</span></label>
+                          </div>
+                          <select class="form-control" id="vendor_select" >
+                              <option value="" disabled selected>Select Vendor</option>
+                           </select>
+                        </div>
+                    </div>
                   
                       <div class="col-sm-6">
                           <div class="input-block mb-3">
                             <div class="d-flex align-items-center justify-content-between">
-                              <label class="col-form-label">Purchage Date <span class="text-danger">*</span></label>
+                              <label class="col-form-label">Purchase Date <span class="text-danger">*</span></label>
                             </div>
                               <input class="form-control" type="date" id="purchaseDate" />
                           </div>
@@ -107,7 +137,7 @@
                         <textarea rows="4" id="description" class="form-control" placeholder="Product description"></textarea>
                     </div>
                     
-                <div class="row d-none " id="uploaded_files">
+                <!-- <div class="row d-none " id="uploaded_files">
                   <div class="col-md-12">
                     <label class="col-form-label">Uploaded Files</label>
                     
@@ -130,11 +160,11 @@
                               <a href="javascript:void(0)" class="text-success font-18 "><i class="fa-solid fa-eye"></i></a>
                             </td>
                           </tr> -->
-                        </tbody>
+                        <!-- </tbody>
                       </table>
                     </div>
                   </div>
-                </div>
+                </div> -->  
 
                 
                     <div class="input-block mb-1">
@@ -207,23 +237,7 @@
     data-cf-settings="a584005f29a7ae81ebc6d9e7-|49"
     defer
   ></script>
-    <script>
-        $(document).ready(function () {
-          // Load header
-          $("#header-placeholder").load("header.html", function () {
-            // Fetch role from localStorage
-            var userRole = localStorage.getItem("User_role");
-    
-            // Inject role into the header-role span
-            if (userRole) {
-              $("#role").text(userRole);
-            } else {
-              $("#role").text("Guest");
-            }
-          });
-    
-          $("#sidebar-placeholder").load("sidebar.html");
-        });
-      </script>
+    <script src="./assets/custom/sidebar.js"></script>
+
 </body>
 </html>
