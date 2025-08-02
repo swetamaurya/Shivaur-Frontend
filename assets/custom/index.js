@@ -1,5 +1,5 @@
 // Import API configuration
-const user_API = 'http://localhost:3000/user';
+const user_API = 'https://shivaur-backend.onrender.com/user';
 
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (event) => {

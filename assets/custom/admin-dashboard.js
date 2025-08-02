@@ -20,8 +20,8 @@
 // const { formatDate } = await import('./globalFunctions2.js');
 
 // Define APIs locally to avoid import issues
-const dashboard_API = 'http://localhost:3000/dashboard';
-const project_API = 'http://localhost:3000/project';
+const dashboard_API = 'https://shivaur-backend.onrender.com/dashboard';
+const project_API = 'https://shivaur-backend.onrender.com/project';
 
 // Define loading functions locally
 function loading_shimmer() {

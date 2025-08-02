@@ -39,7 +39,7 @@ async function all_data_load_dashboard() {
   }
   // ----------------------------------------------------------------------------------------------------
 
-//   const url = 'http://localhost:3000/invoice/getAll'
+//   const url = 'https://shivaur-backend.onrender.com/invoice/getAll'
   let purchaseInvoiceTableData = document.getElementById("purchaseInvoiceTableData");
   const response = await fetch(`${purchaseOrder_API}/invoice/getAll${rtnPaginationParameters()}`, {
     method: "GET",
